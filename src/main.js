@@ -34,15 +34,6 @@ import './assets/iconfont/iconfont.css'; // 阿里巴巴图标库
 // 权限控制
 import './permission';
 
-// 百度统计
-var _hmt = _hmt || [];
-window._hmt = _hmt; // 必须把_hmt挂载到window下，否则找不到
-(function() {
-    var hm = document.createElement('script');
-    hm.src = 'https://hm.baidu.com/hm.js?b11d61857ddbc0ae7e199bcf3b875274';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(hm, s);
-})();
 
 // Vue.prototype.$echo = echo;
 
