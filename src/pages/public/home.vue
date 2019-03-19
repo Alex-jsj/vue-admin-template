@@ -20,7 +20,7 @@
 			</div>
 			<!-- content -->
 			<ul class="list">
-				<li v-if="item.show" class="item-li float-left" v-for="(item,index) in data_overview_list" :key="index">
+				<li class="item-li float-left" v-for="(item,index) in data_overview_list" :key="index">
 					<el-tooltip class="item" effect="dark" :content="item.info" placement="top">
 						<router-link :to="item.path">
 							<count-to :start-val="0" :end-val="item.num" :duration="2500" class="num"/>
@@ -95,79 +95,75 @@ export default {
 			table_data: [],
 			data_overview_list: [
 				{
-					num: 0,
+					num: 10,
 					isCbjg: false,
 					show: false,
-					title: "报名待付款",
-					info: "报考信息上传和照片已上传，未付款数据",
-					path:
-						"/pages/index/applyManage/applyManage_list?isPay=0&isPhoto=1&show_filter=1"
+					title: "今日访客数",
+					info: "今日访客",
+					path: "/"
 				},
 				{
-					num: 0,
+					num: 213,
 					isCbjg: false,
 					show: false,
-					title: "待分配",
-					info: "已付款未分配考场",
-					path:
-						"/pages/index/applyManage/applyManage_list?isPay=1&isExam=0&show_filter=1"
+					title: "当周访客数",
+					info: "当周访客",
+					path: ""
 				},
 				{
-					num: 0,
+					num: 5893,
 					isCbjg: false,
 					show: false,
-					title: "待考试",
-					info: "已付款已分配考场，未考试（按场次考试时间判断）",
-					path:
-						"/pages/index/examManage/examManage_allot?isExam=1&isPay=1&show_filter=1"
+					title: "当月访客数",
+					info: "当月访客",
+					path: ""
 				},
 				{
-					num: 0,
+					num: 192032,
 					isCbjg: false,
 					show: false,
-					title: "待录入成绩",
-					info:
-						"已付款已分配考场，已考试（过了场次考试时间）、未录入成绩数据",
-					path:
-						"/pages/index/certificateManage/certificateManage_cj?isExam=1&isPay=1&isChengji=0&show_filter=1"
-				},
-				{
-					num: 0,
-					isCbjg: false,
-					show: false,
-					title: "待颁发证书",
-					info: "已录入成绩，未生成证书数据",
-					path:
-						"/pages/index/certificateManage/certificateManage_zsxx?isDayin=0&show_filter=1"
-				},
-				{
-					num: 0,
-					isCbjg: false,
-					show: false,
-					title: "已颁发证书",
-					info: "已生成证书数据",
-					path:
-						"/pages/index/certificateManage/certificateManage_zsxx?isDayin=1&show_filter=1"
-				},
-				{
-					num: 0,
-					isCbjg: false,
-					show: false,
-					title: "承办机构",
-					info: "一级承办机构数据",
-					path: "/pages/index/cbjgManage/cbjgManage_list"
-				},
-				{
-					num: 0,
-					isCbjg: false,
-					show: false,
-					title: "考生总数",
-					info:
-						"已支付的考生总数（一个身份证号码或护照号码只计算一次）",
-					path: "/pages/index/stuManage/stuManage_list"
+					title: "年度访客数",
+					info: "年度访客",
+					path: ""
 				}
 			],
-			peoples_data: [],
+			peoples_data: [
+				{
+					data1: 20,
+					data2: 50,
+					day: "2018/12/12"
+				},
+				{
+					data1: 213,
+					data2: 453,
+					day: "2018/12/13"
+				},
+				{
+					data1: 435,
+					data2: 12,
+					day: "2018/12/14"
+				},
+				{
+					data1: 21,
+					data2: 67,
+					day: "2018/12/15"
+				},
+				{
+					data1: 76,
+					data2: 235,
+					day: "2018/12/16"
+				},
+				{
+					data1: 734,
+					data2: 324,
+					day: "2018/12/17"
+				},
+				{
+					data1: 45,
+					data2: 34,
+					day: "2018/12/18"
+				}
+			],
 			// 查询时间
 			start_date: "",
 			end_date: "",
@@ -242,15 +238,7 @@ export default {
 	created: function() {
 		// 控制不同角色显示内容
 		this.date_role();
-		// 报考趋势时间范围(当前月份)
-		let year = new Date().getFullYear();
-		let month = new Date().getMonth() + 1;
-		month < 10 ? (month = "0" + month) : month;
-		let day = new Date().getDate();
-		day < 10 ? (day = "0" + day) : day;
-		// 赋值
-		this.start_date = `${year}-${month}-01`;
-		this.end_date = `${year}-${month}-${day}`;
+		this.date_scope();
 	},
 	mounted: function() {
 		this.getData();
@@ -271,6 +259,17 @@ export default {
 				this.system_canvas();
 			}
 		},
+		// 时间范围(当前月份)
+		date_scope: function() {
+			let year = new Date().getFullYear();
+			let month = new Date().getMonth() + 1;
+			month < 10 ? (month = "0" + month) : month;
+			let day = new Date().getDate();
+			day < 10 ? (day = "0" + day) : day;
+			// 赋值
+			this.start_date = `${year}-${month}-01`;
+			this.end_date = `${year}-${month}-${day}`;
+		},
 		// 报考人数趋势echart
 		peoples_chart: function() {
 			// 基于准备好的dom，初始化echarts实例
@@ -281,8 +280,8 @@ export default {
 			let dates = [];
 			let list = JSON.parse(JSON.stringify(that.peoples_data));
 			list.map(item => {
-				signData.push(item.num_of_applicants);
-				examData.push(item.num_of_exams);
+				signData.push(item.data1);
+				examData.push(item.data2);
 				dates.push(item.day);
 			});
 			// 图表配置
@@ -291,7 +290,7 @@ export default {
 					trigger: "axis"
 				},
 				legend: {
-					data: ["报考人数", "考试人数"]
+					data: ["数据 1", "数据 2"]
 				},
 				grid: {
 					left: "1%",
@@ -325,7 +324,7 @@ export default {
 				},
 				series: [
 					{
-						name: "报考人数",
+						name: "数据 1",
 						type: "line",
 						symbolSize: 7, //拐点圆的大小
 						data: signData,
@@ -341,7 +340,7 @@ export default {
 						}
 					},
 					{
-						name: "考试人数",
+						name: "数据 2",
 						type: "line",
 						symbolSize: 7, //拐点圆的大小
 						data: examData,
