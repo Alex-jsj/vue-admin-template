@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import tagsView from './modules/tagsView';
+import tagsView from './modules/tagsView'; // 标签页组件
 
 import { getUserInfoAjax } from 'api/login'; // ajax api
 import { superAdmin } from '@/router/menu'; // 菜单
 
 // 路由配置
-import rootConfig from '@/router/modules/root'; // 系统管理员
+import rootConfig from '@/router/modules/root'; // 超级管理员
 
 Vue.use(Vuex);
 
