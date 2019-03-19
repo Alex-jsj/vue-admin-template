@@ -1,0 +1,108 @@
+html,
+body,
+div,
+span,
+object,
+li,
+ul,
+img iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+a,
+em,
+img,
+strong,
+sub,
+sup,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+input,
+figure,
+figcaption,
+footer,
+header,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+img {
+  width: auto;
+  height: auto;
+  border-width: 0 0 0 0;
+}
+a {
+  text-decoration: none;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+[v-cloak] {
+  display: none;
+}
+html {
+  margin: 0 auto;
+}
+@media screen and (min-width: 1250px) {
+  html {
+    overflow-y: scroll;
+  }
+  :root {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  :root body {
+    position: absolute;
+  }
+  body {
+    width: 100vw;
+    overflow: hidden;
+  }
+}

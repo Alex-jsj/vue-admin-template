@@ -1,0 +1,11 @@
+/* 过渡 */
+.transi {
+  transition: all 0.3s;
+}
+/* 清除浮动 */
+.clear {
+  content: '';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}

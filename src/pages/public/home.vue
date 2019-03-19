@@ -1,0 +1,771 @@
+<template>
+	<div id="home">
+		<!-- 快捷入口 -->
+		<div class="quick-enter" v-if="quickList">
+			<ul class="quick-list">
+				<li class="item" v-for="item in quickList" :key="item.title">
+					<router-link :to="item.link" class="link">
+						<div class="icon-container">
+							<i class="iconfont" :class="`icon-${item.icon}`"></i>
+						</div>
+						<span class="quick-text">{{item.title}}</span>
+					</router-link>
+				</li>
+			</ul>
+		</div>
+		<!-- 数据概览 -->
+		<div class="data-overview" v-loading="loading">
+			<div class="title-box">
+				<span class="title float-left">数据概览</span>
+			</div>
+			<!-- content -->
+			<ul class="list">
+				<li v-if="item.show" class="item-li float-left" v-for="(item,index) in data_overview_list" :key="index">
+					<el-tooltip class="item" effect="dark" :content="item.info" placement="top">
+						<router-link :to="item.path">
+							<count-to :start-val="0" :end-val="item.num" :duration="2500" class="num"/>
+							<p class="title" v-text="item.title"></p>
+						</router-link>
+					</el-tooltip>
+				</li>
+			</ul>
+		</div>
+		<div class="peoples" v-loading="loading">
+			<div class="title-box">
+				<span class="title float-left">报考人数趋势</span>
+				<router-link to="/pages/board" target="_blank" class="board">
+					<el-button type size="mini">大数据看板</el-button>
+				</router-link>
+				<p class="date">查询时间：{{start_date}} 至 {{end_date}}</p>
+			</div>
+			<!-- content -->
+			<div class="echarts">
+				<span class="no-data" v-show="!peoples_data[0]">暂无数据</span>
+				<div id="echart-bar" :class="{'canShow':peoples_data[0]}"></div>
+			</div>
+		</div>
+		<!-- 服务器信息 -->
+		<div class="server-info" v-loading="loading">
+			<div class="title-box">
+				<span class="title float-left">服务器信息</span>
+			</div>
+			<!-- content -->
+			<ul class="list">
+				<li class="item float-left">
+					<div class="box">
+						<router-link to="/">
+							<p class="num">{{system.account_num}}</p>
+							<p class="text">附件数量</p>
+						</router-link>
+					</div>
+				</li>
+				<li class="item float-left" v-for="(item,index) in system.system_data" :key="item.id">
+					<router-link :to="item.path">
+						<!-- echart -->
+						<canvas :id="`info-${index+1}`" width="160" height="160"></canvas>
+						<p class="data">{{item.data}}</p>
+						<p class="title">{{item.title}}</p>
+					</router-link>
+				</li>
+			</ul>
+		</div>
+	</div>
+</template>
+
+<script>
+// api
+import * as theApi from "api/home";
+// 公共函数
+import { circle_canvas, component_percent } from "common/js/public";
+import CountTo from "vue-count-to";
+// 引入 ECharts 主模块
+var echarts = require("echarts/lib/echarts");
+// 引入折线图
+require("echarts/lib/chart/line");
+// 引入提示框
+require("echarts/lib/component/tooltip");
+require("echarts/lib/component/legend");
+
+export default {
+	name: "home",
+	data() {
+		return {
+			loading: true,
+			quickList: null,
+			table_data: [],
+			data_overview_list: [
+				{
+					num: 0,
+					isCbjg: false,
+					show: false,
+					title: "报名待付款",
+					info: "报考信息上传和照片已上传，未付款数据",
+					path:
+						"/pages/index/applyManage/applyManage_list?isPay=0&isPhoto=1&show_filter=1"
+				},
+				{
+					num: 0,
+					isCbjg: false,
+					show: false,
+					title: "待分配",
+					info: "已付款未分配考场",
+					path:
+						"/pages/index/applyManage/applyManage_list?isPay=1&isExam=0&show_filter=1"
+				},
+				{
+					num: 0,
+					isCbjg: false,
+					show: false,
+					title: "待考试",
+					info: "已付款已分配考场，未考试（按场次考试时间判断）",
+					path:
+						"/pages/index/examManage/examManage_allot?isExam=1&isPay=1&show_filter=1"
+				},
+				{
+					num: 0,
+					isCbjg: false,
+					show: false,
+					title: "待录入成绩",
+					info:
+						"已付款已分配考场，已考试（过了场次考试时间）、未录入成绩数据",
+					path:
+						"/pages/index/certificateManage/certificateManage_cj?isExam=1&isPay=1&isChengji=0&show_filter=1"
+				},
+				{
+					num: 0,
+					isCbjg: false,
+					show: false,
+					title: "待颁发证书",
+					info: "已录入成绩，未生成证书数据",
+					path:
+						"/pages/index/certificateManage/certificateManage_zsxx?isDayin=0&show_filter=1"
+				},
+				{
+					num: 0,
+					isCbjg: false,
+					show: false,
+					title: "已颁发证书",
+					info: "已生成证书数据",
+					path:
+						"/pages/index/certificateManage/certificateManage_zsxx?isDayin=1&show_filter=1"
+				},
+				{
+					num: 0,
+					isCbjg: false,
+					show: false,
+					title: "承办机构",
+					info: "一级承办机构数据",
+					path: "/pages/index/cbjgManage/cbjgManage_list"
+				},
+				{
+					num: 0,
+					isCbjg: false,
+					show: false,
+					title: "考生总数",
+					info:
+						"已支付的考生总数（一个身份证号码或护照号码只计算一次）",
+					path: "/pages/index/stuManage/stuManage_list"
+				}
+			],
+			peoples_data: [],
+			// 查询时间
+			start_date: "",
+			end_date: "",
+			// 服务器数据
+			system: {
+				system_data: [
+					{
+						id: 0,
+						path: "/",
+						data: 2131,
+						total: 10240,
+						title: "系统所占磁盘(MB)"
+					},
+					{
+						id: 1,
+						path: "/",
+						data: 132,
+						total: 10240,
+						title: "系统日志所占磁盘(MB)"
+					},
+					{
+						id: 2,
+						path: "/",
+						data: 569,
+						total: 10240,
+						title: "数据备份所占磁盘(MB)"
+					}
+				],
+				account_num: 4098
+			}
+		};
+	},
+	components: { CountTo },
+	watch: {
+		listenMenuCollapse(newVal) {
+			// 动态变化canvas宽度
+			setTimeout(function() {
+				echarts.init(document.getElementById("echart-bar")).resize();
+			}, 500);
+		},
+		listenContentWidthType(newVal) {
+			// 动态变化canvas宽度
+			setTimeout(function() {
+				echarts.init(document.getElementById("echart-bar")).resize();
+			}, 500);
+		},
+		listenMenuType(newVal) {
+			// 动态变化canvas宽度
+			setTimeout(function() {
+				echarts.init(document.getElementById("echart-bar")).resize();
+			}, 500);
+		}
+	},
+	computed: {
+		// 角色组
+		role() {
+			return this.$store.state.role;
+		},
+		// 菜单是否收起
+		listenMenuCollapse() {
+			return this.$store.state.menuCollapse;
+		},
+		// 菜单模式
+		listenMenuType() {
+			return this.$store.state.menuType;
+		},
+		// 页面宽度
+		listenContentWidthType() {
+			return this.$store.state.contentWidthType;
+		}
+	},
+	created: function() {
+		// 控制不同角色显示内容
+		this.date_role();
+		// 报考趋势时间范围(当前月份)
+		let year = new Date().getFullYear();
+		let month = new Date().getMonth() + 1;
+		month < 10 ? (month = "0" + month) : month;
+		let day = new Date().getDate();
+		day < 10 ? (day = "0" + day) : day;
+		// 赋值
+		this.start_date = `${year}-${month}-01`;
+		this.end_date = `${year}-${month}-${day}`;
+	},
+	mounted: function() {
+		this.getData();
+	},
+	methods: {
+		// 获取首页数据
+		getData: async function() {
+			// 默认数据
+			let data = {
+				start_date: this.start_date,
+				end_date: this.end_date
+			};
+			let res = await theApi.getData(data);
+			if (res.code === 200) {
+				let respon = res.data || [];
+				this.loading = false;
+				this.peoples_chart();
+				this.system_canvas();
+			}
+		},
+		// 报考人数趋势echart
+		peoples_chart: function() {
+			// 基于准备好的dom，初始化echarts实例
+			let myChart = echarts.init(document.getElementById("echart-bar"));
+			const that = this;
+			let signData = [];
+			let examData = [];
+			let dates = [];
+			let list = JSON.parse(JSON.stringify(that.peoples_data));
+			list.map(item => {
+				signData.push(item.num_of_applicants);
+				examData.push(item.num_of_exams);
+				dates.push(item.day);
+			});
+			// 图表配置
+			myChart.setOption({
+				tooltip: {
+					trigger: "axis"
+				},
+				legend: {
+					data: ["报考人数", "考试人数"]
+				},
+				grid: {
+					left: "1%",
+					right: "1%",
+					bottom: "3%",
+					containLabel: true
+				},
+				toolbox: {
+					feature: {
+						saveAsImage: {}
+					}
+				},
+				xAxis: {
+					type: "category",
+					// boundaryGap: false,
+					axisTick: {
+						show: false
+					},
+					data: dates
+				},
+				yAxis: {
+					type: "value",
+					axisTick: {
+						show: false
+					},
+					splitLine: {
+						lineStyle: {
+							type: "dotted"
+						}
+					}
+				},
+				series: [
+					{
+						name: "报考人数",
+						type: "line",
+						symbolSize: 7, //拐点圆的大小
+						data: signData,
+						smooth: 0.3, // 折线弧度
+						itemStyle: {
+							normal: {
+								color: "#4771FF",
+								label: {
+									show: true,
+									position: "top"
+								}
+							}
+						}
+					},
+					{
+						name: "考试人数",
+						type: "line",
+						symbolSize: 7, //拐点圆的大小
+						data: examData,
+						smooth: 0.3, // 折线弧度
+						itemStyle: {
+							normal: {
+								color: "#f3566f",
+								label: {
+									show: true,
+									position: "top"
+								}
+							}
+						}
+					}
+				]
+			});
+			window.addEventListener("resize", () => {
+				myChart.resize();
+			});
+		},
+		//服务器信息canvas
+		system_canvas: function() {
+			const colors = ["#1CD5AB", "#F44328", "#2BB3FF"];
+			for (let i = 0; i < colors.length; i++) {
+				let { data, total } = this.system.system_data[i];
+				circle_canvas(
+					document.getElementById(`info-${i + 1}`),
+					component_percent(data, total),
+					colors[i],
+					"#F5F6FF"
+				);
+			}
+		},
+		// 根据不同角色组分配数据概览
+		date_role: function() {
+			if (this.role == "系统管理员") {
+				this.quickList = [
+					{
+						title: "承办机构",
+						link: "/pages/index/cbjgManage/cbjgManage_list",
+						icon: "jigouA"
+					},
+					{
+						title: "考次信息",
+						link: "/pages/index/examManage/examManage_kc",
+						icon: "kaoshi"
+					},
+					{
+						title: "成绩录入",
+						link:
+							"/pages/index/certificateManage/certificateManage_cj",
+						icon: "ziliao2"
+					},
+					{
+						title: "证书生成",
+						link:
+							"/pages/index/certificateManage/certificateManage_zssc",
+						icon: "zhengshu"
+					},
+					{
+						title: "系统日志",
+						link: "/pages/index/systemManage/systemManage_set_log",
+						icon: "sifakaoshi"
+					}
+				];
+			}
+		}
+	}
+};
+</script>
+
+<style scoped lang="less">
+@import "~assets/css/mixin.less";
+
+#home {
+	.title-box {
+		width: 100%;
+		height: 40px;
+		padding: 0 0.55rem;
+		background: #edeef1;
+		position: relative;
+		vertical-align: middle;
+		.title {
+			font-size: 16px;
+			color: @text_color;
+			line-height: 40px;
+		}
+		.date {
+			float: right;
+			line-height: 40px;
+			font-size: 12px;
+			color: #5a5b64;
+		}
+		.board {
+			float: right;
+			line-height: 40px;
+			margin-top: 6px;
+			margin-left: 15px;
+			.el-button {
+				display: block;
+			}
+		}
+	}
+	.quick-enter {
+		width: 100%;
+		background: #fff;
+		margin-bottom: 0.875rem;
+		.quick-list {
+			margin: 0 auto;
+			display: flex;
+			justify-content: start;
+			flex-flow: row nowrap;
+			.item {
+				flex: 1 1 auto;
+				height: 80px;
+				text-align: center;
+				padding: 0 15px;
+				margin-right: 20px;
+				background: #fff;
+				border: 1px solid #edeef1;
+				position: relative;
+				border-radius: 8px;
+				.transi;
+				&:last-of-type {
+					margin-right: 0;
+				}
+				&:nth-of-type(1) {
+					.icon-container {
+						.iconfont {
+							color: #44c8c5;
+						}
+					}
+				}
+				&:nth-of-type(2) {
+					.icon-container {
+						.iconfont {
+							color: #3aa2f4;
+						}
+					}
+				}
+				&:nth-of-type(3) {
+					.icon-container {
+						.iconfont {
+							color: #f3566f;
+						}
+					}
+				}
+				&:nth-of-type(4) {
+					.icon-container {
+						.iconfont {
+							color: #37bea3;
+						}
+					}
+				}
+				&:nth-of-type(5) {
+					.icon-container {
+						.iconfont {
+							color: #b6a2dc;
+						}
+					}
+				}
+				&:hover {
+					&:nth-of-type(1) {
+						border: 1px solid #44c8c5;
+						.icon-container {
+							background: #44c8c5;
+							.iconfont {
+								color: #fff;
+							}
+						}
+						.quick-text {
+							color: #44c8c5;
+						}
+					}
+					&:nth-of-type(2) {
+						border: 1px solid #3aa2f4;
+						.icon-container {
+							background: #3aa2f4;
+							.iconfont {
+								color: #fff;
+							}
+						}
+						.quick-text {
+							color: #3aa2f4;
+						}
+					}
+					&:nth-of-type(3) {
+						border: 1px solid #f3566f;
+						.icon-container {
+							background: #f3566f;
+							.iconfont {
+								color: #fff;
+							}
+						}
+						.quick-text {
+							color: #f3566f;
+						}
+					}
+					&:nth-of-type(4) {
+						border: 1px solid #37bea3;
+						.icon-container {
+							background: #37bea3;
+							.iconfont {
+								color: #fff;
+							}
+						}
+						.quick-text {
+							color: #37bea3;
+						}
+					}
+					&:nth-of-type(5) {
+						border: 1px solid #b6a2dc;
+						.icon-container {
+							background: #b6a2dc;
+							.iconfont {
+								color: #fff;
+							}
+						}
+						.quick-text {
+							color: #b6a2dc;
+						}
+					}
+				}
+				.link {
+					width: 100%;
+					height: 100%;
+					display: flex;
+				}
+				.icon-container {
+					width: 60px;
+					height: 60px;
+					border-radius: 5px;
+					display: inline-block;
+					margin: 10px 0;
+					.transi;
+					.iconfont {
+						font-size: 40px;
+						text-align: center;
+						line-height: 60px;
+						display: inherit;
+						.transi;
+					}
+				}
+				.quick-text {
+					width: calc(~"100% - 60px");
+					display: inline-block;
+					font-size: 20px;
+					line-height: 80px;
+					text-align: center;
+					color: @grey_2;
+					letter-spacing: 2px;
+				}
+			}
+		}
+	}
+	.data-overview {
+		width: 100%;
+		height: 300px;
+		border: 0.03rem solid #edeef1;
+		background: #fff;
+		.list {
+			margin: 0 auto;
+			height: 100px;
+			margin-top: 80px;
+			display: flex;
+			justify-content: center;
+			flex-flow: row nowrap;
+			.item-li {
+				flex: 1 1 auto;
+				// width: 4.75rem;
+				height: 100%;
+				text-align: center;
+				border-right: 1px solid #a2b0d6;
+				cursor: pointer;
+				&:hover {
+					.num {
+						color: #409eff;
+						&::after {
+							background: darken(#edeef1, 10%);
+						}
+					}
+					.title {
+						color: #409eff;
+					}
+				}
+				&:last-of-type {
+					border-right: none;
+				}
+				.num {
+					font-size: 34px;
+					font-weight: 600;
+					display: block;
+					color: #46464b;
+					.transi;
+					&::after {
+						content: "";
+						display: block;
+						width: 45%;
+						height: 3px;
+						background: #edeef1;
+						margin: 12px auto;
+						.transi;
+					}
+				}
+				.title {
+					font-size: 16px;
+					display: block;
+					color: @text_color;
+					letter-spacing: 1px;
+					.transi;
+				}
+			}
+		}
+	}
+	.peoples {
+		width: 100%;
+		height: 400px;
+		border: 1px solid #edeef1;
+		margin-top: 0.875rem;
+		background: #fff;
+		.echarts {
+			width: 100%;
+			height: calc(~"100% - 40px - 10px");
+			position: relative;
+			margin-top: 10px;
+			.no-data {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				font-size: 12px;
+				color: @grey;
+			}
+			#echart-bar {
+				width: 100%;
+				height: 350px;
+				opacity: 0;
+				&.canShow {
+					opacity: 1;
+				}
+			}
+		}
+	}
+	.server-info {
+		width: 100%;
+		height: 340px;
+		border: 1px solid #edeef1;
+		margin-top: 0.875rem;
+		background: #fff;
+		.list {
+			width: 100%;
+			height: 200px;
+			margin-top: 50px;
+			.item {
+				width: 25%;
+				height: 100%;
+				text-align: center;
+				position: relative;
+				&::after {
+					content: "";
+					display: block;
+					width: 1px;
+					height: 100px;
+					background: #edeef1;
+					position: absolute;
+					top: 50%;
+					right: 0;
+					transform: translateY(-50%);
+				}
+				&:first-of-type {
+					&::after {
+						display: none;
+					}
+				}
+				&:last-of-type {
+					&::after {
+						display: none;
+					}
+				}
+				.box {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					.num {
+						font-size: 36px;
+						font-weight: 600;
+						color: #46464b;
+					}
+					.text {
+						font-size: 16px;
+						color: @text_color;
+						letter-spacing: 1px;
+					}
+				}
+				#info-1,
+				#info-2,
+				#info-3 {
+					width: 140px;
+					height: 140px;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+				.data {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					font-size: 30px;
+					color: @black;
+				}
+				.title {
+					position: absolute;
+					left: 50%;
+					transform: translateX(-50%);
+					white-space: nowrap;
+					bottom: 0;
+					font-size: 16px;
+					color: #5a5b64;
+				}
+			}
+		}
+	}
+}
+</style>

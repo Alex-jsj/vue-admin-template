@@ -1,0 +1,56 @@
+/* 过渡 */
+.transi {
+  transition: all 0.3s;
+}
+/* 清除浮动 */
+.clear {
+  content: '';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+.progress {
+  width: 60%;
+  margin: 30px auto;
+}
+.progress .el-step.is-horizontal .el-step__line {
+  top: 0.7rem;
+}
+/* .el-textarea */
+.el-textarea {
+  vertical-align: middle;
+}
+/* 表格操作趋势禁止换行 */
+.operation-btn .cell {
+  white-space: nowrap;
+  text-overflow: clip;
+}
+.el-dialog .el-dialog__header {
+  border-bottom: 1px solid #409eff;
+}
+.el-dialog .el-dialog__header .el-dialog__title {
+  display: block;
+}
+.el-form-item {
+  margin-bottom: 15px;
+}
+.el-form-item .el-form-item {
+  margin-bottom: 15px;
+}
+#undertake_applyManage_personal .el-checkbox .el-checkbox__inner:hover {
+  border-color: #409eff;
+}
+#undertake_applyManage_personal .is-checked .el-checkbox__inner {
+  background: #409eff;
+  border-color: #409eff;
+}
+#undertake_applyManage_personal .is-checked .el-checkbox__label {
+  color: #409eff;
+}
+#undertake_applyManage_personal .is-focus .el-checkbox__inner {
+  border-color: #409eff;
+}
+/* 层级修正 */
+.el-loading-mask {
+  z-index: 1000;
+}

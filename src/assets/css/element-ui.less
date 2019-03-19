@@ -1,0 +1,76 @@
+// elementUI 样式覆盖
+@import "./mixin";
+// progress
+.progress {
+    width: 60%;
+    margin: 30px auto;
+    .el-step.is-horizontal {
+        .el-step__line {
+            top: 0.7rem;
+        }
+    }
+}
+
+/* .el-textarea */
+
+.el-textarea {
+    vertical-align: middle;
+}
+
+/* 表格操作趋势禁止换行 */
+
+.operation-btn {
+    .cell {
+        white-space: nowrap;
+        text-overflow: clip;
+    }
+}
+
+// dialog
+.el-dialog {
+    // border: 1px solid @red;
+    .el-dialog__header {
+        border-bottom: 1px solid #409eff;
+        .el-dialog__title {
+            display: block;
+        }
+    }
+}
+
+.el-form-item {
+    margin-bottom: 15px;
+    .el-form-item {
+        margin-bottom: 15px;
+    }
+}
+
+// 报名页面需要用element的蓝色
+#undertake_applyManage_personal {
+    .el-checkbox {
+        .el-checkbox__inner {
+            &:hover {
+                border-color: #409eff;
+            }
+        }
+    }
+    .is-checked {
+        .el-checkbox__inner {
+            background: #409eff;
+            border-color: #409eff;
+        }
+        .el-checkbox__label {
+            color: #409eff;
+        }
+    }
+    .is-focus {
+        .el-checkbox__inner {
+            border-color: #409eff;
+        }
+    }
+}
+
+/* 层级修正 */
+
+.el-loading-mask {
+    z-index: 1000;
+}

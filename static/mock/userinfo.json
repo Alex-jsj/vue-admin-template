@@ -1,0 +1,15 @@
+{
+    "code": 200,
+    "data": {
+        "account": "admin",
+        "nickName": "陈小银",
+        "role": "super",
+        "state": 1,
+        "last_login_time": "2018-07-11 15:36:43",
+        "uid": 1,
+        "unread": 5,
+        "head_img": "./static/img/head.png",
+        "email": "329255122@qq.com"
+    },
+    "msg": "数据返回成功"
+}

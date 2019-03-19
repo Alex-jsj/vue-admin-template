@@ -1,0 +1,345 @@
+/* 过渡 */
+.transi {
+  transition: all 0.3s;
+}
+/* 清除浮动 */
+.clear {
+  content: '';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+/* 容器 */
+.introjs-helperLayer {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.introjs-tooltip {
+  font-size: 14px;
+}
+.introjs-helperNumberLayer {
+  display: none;
+}
+.wrap {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding-top: 60px;
+  background: #fff;
+}
+.wrap::after {
+  content: '';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+.wrap .right-wrap {
+  width: 86%;
+  padding: 0 0.55rem 0 0.55rem;
+  position: relative;
+  transition: width 0.3s;
+}
+.wrap .right-wrap .views {
+  width: 100%;
+  min-height: calc(100vh - 60px - 60px - 58px - 36px);
+  padding: 0.55rem 0;
+  position: relative;
+  /* 公用表格 */
+  /* 表格下方操作区域 */
+  /* 右上角按钮 */
+  /* 内页用样式 */
+}
+.wrap .right-wrap .views .piliang {
+  margin: 0.55rem 0;
+  position: relative;
+}
+.wrap .right-wrap .views .piliang::after {
+  content: '';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+.wrap .right-wrap .views .piliang .el-button {
+  margin-left: 0;
+  margin-right: 10px;
+}
+.wrap .right-wrap .views .public-table {
+  margin: 0.55rem 0;
+  /* 证书等级 */
+  /* 状态文字前样式 */
+  /* 支付方式 */
+  /* 强制不换行 */
+  /* 金钱图标 */
+  /* 时间图标 */
+  /* 科目 */
+  /* 性别 */
+}
+.wrap .right-wrap .views .public-table .print-class .cell {
+  overflow: inherit;
+}
+.wrap .right-wrap .views .public-table .zhengshu {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+  background: #333;
+  border-radius: 50%;
+}
+.wrap .right-wrap .views .public-table .zhengshu.zhengshu2 {
+  background: #58b92c;
+}
+.wrap .right-wrap .views .public-table .icon-before {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 1px;
+}
+.wrap .right-wrap .views .public-table .payment {
+  font-size: 20px;
+  margin-right: 4px;
+  position: relative;
+  top: 3px;
+  line-height: 23px;
+}
+.wrap .right-wrap .views .public-table .payment.icon-wechat {
+  color: #51c332;
+}
+.wrap .right-wrap .views .public-table .payment.icon-alipay {
+  color: #009fe9;
+  font-size: 22px;
+}
+.wrap .right-wrap .views .public-table .payment.icon-union {
+  color: #bbdcff;
+}
+.wrap .right-wrap .views .public-table .no-wrap .cell {
+  white-space: nowrap;
+}
+.wrap .right-wrap .views .public-table thead th {
+  background: #f5f7fa;
+  color: #333;
+  font-size: 14px;
+}
+.wrap .right-wrap .views .public-table .icon-money {
+  font-size: 18px;
+}
+.wrap .right-wrap .views .public-table .icon-money.green {
+  color: #67c23a;
+}
+.wrap .right-wrap .views .public-table .icon-money.blue {
+  color: #409eff;
+}
+.wrap .right-wrap .views .public-table .icon-money.yellow {
+  color: #e6a23c;
+}
+.wrap .right-wrap .views .public-table .icon-time {
+  font-size: 12px;
+}
+.wrap .right-wrap .views .public-table .icon-time.blue {
+  color: #409eff;
+}
+.wrap .right-wrap .views .public-table .icon-time.yellow {
+  color: #e6a23c;
+}
+.wrap .right-wrap .views .public-table .icon-open {
+  font-size: 12px;
+}
+.wrap .right-wrap .views .public-table .icon-subject {
+  color: #666;
+}
+.wrap .right-wrap .views .public-table .icon-male {
+  color: #28d8fa;
+}
+.wrap .right-wrap .views .public-table .icon-female {
+  color: #ff768d;
+}
+.wrap .right-wrap .views .public-control-box {
+  width: 100%;
+  margin-bottom: 0.55rem;
+}
+.wrap .right-wrap .views .public-control-box::after {
+  content: '';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+.wrap .right-wrap .views .top-right-btn {
+  position: absolute;
+  top: 0.73rem;
+  right: 0;
+}
+.wrap .right-wrap .views .info-form-box {
+  width: 100%;
+}
+.wrap .right-wrap .views .info-form-box::after {
+  content: '';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+.wrap .right-wrap .views .info-form-box .info-form {
+  width: 800px;
+  margin: 0 auto;
+}
+.wrap .right-wrap .views .info-form-box .info-form .info-text {
+  min-height: 28px;
+  font-size: 12px;
+  border: 1px solid #dcdfe6;
+  color: #555;
+  line-height: 28px;
+  border-radius: 4px;
+  padding: 0 35px 0 15px;
+  margin-top: 6px;
+  position: relative;
+}
+.wrap .right-wrap .views .info-form-box .info-form .info-text .iconfont {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+.wrap .right-wrap .views .info-form-box .info-form .info-text .icon-time {
+  line-height: 28px;
+}
+.wrap .right-wrap .views .info-form-box .info-form .info-text .icon-money {
+  font-size: 18px;
+  line-height: 28px;
+}
+.wrap .right-wrap .views .info-form-box .info-form .info-text .icon-alipay {
+  line-height: 28px;
+  font-size: 22px;
+  right: 8px;
+  color: #009fe9;
+}
+.wrap .right-wrap .views .info-form-box .info-form .info-text .icon-wechat {
+  line-height: 28px;
+  font-size: 22px;
+  color: #51c332;
+}
+.wrap .right-wrap .views .info-form-box .info-form .info-text .icon-union {
+  line-height: 28px;
+  font-size: 22px;
+  color: #bbdcff;
+}
+.wrap .right-wrap .views .info-form-box .info-form .info-text .icon-male {
+  line-height: 28px;
+  font-size: 20px;
+  color: #28d8fa;
+}
+.wrap .right-wrap .views .info-form-box .info-form .info-text .icon-female {
+  line-height: 28px;
+  font-size: 20px;
+  color: #ff768d;
+}
+.wrap .right-wrap .views .info-title {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  padding: 8px 10px;
+  background: #f2f2f2;
+  margin-bottom: 0.55rem;
+}
+.wrap .right-wrap .footer {
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 60px;
+  color: #bcbcbc;
+}
+.wrap.collapse-wrap .right-wrap {
+  width: calc(100% - 56px);
+}
+.wrap.menuType-2 .right-wrap {
+  width: 100%;
+  float: inherit;
+}
+.wrap.menuType-2 .right-wrap .views {
+  min-height: calc(100vh - 60px - 60px - 58px - 36px - 61px);
+}
+.wrap.isFixed .right-wrap {
+  margin-top: 61px;
+}
+.wrap.content-width-type-2 {
+  background: #f0f2f5;
+}
+.wrap.content-width-type-2 .right-wrap {
+  width: 1230px;
+  margin: 0.55rem auto;
+  float: inherit;
+  background: #fff;
+}
+.wrap.content-width-type-2 .right-wrap .views {
+  min-height: calc(100vh - 60px - 60px - 58px - 36px - 61px - 0.55rem - 0.55rem);
+}
+.wrap.content-width-type-2.isFixed .right-wrap {
+  margin-top: calc(61px + 0.55rem);
+}
+/* 公用弹框样式 */
+.public-dialog .autoSC .inp {
+  width: calc(100% - 100px);
+}
+.public-dialog .autoSC .btn {
+  width: 90px;
+  margin-left: 5px;
+}
+/* 搜索框提示popover */
+.search-popover .popover-title {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.search-popover .popover-list .popover-item {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 24px;
+  height: 24px;
+  position: relative;
+  padding-left: 10px;
+}
+.search-popover .popover-list .popover-item::before {
+  content: '';
+  display: inline-block;
+  font-size: inherit;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #aaa;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* 附件下载 */
+.accessory-download {
+  margin-left: 10px;
+  color: #009fe9;
+}
+.accessory-download .iconfont {
+  font-size: 14px;
+}
+.accessory-download.accessory-download-2 {
+  margin-left: 0;
+}
+/* 色弱模式 */
+.color-week {
+  filter: invert(80%);
+}
+/* 灰度模式 */
+.color-grayscale {
+  filter: grayscale(1);
+}
+/* 夜间模式 */
+.color-brightness-1 {
+  filter: brightness(0.9);
+}
+.color-brightness-2 {
+  filter: brightness(0.6);
+}
+.color-brightness-3 {
+  filter: brightness(0.3);
+}

@@ -1,0 +1,32 @@
+{
+    "presets": [
+        [
+            "env",
+            {
+                "modules": false,
+                "targets": {
+                    "browsers": [
+                        "> 1%",
+                        "not ie <= 8",
+                        "iOS >= 7",
+                        "Android > 4.1",
+                        "Firefox > 20",
+                        "last 2 versions"
+                    ]
+                }
+            }
+        ],
+        "stage-3"
+    ],
+    "plugins": [
+        "transform-vue-jsx",
+        "transform-runtime",
+        "syntax-dynamic-import"
+    ],
+    "env": {
+        "test": {
+            "presets": ["env", "stage-3"],
+            "plugins": ["istanbul"]
+        }
+    }
+}
