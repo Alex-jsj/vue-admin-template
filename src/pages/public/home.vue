@@ -76,7 +76,7 @@
 // api
 import * as theApi from "api/home";
 // 公共函数
-import { circle_canvas, component_percent } from "common/js/public";
+import { circle_canvas, component_percent } from "utils/public";
 import CountTo from "vue-count-to";
 // 引入 ECharts 主模块
 var echarts = require("echarts/lib/echarts");

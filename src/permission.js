@@ -10,7 +10,7 @@ import router from './router';
 import store from './store';
 
 // 根据权限列表配置路由
-import set_premission from 'common/setPremission';
+import set_premission from 'utils/setPremission';
 
 // 网页加载进度条插件
 import NProgress from 'nprogress';

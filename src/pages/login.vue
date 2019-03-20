@@ -58,7 +58,7 @@
 <script>
 // api
 import * as theApi from "api/login";
-import { format_permissions_arr } from "common/js/public"; // 格式化权限列表
+import { format_permissions_arr } from "utils/public"; // 格式化权限列表
 
 export default {
 	name: "login",

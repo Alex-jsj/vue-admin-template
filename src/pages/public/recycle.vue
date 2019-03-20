@@ -10,7 +10,7 @@ import * as recycleApi from "api/userManage/recycle";
 // 组件
 import baseTable from "components/baseTable";
 // 状态检测
-import { checkFreeze, checkRole } from "common/js/checkTypeSingle";
+import { checkFreeze, checkRole } from "utils/checkTypeSingle";
 
 export default {
 	// 登陆日志

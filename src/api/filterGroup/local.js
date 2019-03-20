@@ -1,5 +1,4 @@
-import axios from 'common/js/http';
-import axios_json from 'common/js/http_local';
+import axios_json from 'utils/http_local';
 
 // 获取国家数据
 export function get_guoji() {

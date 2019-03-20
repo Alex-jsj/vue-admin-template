@@ -1,4 +1,4 @@
-import axios from 'common/js/http';
+import axios from 'utils/http';
 
 // 登录
 export function login(data) {

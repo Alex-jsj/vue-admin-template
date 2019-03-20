@@ -1,4 +1,4 @@
-import axios from "common/js/http";
+import axios from "utils/http";
 
 // 修改个人信息
 export function modifyPersonalInfo(data) {

@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import axios from "common/js/http";
+import axios from "utils/http";
 // api
 import {
 	get_cbjg,

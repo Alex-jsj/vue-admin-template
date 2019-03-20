@@ -175,7 +175,7 @@
 import { getInfo } from "api/board";
 import CountTo from "vue-count-to";
 // common js
-import { filter_date } from "common/js/public";
+import { filter_date } from "utils/public";
 import "../../../static/data/china.js";
 // 引入 ECharts 主模块
 let echarts = require("echarts/lib/echarts");

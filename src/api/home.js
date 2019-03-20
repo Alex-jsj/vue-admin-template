@@ -1,4 +1,4 @@
-import axios from 'common/js/http';
+import axios from 'utils/http';
 
 // get info
 export function getData(data) {

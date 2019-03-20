@@ -29,7 +29,7 @@ module.exports = {
             "@": resolve("src"),
             src: resolve("src"),
             assets: resolve("src/assets"),
-            common: resolve("src/common"),
+            utils: resolve("src/utils"),
             components: resolve("src/components"),
             api: resolve("src/api")
         }
