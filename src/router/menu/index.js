@@ -1,25 +1,26 @@
 // 超级管理员
 export const superAdmin = [
     {
-        title: '工作台',
+        // title: this.$t('route.home'),
+        title: 'home',
         url: '/pages/index/home',
         icon: 'home',
         children: []
     },
     {
-        title: '引导页',
+        title: 'introductoryPage',
         url: '/pages/index/intro',
         icon: 'intro',
         children: []
     },
     {
-        title: '图标',
+        title: 'icon',
         url: '/pages/index/icon',
         icon: 'icon',
         children: []
     },
     {
-        title: '组件',
+        title: 'component',
         url: '/pages/index/userManage',
         icon: 'component',
         children: [
@@ -55,7 +56,7 @@ export const superAdmin = [
         ]
     },
     {
-        title: '图表',
+        title: 'chart',
         url: '/pages/index/userManage',
         icon: 'chart',
         children: [
@@ -92,7 +93,7 @@ export const superAdmin = [
         ]
     },
     {
-        title: '表格',
+        title: 'table',
         url: '/pages/index/userManage',
         icon: 'form',
         children: [
@@ -119,7 +120,7 @@ export const superAdmin = [
         ]
     },
     {
-        title: '错误页面',
+        title: 'errorPage',
         url: '/pages/index/userManage',
         icon: 'warn',
         children: [
@@ -136,13 +137,13 @@ export const superAdmin = [
         ]
     },
     {
-        title: '错误日志',
+        title: 'errorLog',
         url: '/pages/index/userManage',
         icon: 'journal',
         children: []
     },
     {
-        title: 'Zip',
+        title: 'zip',
         url: '/pages/index/userManage',
         icon: 'zip',
         children: [
@@ -154,7 +155,7 @@ export const superAdmin = [
         ]
     },
     {
-        title: 'PDF',
+        title: 'pdf',
         url: '/pages/index/userManage',
         icon: 'pdf',
         children: [
@@ -166,7 +167,7 @@ export const superAdmin = [
         ]
     },
     {
-        title: '国际化',
+        title: 'international',
         url: '/pages/index/userManage',
         icon: 'in',
         children: []

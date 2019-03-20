@@ -19,13 +19,13 @@
 					<el-submenu :index="item_index+''" v-if="item.children[0]">
 						<template slot="title">
 							<i class="iconfont" :class="'icon-'+item.icon"></i>
-							<span>{{item.title}}</span>
+							<span>{{$t('route.'+item.title)}}</span>
 						</template>
 						<el-menu-item v-for="(list,child_index) in item.children" :key="child_index" :index="list.url" @click.native="refreshRoute(list)">{{list.title}}</el-menu-item>
 					</el-submenu>
 					<el-menu-item v-else :index="item.url" @click.native="refreshRoute(item)">
 						<i class="iconfont" :class="'icon-'+item.icon"></i>
-						<span slot="title">{{item.title}}</span>
+						<span slot="title">{{$t('route.'+item.title)}}</span>
 					</el-menu-item>
 				</template>
 			</el-menu>
