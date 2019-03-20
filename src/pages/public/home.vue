@@ -16,7 +16,7 @@
 		<!-- 数据概览 -->
 		<div class="data-overview" v-loading="loading">
 			<div class="title-box">
-				<span class="title float-left">数据概览</span>
+				<span class="title float-left">{{$t('base.dataOverview')}}</span>
 			</div>
 			<!-- content -->
 			<ul class="list">
@@ -32,9 +32,9 @@
 		</div>
 		<div class="peoples" v-loading="loading">
 			<div class="title-box">
-				<span class="title float-left">趋势</span>
+				<span class="title float-left">{{$t('base.trend')}}</span>
 				<router-link to="/pages/board" target="_blank" class="board">
-					<el-button type size="mini">大数据看板</el-button>
+					<el-button type size="mini">{{$t('base.dataBoard')}}</el-button>
 				</router-link>
 				<p class="date">查询时间：{{start_date}} 至 {{end_date}}</p>
 			</div>
@@ -47,7 +47,7 @@
 		<!-- 服务器信息 -->
 		<div class="server-info" v-loading="loading">
 			<div class="title-box">
-				<span class="title float-left">服务器信息</span>
+				<span class="title float-left">{{$t('base.serverInformation')}}</span>
 			</div>
 			<!-- content -->
 			<ul class="list">
@@ -55,7 +55,7 @@
 					<div class="box">
 						<router-link to="/">
 							<p class="num">{{system.account_num}}</p>
-							<p class="text">附件数量</p>
+							<p class="text">{{$t('base.numberOfAttachments')}}</p>
 						</router-link>
 					</div>
 				</li>
@@ -175,21 +175,21 @@ export default {
 						path: "/",
 						data: 2131,
 						total: 10240,
-						title: "系统所占磁盘(MB)"
+						title: this.$t("base.diskOccupiedByTheSystem")
 					},
 					{
 						id: 1,
 						path: "/",
 						data: 132,
 						total: 10240,
-						title: "系统日志所占磁盘(MB)"
+						title: this.$t("base.diskOccupiedBySystemLog")
 					},
 					{
 						id: 2,
 						path: "/",
 						data: 569,
 						total: 10240,
-						title: "数据备份所占磁盘(MB)"
+						title: this.$t("base.diskOccupiedByDataBackup")
 					}
 				],
 				account_num: 4098

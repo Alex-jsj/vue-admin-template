@@ -1,6 +1,14 @@
 export default {
     base: {
-        websiteTitle: 'Vue Backstage Management System'
+        websiteTitle: 'Vue Backstage Management System', // 站点名称
+        dataOverview: 'Data Overview', // 数据概览
+        trend: 'Trend', // 趋势
+        serverInformation: 'Server Information', // 服务器信息
+        numberOfAttachments: 'Number of attachments', //附件数量
+        diskOccupiedByTheSystem: 'Disk occupied by the system(MB)',
+        diskOccupiedBySystemLog: 'Disk occupied by system log(MB)',
+        diskOccupiedByDataBackup: 'Disk occupied by data backup(MB)',
+        dataBoard:'Data Board'
     },
     route: {
         home: 'Workbench',

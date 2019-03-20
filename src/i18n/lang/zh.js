@@ -1,6 +1,14 @@
 export default {
     base: {
-        websiteTitle: 'Vue后台管理系统'
+        websiteTitle: 'Vue后台管理系统',
+        dataOverview: '数据概览',
+        trend: '趋势',
+        serverInformation: '服务器信息',
+        numberOfAttachments: '附件数量',
+        diskOccupiedByTheSystem: '系统所占磁盘(MB)',
+        diskOccupiedBySystemLog: '系统日志所占磁盘(MB)',
+        diskOccupiedByDataBackup: '数据备份所占磁盘(MB)',
+        dataBoard: '数据看板'
     },
     route: {
         home: '工作台',
