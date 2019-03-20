@@ -10,6 +10,14 @@ const rootConfig = [
                 component: () => import('@/pages/public/home')
             },
             {
+                path: 'account_information',
+                name: 'account_information',
+                component: () => import('@/pages/public/account_information'),
+                meta: {
+                    title: '个人信息'
+                }
+            },
+            {
                 path: 'home',
                 name: 'home',
                 component: () => import('@/pages/public/home'),

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import tagsView from './modules/tagsView'; // 标签页组件
+import filterInfo from './modules/filterInfo';
 
 import { getUserInfoAjax } from 'api/login'; // ajax api
 import { superAdmin } from '@/router/menu'; // 菜单
@@ -13,7 +14,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
-        tagsView
+        tagsView, // 多标签
+        filterInfo // 本地数据
     },
     state: {
         menuCollapse: false, //菜单展开收起

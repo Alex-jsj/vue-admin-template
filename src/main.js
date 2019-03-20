@@ -5,7 +5,7 @@ import store from './store';
 
 //Axios
 import axios from 'axios';
-Vue.prototype.$http = axios; // 通过修改原型链，来更方便的使用
+Vue.prototype.$http = axios; // 添加到vue的原型链，来更方便的使用
 
 // JsonP
 import VueJsonp from 'vue-jsonp';

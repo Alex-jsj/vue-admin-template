@@ -9,13 +9,10 @@
 					<el-form-item label="手机号：" :error="formErrorInfo.phone">
 						<el-input v-model="formInfo.phone" size="small"></el-input>
 					</el-form-item>
-					<el-form-item label="机构名称：" :error="formErrorInfo.title" v-if="role === '承办单位'">
-						<el-input v-model="formInfo.title" size="small"></el-input>
-					</el-form-item>
-					<el-form-item label="区域：" :error="formErrorInfo.district_id" v-if="role === '承办单位'">
+					<el-form-item label="区域：" :error="formErrorInfo.district_id">
 						<el-cascader size="small" :options="cities" style="width: 100%;" v-model="formInfo.district_path" clearable filterable placeholder="请选择地区"></el-cascader>
 					</el-form-item>
-					<el-form-item label="地址：" :error="formErrorInfo.address" v-if="role === '承办单位'">
+					<el-form-item label="地址：" :error="formErrorInfo.address">
 						<el-input v-model="formInfo.address" size="small"></el-input>
 					</el-form-item>
 					<el-form-item>
@@ -143,10 +140,6 @@ export default {
 		// 市
 		cities() {
 			return this.$store.state.filterInfo.cities;
-		},
-		// 用户组
-		role() {
-			return this.$store.state.role;
 		}
 	},
 	created() {
@@ -169,9 +162,6 @@ export default {
 					if (formName === "formInfo") {
 						that.loading = false;
 						data = that.formInfo;
-						// 选择区域位置
-						data.district_path &&
-							(data.district_id = data.district_path.pop());
 						// 清理为空字段
 						for (let key in data) {
 							if (data[key] === "") {
@@ -206,7 +196,6 @@ export default {
 							logout().then(res => {
 								if (res.code === 200) {
 									localStorage.removeItem("admin_token"); // 移除登录标记
-									localStorage.removeItem("mskj_agent_id"); // 如果是承办机构用户登录则一并移除承办机构id
 									location.reload(); // 刷新页面
 								}
 							});
