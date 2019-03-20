@@ -47,7 +47,6 @@
 					<!-- 说明信息 -->
 					<ul class="explain-info float-left">
 						<li class="item">· 请联系系统管理员</li>
-						<li class="item">· 电话：+86 15395830398</li>
 						<li class="item">· 邮箱：329255122@qq.com</li>
 					</ul>
 				</div>

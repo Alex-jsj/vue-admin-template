@@ -32,6 +32,11 @@ import fixedTools from "components/fixedTools"; //标签页
 
 export default {
 	name: "index",
+	created() {
+		this.$store.dispatch("getCountry");
+		this.$store.dispatch("getNation");
+		this.$store.dispatch("getCities");
+	},
 	computed: {
 		cachedViews() {
 			return this.$store.state.tagsView.cachedViews;
@@ -58,6 +63,73 @@ export default {
 		crumb,
 		TagsView,
 		fixedTools
+	},
+	mounted() {
+		const that = this;
+		this.isZoom();
+		window.addEventListener("resize", function() {
+			that.isZoom();
+		});
+	},
+	methods: {
+		// 浏览器缩放提示 （打开控制台会影响准确度）
+		detectZoom: function() {
+			let ratio = 0,
+				screen = window.screen,
+				ua = navigator.userAgent.toLowerCase();
+			//
+			if (~ua.indexOf("firefox")) {
+				if (window.devicePixelRatio !== undefined) {
+					ratio = window.devicePixelRatio;
+				}
+			} else if (~ua.indexOf("msie")) {
+				if (screen.deviceXDPI && screen.logicalXDPI) {
+					ratio = screen.deviceXDPI / screen.logicalXDPI;
+				}
+			} else if (
+				window.outerWidth !== undefined &&
+				window.innerWidth !== undefined
+			) {
+				ratio = window.outerWidth / window.innerWidth;
+			}
+			//
+			if (ratio) {
+				ratio = Math.round(ratio * 100);
+			}
+			// 360安全浏览器下的innerWidth包含了侧边栏的宽度
+			if (ratio !== 100) {
+				if (ratio >= 95 && ratio <= 105) {
+					ratio = 100;
+				}
+			}
+			return ratio;
+		},
+		isZoom: function() {
+			if (this.detectZoom() < 100 || this.detectZoom() > 100) {
+				this.zoomNotifyOpen();
+			} else {
+				this.zoomNotifyClose();
+			}
+		},
+		zoomNotifyOpen: function() {
+			if (!this.isZoomOpen) {
+				this.isZoomOpen = true; // 加上标记防止多次提示
+				this.instance = this.$notify({
+					title: "提示",
+					message:
+						"你的浏览器目前处于缩放状态，页面可能会出现错位现象，建议100%大小显示",
+					type: "info",
+					duration: 0
+				});
+			}
+		},
+		zoomNotifyClose: function() {
+			if (this.instance !== null) {
+				// 判断是否为null 防止bug
+				this.instance.close();
+				this.isZoomOpen = false;
+			}
+		}
 	}
 };
 </script>

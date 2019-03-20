@@ -9,14 +9,14 @@
 					<el-form-item label="手机号：" :error="formErrorInfo.phone">
 						<el-input v-model="formInfo.phone" size="small"></el-input>
 					</el-form-item>
-					<el-form-item label="区域：" :error="formErrorInfo.district_id">
+					<el-form-item label="区域：" :error="formErrorInfo.district_path">
 						<el-cascader size="small" :options="cities" style="width: 100%;" v-model="formInfo.district_path" clearable filterable placeholder="请选择地区"></el-cascader>
 					</el-form-item>
 					<el-form-item label="地址：" :error="formErrorInfo.address">
 						<el-input v-model="formInfo.address" size="small"></el-input>
 					</el-form-item>
 					<el-form-item>
-						<el-button type="primary" size="small" :loading="loading" @click="submit('formInfo')" class="btn my-button">确定</el-button>
+						<el-button type="primary" size="small" :loading="loading" @click="submit('formInfo')" class="btn">确定</el-button>
 					</el-form-item>
 				</el-form>
 			</el-tab-pane>
@@ -35,7 +35,7 @@
 						<el-input v-model="formPsd.passwd_confirmation" size="small" type="password"></el-input>
 					</el-form-item>
 					<el-form-item>
-						<el-button type="primary" size="small" :loading="loading" @click="submit('formPsd')" class="btn my-button">确定</el-button>
+						<el-button type="primary" size="small" :loading="loading" @click="submit('formPsd')" class="btn">确定</el-button>
 					</el-form-item>
 				</el-form>
 			</el-tab-pane>
