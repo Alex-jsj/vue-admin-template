@@ -23,6 +23,7 @@ export default new Vuex.Store({
         isMenuDark: false, //深色系菜单
         menuType: 1, //导航模式
         contentWidthType: '流式', //内容宽度
+        language: 'zh', //语言
         nickName: '', // 昵称
         account: '', // 账号
         token: '', // token
@@ -44,6 +45,10 @@ export default new Vuex.Store({
         }
     },
     mutations: {
+        // 语言
+        SET_LANGUAGE: function(state, new_language) {
+            this.state.language = new_language;
+        },
         // 菜单展开收起
         SET_MENU_COLLAPSE: function(state, new_menuCollapse) {
             this.state.menuCollapse = new_menuCollapse;

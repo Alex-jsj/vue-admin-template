@@ -16,6 +16,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+// 国际化
+import i18n from './i18n'
+
 import introJS from "intro.js";
 import 'intro.js/introjs.css';
 Vue.prototype.$intro = introJS;
@@ -44,6 +47,7 @@ new Vue({
     el: '#App',
     router,
     store,
+    i18n,
     components: {
         App
     },

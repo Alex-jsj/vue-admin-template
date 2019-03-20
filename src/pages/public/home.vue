@@ -1,7 +1,7 @@
 <template>
 	<div id="home">
 		<!-- 快捷入口 -->
-		<div class="quick-enter" v-if="quickList">
+		<div class="quick-enter">
 			<ul class="quick-list">
 				<li class="item" v-for="item in quickList" :key="item.title">
 					<router-link :to="item.link" class="link">
@@ -32,7 +32,7 @@
 		</div>
 		<div class="peoples" v-loading="loading">
 			<div class="title-box">
-				<span class="title float-left">报考人数趋势</span>
+				<span class="title float-left">趋势</span>
 				<router-link to="/pages/board" target="_blank" class="board">
 					<el-button type size="mini">大数据看板</el-button>
 				</router-link>

@@ -25,31 +25,31 @@ export const superAdmin = [
         children: [
             {
                 title: '富文本编辑器',
-                url: '/pages/index/components/editor'
+                url: '/pages/index/component/editor'
             },
             {
                 title: '图片上传',
-                url: '/pages/index/components/imgUpload',
+                url: '/pages/index/component/imgUpload',
                 children: []
             },
             {
                 title: 'CountTo',
-                url: '/pages/index/components/CountTo',
+                url: '/pages/index/component/CountTo',
                 children: []
             },
             {
                 title: '小组件',
-                url: '/pages/index/components/userManage_role',
+                url: '/pages/index/component/userManage_role',
                 children: []
             },
             {
                 title: '返回顶部',
-                url: '/pages/index/components/userManage_role',
+                url: '/pages/index/component/userManage_role',
                 children: []
             },
             {
                 title: '拖拽列表',
-                url: '/pages/index/components/userManage_role',
+                url: '/pages/index/component/userManage_role',
                 children: []
             }
         ]

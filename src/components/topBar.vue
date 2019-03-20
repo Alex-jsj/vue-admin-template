@@ -6,7 +6,7 @@
 			<div class="float-left left-info">
 				<router-link to="/pages/index" class="link float-left">
 					<!-- text -->
-					<p class="logo-text float-left">VUE后台管理系统</p>
+					<p class="logo-text float-left">{{$t('base.websiteTitle')}}</p>
 				</router-link>
 			</div>
 			<!-- 右侧用户信息 -->
@@ -57,7 +57,15 @@
 			</div>
 			<!-- 语言切换 -->
 			<div class="lan-switch float-right" data-step="1" data-intro="语言切换">
-				<i class="iconfont icon-yuyan"></i>
+				<el-dropdown trigger="click" class="international" @command="checkLang">
+					<div>
+						<i class="iconfont icon-yuyan"></i>
+					</div>
+					<el-dropdown-menu slot="dropdown">
+						<el-dropdown-item :disabled="language==='zh'" command="zh">中文</el-dropdown-item>
+						<el-dropdown-item :disabled="language==='en'" command="en">English</el-dropdown-item>
+					</el-dropdown-menu>
+				</el-dropdown>
 			</div>
 			<!-- 全屏 -->
 			<div class="full-screen float-right">
@@ -94,6 +102,9 @@ export default {
 		},
 		menuType() {
 			return this.$store.state.menuType;
+		},
+		language() {
+			return this.$store.state.language;
 		}
 	},
 	methods: {
@@ -105,6 +116,15 @@ export default {
 					localStorage.removeItem("mskj_agent_id"); // 如果是承办机构用户登录则一并移除承办机构id
 					location.reload(); // 刷新页面
 				}
+			});
+		},
+		// 切换语言
+		checkLang: function(lang) {
+			this.$i18n.locale = lang;
+			this.$store.commit("SET_LANGUAGE", lang); // 存入vuex
+			this.$message({
+				message: lang == "zh" ? "切换为中文" : "Switch To English",
+				type: "success"
 			});
 		}
 	}
@@ -127,7 +147,6 @@ export default {
 		height: 100%;
 	}
 	.left-info {
-		width: 100%;
 		height: 100%;
 		position: absolute;
 		top: 0;
@@ -148,7 +167,7 @@ export default {
 	.lan-switch,
 	.full-screen {
 		margin-right: 20px;
-		margin-top: 18px;
+		margin-top: 6px;
 		.iconfont {
 			color: #fff;
 			font-size: 24px;

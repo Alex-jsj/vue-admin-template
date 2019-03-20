@@ -126,18 +126,26 @@ export default {
 			brightnessIntensity: "弱",
 			brightnessIntensityList: ["弱", "中", "强"],
 			autoBrightnessOpen: true, //自动夜间模式
-			menuType: 1 // 导航模式 侧边布局 顶部布局
+			menuType: 1, // 导航模式 侧边布局 顶部布局
+			language: "zh" // 导航模式 侧边布局 顶部布局
 		};
 	},
 	watch: {
 		listenMenuCollapse(newVal) {
 			this.isCollapse = newVal;
 			this.saveUserConfig();
+		},
+		listenLanguage(newVal) {
+			this.language = newVal;
+			this.saveUserConfig();
 		}
 	},
 	computed: {
 		listenMenuCollapse() {
 			return this.$store.state.menuCollapse;
+		},
+		listenLanguage() {
+			return this.$store.state.language;
 		},
 		account() {
 			return this.$store.state.account;
@@ -153,6 +161,9 @@ export default {
 			for (let key in config) {
 				this[key] = config[key];
 			}
+			// 修改语言
+			this.$i18n.locale = this.language;
+			this.$store.commit("SET_LANGUAGE", this.language); // 存入vuex
 			// 触发配置生效
 			this.themeChange(this.theme);
 			this.menuChange(this.menuType);
@@ -337,7 +348,8 @@ export default {
 				colorBrightnessOpen: this.colorBrightnessOpen,
 				autoBrightnessOpen: this.autoBrightnessOpen,
 				brightnessIntensity: this.brightnessIntensity,
-				menuType: this.menuType
+				menuType: this.menuType,
+				language: this.language
 			};
 			localStorage.setItem(
 				`${this.account}_mskj_user_config`,

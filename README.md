@@ -1,6 +1,6 @@
 # vue-admin-template
 
-> VUE后台管理系统管理系统
+> VUE后台管理系统
 
 ## Build Setup
 

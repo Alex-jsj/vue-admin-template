@@ -42,8 +42,8 @@ const rootConfig = [
                 }
             },
             {
-                path: 'components',
-                component: () => import('@/pages/components/index'),
+                path: 'component',
+                component: () => import('@/pages/component/index'),
                 meta: {
                     title: '组件'
                 },
@@ -51,12 +51,12 @@ const rootConfig = [
                     {
                         path: '/',
                         redirect: 'editor',
-                        component: () => import('@/pages/components/editor')
+                        component: () => import('@/pages/component/editor')
                     },
                     {
                         path: 'editor',
                         name: 'editor',
-                        component: () => import('@/pages/components/editor'),
+                        component: () => import('@/pages/component/editor'),
                         meta: {
                             title: '富文本编辑器',
                             permissionName: 'editor'
@@ -65,7 +65,7 @@ const rootConfig = [
                     {
                         path: 'imgUpload',
                         name: 'imgUpload',
-                        component: () => import('@/pages/components/imgUpload'),
+                        component: () => import('@/pages/component/imgUpload'),
                         meta: {
                             title: '图片上传',
                             permissionName: 'imgUpload'
@@ -74,7 +74,7 @@ const rootConfig = [
                     {
                         path: 'CountTo',
                         name: 'CountTo',
-                        component: () => import('@/pages/components/CountTo'),
+                        component: () => import('@/pages/component/CountTo'),
                         meta: {
                             title: 'CountTo',
                             permissionName: 'CountTo'
