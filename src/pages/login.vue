@@ -12,14 +12,21 @@
 				<!-- user -->
 				<div class="user inp">
 					<i class="iconfont icon-user"></i>
-					<input v-model="user_text" :class="user_err == ''?'':'no'" type="text" placeholder="请输入用户名/学号/工号" @blur="userCheck()">
+					<input v-model="user_text" :class="user_err == ''?'':'no'" type="text" placeholder="请输入用户名(admin1)" @blur="userCheck()">
 					<!-- 错误提示语 -->
 					<p class="err-text">{{user_err}}</p>
 				</div>
 				<!-- password -->
 				<div class="password inp">
 					<i class="iconfont icon-password"></i>
-					<input v-model="psd_text" :class="psd_err == ''?'':'no'" :type="show_pwd?'text':'password'" placeholder="请输入密码" @blur="psdCheck()" @keyup.enter="submit()">
+					<input
+						v-model="psd_text"
+						:class="psd_err == ''?'':'no'"
+						:type="show_pwd?'text':'password'"
+						placeholder="请输入密码(123456)"
+						@blur="psdCheck()"
+						@keyup.enter="submit()"
+					>
 					<i class="iconfont icon-look" :class="{'show-pwd':show_pwd}" :title="!show_pwd?'显示密码':'隐藏密码'" @click="show_pwd = !show_pwd"></i>
 					<!-- 错误提示语 -->
 					<p class="err-text">{{psd_err}}</p>
@@ -278,10 +285,10 @@ export default {
 				) {
 					this.loading = true;
 					let data = {
-						account: this.user_text,
-						passwd: this.psd_text,
-						captcha_key: this.captcha_key,
-						captcha_value: this.captcha_text,
+						account: this.user_text, //账号
+						passwd: this.psd_text, //密码
+						captcha_key: this.captcha_key, //验证码 key
+						captcha_value: this.captcha_text, //验证码 value
 						force: isForce // 强制登录 1
 					};
 					this.loginSubmit(data);
@@ -296,7 +303,11 @@ export default {
 			let res = await theApi.login(data);
 			this.loading = false;
 			if (res.code === 200) {
-				if (res.msg === "Success") {
+				if (
+					res.msg === "Success" &&
+					this.user_text === "admin1" &&
+					this.psd_text === "123456"
+				) {
 					const respon = res.data || {};
 					// 获取数据成功
 					this.$message.success("登陆成功!");
@@ -311,7 +322,7 @@ export default {
 					}
 					respon.permissions &&
 						localStorage.setItem(
-							"mskj_permissions",
+							"admin_permissions",
 							JSON.stringify(
 								format_permissions_arr(respon.permissions)
 							)
@@ -336,10 +347,12 @@ export default {
 						.catch(() => {
 							this.$message.info("取消登录");
 						});
+				} else {
+					this.$message.error("账号或密码错误!");
 				}
 			}
 		},
-		// captchaInput auto focus
+		// 自动聚焦到验证码输入框
 		autoFocus: function() {
 			this.$nextTick(() => {
 				this.$refs.captchaInput.focus();
