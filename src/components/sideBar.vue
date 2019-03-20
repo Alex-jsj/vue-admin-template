@@ -21,7 +21,7 @@
 							<i class="iconfont" :class="'icon-'+item.icon"></i>
 							<span>{{$t('route.'+item.title)}}</span>
 						</template>
-						<el-menu-item v-for="(list,child_index) in item.children" :key="child_index" :index="list.url" @click.native="refreshRoute(list)">{{list.title}}</el-menu-item>
+						<el-menu-item v-for="(list,child_index) in item.children" :key="child_index" :index="list.url" @click.native="refreshRoute(list)">{{$t('route.'+list.title)}}</el-menu-item>
 					</el-submenu>
 					<el-menu-item v-else :index="item.url" @click.native="refreshRoute(item)">
 						<i class="iconfont" :class="'icon-'+item.icon"></i>

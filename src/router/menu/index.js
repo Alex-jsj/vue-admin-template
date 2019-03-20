@@ -25,31 +25,31 @@ export const superAdmin = [
         icon: 'component',
         children: [
             {
-                title: '富文本编辑器',
+                title: 'components.textEditor',
                 url: '/pages/index/component/editor'
             },
             {
-                title: '图片上传',
+                title: 'components.imgUpload',
                 url: '/pages/index/component/imgUpload',
                 children: []
             },
             {
-                title: 'CountTo',
+                title: 'components.countTo',
                 url: '/pages/index/component/CountTo',
                 children: []
             },
             {
-                title: '小组件',
+                title: 'components.miniComponent',
                 url: '/pages/index/component/userManage_role',
                 children: []
             },
             {
-                title: '返回顶部',
+                title: 'components.backTop',
                 url: '/pages/index/component/userManage_role',
                 children: []
             },
             {
-                title: '拖拽列表',
+                title: 'components.dragList',
                 url: '/pages/index/component/userManage_role',
                 children: []
             }
@@ -61,32 +61,32 @@ export const superAdmin = [
         icon: 'chart',
         children: [
             {
-                title: '折线图',
+                title: 'charts.histogram',
                 url: '/pages/index/userManage/userManage_system',
                 children: []
             },
             {
-                title: '柱状图',
+                title: 'charts.line',
                 url: '/pages/index/userManage/userManage_cbjg',
                 children: []
             },
             {
-                title: '地图',
+                title: 'charts.map',
                 url: '/pages/index/userManage/userManage_role',
                 children: []
             },
             {
-                title: '进度条',
+                title: 'charts.progress',
                 url: '/pages/index/userManage/userManage_role',
                 children: []
             },
             {
-                title: '圆盘',
+                title: 'charts.disk',
                 url: '/pages/index/userManage/userManage_role',
                 children: []
             },
             {
-                title: '混合图表',
+                title: 'charts.mixedChart',
                 url: '/pages/index/userManage/userManage_role',
                 children: []
             }
@@ -98,22 +98,22 @@ export const superAdmin = [
         icon: 'form',
         children: [
             {
-                title: '动态表格',
+                title: 'tables.dynamicForm',
                 url: '/pages/index/userManage/userManage_system',
                 children: []
             },
             {
-                title: '表格内编辑',
+                title: 'tables.editInTable',
                 url: '/pages/index/userManage/userManage_cbjg',
                 children: []
             },
             {
-                title: '树形表格',
+                title: 'tables.treeGrid',
                 url: '/pages/index/userManage/userManage_role',
                 children: []
             },
             {
-                title: '综合表格',
+                title: 'tables.comprehensiveForm',
                 url: '/pages/index/userManage/userManage_role',
                 children: []
             }
@@ -125,12 +125,12 @@ export const superAdmin = [
         icon: 'warn',
         children: [
             {
-                title: '401',
+                title: 'errorPages.401',
                 url: '/pages/index/userManage/userManage_system',
                 children: []
             },
             {
-                title: '404',
+                title: 'errorPages.404',
                 url: '/pages/index/userManage/userManage_cbjg',
                 children: []
             }
@@ -148,7 +148,7 @@ export const superAdmin = [
         icon: 'zip',
         children: [
             {
-                title: '导出Zip',
+                title: 'zips.exportZip',
                 url: '/pages/index/userManage/userManage_system',
                 children: []
             }
@@ -160,7 +160,7 @@ export const superAdmin = [
         icon: 'pdf',
         children: [
             {
-                title: '导出PDF',
+                title: 'pdfs.exportPdf',
                 url: '/pages/index/userManage/userManage_system',
                 children: []
             }
