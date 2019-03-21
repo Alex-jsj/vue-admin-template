@@ -5,14 +5,14 @@
 		<!-- 登录框 -->
 		<div class="login-container">
 			<!-- text s -->
-			<p class="login-title-1">欢迎使用</p>
-			<p class="login-title-2">VUE后台管理系统</p>
+			<p class="login-title-1">{{$t('login.title1')}}</p>
+			<p class="login-title-2">{{$t('login.title2')}}</p>
 			<!-- 登录 -->
 			<form class="login-box">
 				<!-- user -->
 				<div class="user inp">
 					<i class="iconfont icon-user"></i>
-					<input v-model="user_text" :class="user_err == ''?'':'no'" type="text" placeholder="请输入用户名(admin1)" @blur="userCheck()">
+					<input v-model="user_text" :class="user_err == ''?'':'no'" type="text" :placeholder="`${$t('login.user')}(admin1)`" @blur="userCheck()">
 					<!-- 错误提示语 -->
 					<p class="err-text">{{user_err}}</p>
 				</div>
@@ -23,31 +23,38 @@
 						v-model="psd_text"
 						:class="psd_err == ''?'':'no'"
 						:type="show_pwd?'text':'password'"
-						placeholder="请输入密码(123456)"
+						:placeholder="`${$t('login.psd')}(123456)`"
 						@blur="psdCheck()"
 						@keyup.enter="submit()"
 					>
-					<i class="iconfont icon-look" :class="{'show-pwd':show_pwd}" :title="!show_pwd?'显示密码':'隐藏密码'" @click="show_pwd = !show_pwd"></i>
+					<i class="iconfont icon-look" :class="{'show-pwd':show_pwd}" :title="!show_pwd?$t('login.showPsd'):$t('login.hiddenPsd')" @click="show_pwd = !show_pwd"></i>
 					<!-- 错误提示语 -->
 					<p class="err-text">{{psd_err}}</p>
 				</div>
 				<!-- 验证码 -->
 				<div class="captcha inp" v-if="captcha_key">
 					<i class="iconfont icon-captcha"></i>
-					<input ref="captchaInput" v-model="captcha_text" :class="captcha_err == ''?'':'no'" placeholder="请输入计算结果" @blur="captchaCheck()" @keyup.enter="submit()">
+					<input
+						ref="captchaInput"
+						v-model="captcha_text"
+						:class="captcha_err == ''?'':'no'"
+						:placeholder="$t('login.captcha')"
+						@blur="captchaCheck()"
+						@keyup.enter="submit()"
+					>
 					<!-- 错误提示语 -->
 					<p class="err-text">{{captcha_err}}</p>
 					<img :src="captcha_img" @click="updateCaptcha">
 				</div>
 				<!-- <el-checkbox v-model="autoLogin">自动登录</el-checkbox> -->
-				<span class="forget-psd" :class="{'forget-psd-open':explain_switch}" @click="explain_switch = !explain_switch">忘记密码</span>
-				<el-button class="login-btn my-button" type="primary" @click="submit()" :loading="loading" size="small">登&nbsp;&nbsp;&nbsp;录</el-button>
+				<span class="forget-psd" :class="{'forget-psd-open':explain_switch}" @click="explain_switch = !explain_switch">{{$t('login.forgetPassword')}}</span>
+				<el-button class="login-btn my-button" type="primary" @click="submit()" :loading="loading" size="small">{{$t('login.signIn')}}</el-button>
 				<!-- 登录说明 -->
 				<div class="login-explain" :class="{'explain-open':explain_switch}">
 					<!-- 说明信息 -->
 					<ul class="explain-info float-left">
-						<li class="item">· 请联系系统管理员</li>
-						<li class="item">· 邮箱：329255122@qq.com</li>
+						<li class="item">· {{$t('login.contact')}}</li>
+						<li class="item">· {{$t('login.email')}}：329255122@qq.com</li>
 					</ul>
 				</div>
 			</form>
@@ -227,10 +234,10 @@ export default {
 		userCheck: function() {
 			let reg = /^[0-9a-zA-Z_]{6,20}$/; //6-20位数字字母
 			if (this.user_text == "") {
-				this.user_err = "用户名不能为空!";
+				this.user_err = this.$t("login.userErr1");
 				return false;
 			} else if (!reg.test(this.user_text)) {
-				this.user_err = "用户名应为6~20位数字/字母/下划线!";
+				this.user_err = this.$t("login.userErr2");
 				return false;
 			} else {
 				this.user_err = "";
@@ -241,10 +248,10 @@ export default {
 		psdCheck: function() {
 			let reg = /^[0-9a-zA-Z_]{6,15}$/; //3-18位数字字母下划线
 			if (this.psd_text == "") {
-				this.psd_err = "密码不能为空!";
+				this.psd_err = this.$t("login.psdErr1");
 				return false;
 			} else if (!reg.test(this.psd_text)) {
-				this.psd_err = "密码应为6~15位，英文与数字或下划线组合!";
+				this.psd_err = this.$t("login.psdErr2");
 				return false;
 			} else {
 				this.psd_err = "";
@@ -254,7 +261,7 @@ export default {
 		// 验证验证码
 		captchaCheck: function() {
 			if (this.captcha_text == "") {
-				this.captcha_err = "验证码不能为空!";
+				this.captcha_err = this.$t("login.captchaErr");
 				return false;
 			} else {
 				this.captcha_err = "";
@@ -309,7 +316,7 @@ export default {
 				) {
 					const respon = res.data || {};
 					// 获取数据成功
-					this.$message.success("登陆成功!");
+					this.$message.success(this.$t("login.success"));
 					// 保存登录标记
 					if (respon.token) {
 						localStorage.setItem("admin_token", respon.token);
@@ -332,11 +339,11 @@ export default {
 					});
 				} else if (res.msg === "AlreadyOnline") {
 					this.$confirm(
-						"您的帐号已经登录系统，是否继续登录？（如非本人操作，建议您修改密码以确保帐号安全）",
-						"提示",
+						this.$t("login.alreadyOnline"),
+						this.$t("login.tips"),
 						{
-							confirmButtonText: "继续登录",
-							cancelButtonText: "取消",
+							confirmButtonText: this.$t("login.continue"),
+							cancelButtonText: this.$t("login.cancel"),
 							type: "warning"
 						}
 					)
@@ -344,10 +351,10 @@ export default {
 							this.submit(1);
 						})
 						.catch(() => {
-							this.$message.info("取消登录");
+							this.$message.info(this.$t("login.cancelLogin"));
 						});
 				} else {
-					this.$message.error("账号或密码错误!");
+					this.$message.error(this.$t("login.fail"));
 				}
 			}
 		},
@@ -386,7 +393,7 @@ export default {
 		top: 55%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width: 11.45rem;
+		width: 12.5rem;
 		background: #fff;
 		box-shadow: 0.13rem 0.13rem 0.63rem 0rem rgba(179, 179, 179, 0.25);
 		border-radius: 0.2rem;
@@ -489,7 +496,7 @@ export default {
 			.captcha {
 				margin-top: 2.22vh;
 				input {
-					width: 5.5rem;
+					width: 6.5rem;
 				}
 				img {
 					display: block;

@@ -54,5 +54,31 @@ export default {
         },
         errorLog: '错误日志',
         international: '国际化'
+    },
+    login: {
+        title1: '欢迎使用',
+        title2: 'VUE后台管理系统',
+        user: '请输入用户名',
+        psd: '请输入密码',
+        forgetPassword: '忘记密码',
+        signIn: '登 录',
+        contact: '请联系系统管理员',
+        email: '邮箱',
+        showPsd: '显示密码',
+        hiddenPsd: '隐藏密码',
+        captcha: '请输入验证码',
+        userErr1: '用户名不能为空!',
+        userErr2: '用户名应为6~20位数字/字母/下划线!',
+        psdErr1: '密码不能为空!',
+        psdErr2: '密码应为6~15位，英文与数字或下划线组合!',
+        captchaErr: '验证码不能为空!',
+        success: '登陆成功',
+        fail: '账号或密码错误',
+        tips: '提示',
+        alreadyOnline:
+            '您的帐号已经登录系统，是否继续登录？（如非本人操作，建议您修改密码以确保帐号安全）',
+        continue: '继续登录',
+        cancel: '取消',
+        cancelLogin: '取消登录'
     }
 };
