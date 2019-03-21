@@ -17,7 +17,7 @@
 				<!-- </keep-alive> -->
 			</transition>
 			<!-- 底部 -->
-			<p class="footer">Copyright © 2019 陈小银 All Rights Reserved.&nbsp;&nbsp;&nbsp;Email: +86 15395830398</p>
+			<p class="footer">Copyright © {{year}} {{$t('base.name')}} All Rights Reserved.&nbsp;&nbsp;&nbsp;Email: +86 15395830398</p>
 		</div>
 		<!-- 固定右侧工具 -->
 		<fixedTools></fixedTools>
@@ -25,7 +25,7 @@
 </template>
 <script>
 import sideBar from "components/sideBar"; //侧边导航
-import topBar from "components/topBar"; //顶部信息
+import topBar from "components/topbar"; //顶部信息
 import crumb from "components/crumb"; //面包屑
 import TagsView from "components/TagsView"; //标签页
 import fixedTools from "components/fixedTools"; //页面设置
@@ -35,6 +35,7 @@ export default {
 	data() {
 		return {
 			instance: null,
+			year: new Date().getFullYear(),
 			isZoomOpen: false
 		};
 	},

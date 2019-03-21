@@ -1,5 +1,6 @@
 export default {
     base: {
+        name: '陈小银',
         websiteTitle: 'Vue后台管理系统',
         zoom:
             '你的浏览器目前处于缩放状态，页面可能会出现错位现象，建议100%大小显示',
@@ -50,7 +51,9 @@ export default {
             '404': '404'
         },
         errorLog: '错误日志',
-        international: '国际化'
+        international: '国际化',
+        personInfo: '个人信息',
+        message: '消息通知'
     },
     login: {
         title1: '欢迎使用',
@@ -81,6 +84,12 @@ export default {
     sideBar: {
         packUp: '收起菜单'
     },
+    tagsView: {
+        refresh: '刷新',
+        close: '关闭',
+        closeOthers: '关闭其他',
+        closeAll: '关闭全部'
+    },
     home: {
         dataOverview: '数据概览',
         trend: '趋势',
@@ -99,5 +108,17 @@ export default {
             data1: '数据 1',
             data2: '数据 2'
         }
+    },
+    introductorPage: {
+        text: '打开引导',
+        prevLabel: '← 上一步',
+        nextLabel: '下一步 →',
+        skipLabel: '跳过',
+        doneLabel: '结束',
+        step1: '语言切换',
+        step2: '用户信息',
+        step3: '面包屑导航',
+        step4: '标签页',
+        step5: '系统设置'
     }
 };

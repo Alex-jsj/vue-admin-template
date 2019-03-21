@@ -3,7 +3,7 @@
 		<!-- 遮罩层 -->
 		<div class="shadow-box" @click="isOpen = false;"></div>
 		<div class="tools-container">
-			<div class="btn-container" data-step="5" data-intro="系统设置">
+			<div class="btn-container" data-step="5" :data-intro="$t('introductorPage.step5')">
 				<div class="switch-btn the-btn" @click="openTools">
 					<i class="iconfont" :class="isOpen?'icon-close-bg':'icon-setting'"></i>
 					<span>{{isOpen?'关 闭设 置':'打 开设 置'}}</span>

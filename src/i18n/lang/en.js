@@ -1,5 +1,6 @@
 export default {
     base: {
+        name: 'Alex',
         websiteTitle: 'Vue Backstage Management System', // 站点名称
         zoom:
             'Your browser is currently in a zoom state, the page may be misplaced, it is recommended that 100% size display.',
@@ -50,7 +51,9 @@ export default {
         pdf: 'pdf',
         errorPage: 'Error Page',
         errorLog: 'Error Log',
-        international: 'International'
+        international: 'International',
+        personInfo: 'Personal information',
+        message: 'Message notification'
     },
     login: {
         title1: 'Welcome to use',
@@ -81,6 +84,12 @@ export default {
     sideBar: {
         packUp: 'Pack up the menu'
     },
+    tagsView: {
+        refresh: 'refresh',
+        close: 'close',
+        closeOthers: 'closeOthers',
+        closeAll: 'closeAll'
+    },
     home: {
         dataOverview: 'Data Overview', // 数据概览
         trend: 'Trend', // 趋势
@@ -99,5 +108,17 @@ export default {
             data1: 'Data 1',
             data2: 'Data 2'
         }
+    },
+    introductorPage: {
+        text: 'Open guide',
+        prevLabel: '← Prev',
+        nextLabel: 'Next →',
+        skipLabel: 'Skip',
+        doneLabel: 'Done',
+        step1: 'Language switching',
+        step2: 'User information',
+        step3: 'Bread crumb navigation',
+        step4: 'Tab page',
+        step5: 'System setup',
     }
 };

@@ -14,7 +14,7 @@ const rootConfig = [
                 name: 'account_information',
                 component: () => import('@/pages/public/account_information'),
                 meta: {
-                    title: '个人信息'
+                    title: 'personInfo'
                 }
             },
             {
@@ -22,7 +22,7 @@ const rootConfig = [
                 name: 'home',
                 component: () => import('@/pages/public/home'),
                 meta: {
-                    title: '工作台'
+                    title: 'home'
                 }
             },
             {
@@ -30,7 +30,7 @@ const rootConfig = [
                 name: 'intro',
                 component: () => import('@/pages/intro/index'),
                 meta: {
-                    title: '引导页'
+                    title: 'introductoryPage'
                 }
             },
             {
@@ -38,14 +38,14 @@ const rootConfig = [
                 name: 'icon',
                 component: () => import('@/pages/public/icon'),
                 meta: {
-                    title: '图标'
+                    title: 'icon'
                 }
             },
             {
                 path: 'component',
                 component: () => import('@/pages/component/index'),
                 meta: {
-                    title: '组件'
+                    title: 'component'
                 },
                 children: [
                     {
@@ -58,7 +58,7 @@ const rootConfig = [
                         name: 'editor',
                         component: () => import('@/pages/component/editor'),
                         meta: {
-                            title: '富文本编辑器',
+                            title: 'components.textEditor',
                             permissionName: 'editor'
                         }
                     },
@@ -67,7 +67,7 @@ const rootConfig = [
                         name: 'imgUpload',
                         component: () => import('@/pages/component/imgUpload'),
                         meta: {
-                            title: '图片上传',
+                            title: 'components.imgUpload',
                             permissionName: 'imgUpload'
                         }
                     },
@@ -76,7 +76,7 @@ const rootConfig = [
                         name: 'CountTo',
                         component: () => import('@/pages/component/CountTo'),
                         meta: {
-                            title: 'CountTo',
+                            title: 'components.countTo',
                             permissionName: 'CountTo'
                         }
                     }

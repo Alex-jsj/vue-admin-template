@@ -3,7 +3,7 @@
 		<!-- 快捷入口 -->
 		<div class="quick-enter">
 			<ul class="quick-list">
-				<li class="item" v-for="item in quickList" :key="item.title">
+				<li class="item" v-for="item in quickList" :key="item.icon">
 					<router-link :to="item.link" class="link">
 						<div class="icon-container">
 							<i class="iconfont" :class="`icon-${item.icon}`"></i>
@@ -91,7 +91,6 @@ export default {
 	data() {
 		return {
 			loading: true,
-			quickList: null,
 			table_data: [],
 			peoples_data: [
 				{
@@ -233,6 +232,35 @@ export default {
 				data2: this.$t("home.canvas.data2")
 			};
 		},
+		quickList() {
+			return [
+				{
+					title: this.$t('route.introductoryPage'),
+					link: "/pages/index/intro",
+					icon: "intro"
+				},
+				{
+					title: this.$t('route.icon'),
+					link: "/pages/index/icon",
+					icon: "icon"
+				},
+				{
+					title: this.$t('route.components.textEditor'),
+					link: "/pages/index/component/editor",
+					icon: "component"
+				},
+				{
+					title: this.$t('route.chart'),
+					link: "/pages/index/intro",
+					icon: "chart"
+				},
+				{
+					title: this.$t('route.international'),
+					link: "/pages/index/userManage",
+					icon: "in"
+				}
+			];
+		},
 		// 角色组
 		role() {
 			return this.$store.state.role;
@@ -251,8 +279,6 @@ export default {
 		}
 	},
 	created: function() {
-		// 控制不同角色显示内容
-		this.date_role();
 		this.date_scope();
 	},
 	mounted: function() {
@@ -390,40 +416,6 @@ export default {
 					colors[i],
 					"#F5F6FF"
 				);
-			}
-		},
-		// 根据不同角色组分配数据概览
-		date_role: function() {
-			if (this.role == "系统管理员") {
-				this.quickList = [
-					{
-						title: "承办机构",
-						link: "/pages/index/cbjgManage/cbjgManage_list",
-						icon: "jigouA"
-					},
-					{
-						title: "考次信息",
-						link: "/pages/index/examManage/examManage_kc",
-						icon: "kaoshi"
-					},
-					{
-						title: "成绩录入",
-						link:
-							"/pages/index/certificateManage/certificateManage_cj",
-						icon: "ziliao2"
-					},
-					{
-						title: "证书生成",
-						link:
-							"/pages/index/certificateManage/certificateManage_zssc",
-						icon: "zhengshu"
-					},
-					{
-						title: "系统日志",
-						link: "/pages/index/systemManage/systemManage_set_log",
-						icon: "sifakaoshi"
-					}
-				];
 			}
 		}
 	}

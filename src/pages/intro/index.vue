@@ -1,7 +1,7 @@
 <template>
 	<div id="intro">
 		<topTooltip :info="'A better way for new feature introduction and step-by-step users guide for your website and project. http://introjs.com'"></topTooltip>
-		<el-button type="primary" size="small" class="btn my-button" icon="el-icon-question" @click="open_intro">打开引导</el-button>
+		<el-button type="primary" size="small" class="btn my-button" icon="el-icon-question" @click="open_intro">{{$t('introductorPage.text')}}</el-button>
 	</div>
 </template>
 
@@ -62,10 +62,10 @@ export default {
 		 } */
 			this.$intro()
 				.setOptions({
-					prevLabel: "← 上一步",
-					nextLabel: "下一步 →",
-					skipLabel: "跳过",
-					doneLabel: "结束",
+					prevLabel: this.$t('introductorPage.prevLabel'),
+					nextLabel: this.$t('introductorPage.nextLabel'),
+					skipLabel: this.$t('introductorPage.skipLabel'),
+					doneLabel: this.$t('introductorPage.doneLabel'),
 					exitOnOverlayClick: false
 				})
 				.start();

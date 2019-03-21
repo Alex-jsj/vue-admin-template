@@ -4,15 +4,16 @@
 		<div class="content-width-box">
 			<!-- 左侧文字信息 -->
 			<div class="float-left left-info">
-				<router-link to="/pages/index" class="link float-left">
+				<router-link to="/pages/index" class="link">
+					<img :src="logoSrc" alt="logo" class="logo-img">
 					<!-- text -->
-					<p class="logo-text float-left">{{$t('base.websiteTitle')}}</p>
+					<span class="logo-text">{{$t('base.websiteTitle')}}</span>
 				</router-link>
 			</div>
 			<!-- 右侧用户信息 -->
 			<div class="float-right right-info">
 				<!-- 头像 -->
-				<div class="head-portrait float-right" data-step="2" data-intro="用户信息">
+				<div class="head-portrait float-right" data-step="2" :data-intro="$t('introductorPage.step2')">
 					<el-badge :value="info.content.unread" :max="99" :class="{'badge-show':info.content.unread}">
 						<div class="img-container">
 							<img :src="info.content.head_img" class="head-img">
@@ -56,7 +57,7 @@
 				</div>
 			</div>
 			<!-- 语言切换 -->
-			<div class="lan-switch float-right" data-step="1" data-intro="语言切换">
+			<div class="lan-switch float-right" data-step="1" :data-intro="$t('introductorPage.step1')">
 				<el-dropdown trigger="click" class="international" @command="checkLang">
 					<div>
 						<i class="iconfont icon-yuyan"></i>
@@ -81,7 +82,7 @@ export default {
 	name: "topBar",
 	data() {
 		return {
-			imgSrc: "./static/img"
+			logoSrc: "./static/img/vue.png"
 		};
 	},
 	computed: {
@@ -145,23 +146,26 @@ export default {
 	.content-width-box {
 		width: 100%;
 		height: 100%;
+		padding: 0 20px;
 	}
 	.left-info {
 		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		overflow: hidden;
 		.link {
 			width: 100%;
-			display: block;
+			height: 60px;
+			display: table-cell;
+			vertical-align: middle;
+		}
+		.logo-img {
+			vertical-align: middle;
+			width: 50px;
+			line-height: 60px;
 		}
 		.logo-text {
-			font-size: 20px;
+			font-size: 22px;
 			color: #fff;
-			line-height: 60px;
 			letter-spacing: 3px;
-			margin-left: 30px;
+			vertical-align: middle;
 		}
 	}
 	.lan-switch,
@@ -185,7 +189,6 @@ export default {
 	.right-info {
 		height: 100%;
 		position: relative;
-		margin-right: 30px;
 		&:hover {
 			.user-board {
 				height: 300px;
@@ -339,19 +342,6 @@ export default {
 	&.content-width-type-1.menuType-2 {
 		.content-width-box {
 			position: relative;
-			.left-info {
-				.logo-container {
-					width: 215px;
-				}
-				.logo {
-					width: 160px;
-					left: 0.55rem;
-					transform: translateX(0) translateY(-50%);
-				}
-			}
-			.right-info {
-				right: 0.55rem;
-			}
 		}
 	}
 	&.content-width-type-2.menuType-2 {
@@ -360,19 +350,7 @@ export default {
 			height: 100%;
 			margin: 0 auto;
 			position: relative;
-			.left-info {
-				.logo-container {
-					width: 16%;
-				}
-				.logo {
-					width: 85%;
-					left: 0;
-					transform: translateX(0) translateY(-50%);
-				}
-			}
-			.right-info {
-				right: 0;
-			}
+			padding: 0;
 		}
 	}
 }

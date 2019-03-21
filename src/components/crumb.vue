@@ -1,10 +1,10 @@
 <template>
-	<div id="crumb" data-step="3" data-intro="面包屑">
+	<div id="crumb" data-step="3" :data-intro="$t('introductorPage.step3')">
 		<el-breadcrumb class="app-breadcrumb float-left" separator="/">
 			<transition-group name="breadcrumb">
 				<el-breadcrumb-item v-for="(item,index)  in crumbList" :key="item.path" v-if="item.meta.title">
 					<!-- <span v-if='item.redirect==="noredirect"||index==crumbList.length-1' class="no-redirect">{{item.meta.title}}</span> -->
-					<router-link :to="item.path">{{item.meta.title}}</router-link>
+					<router-link :to="item.path">{{$t('route.'+item.meta.title)}}</router-link>
 				</el-breadcrumb-item>
 			</transition-group>
 		</el-breadcrumb>

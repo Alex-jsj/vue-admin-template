@@ -1,5 +1,5 @@
 <template>
-	<div class="tags-view-container" data-step="4" data-intro="标签页">
+	<div class="tags-view-container" data-step="4" :data-intro="$t('introductorPage.step4')">
 		<scroll-pane ref="scrollPane" class="tags-view-wrapper">
 			<router-link
 				v-for="tag in Array.from(visitedViews)"
@@ -10,15 +10,15 @@
 				class="tags-view-item"
 				@contextmenu.prevent.native="openMenu(tag,$event)"
 			>
-				{{ tag.title }}
+				{{ $t('route.'+tag.title) }}
 				<span class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)"/>
 			</router-link>
 		</scroll-pane>
 		<ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
-			<li @click="refreshSelectedTag(selectedTag)">刷新</li>
-			<li @click="closeSelectedTag(selectedTag)">关闭</li>
-			<li @click="closeOthersTags">关闭其他</li>
-			<li @click="closeAllTags">关闭全部</li>
+			<li @click="refreshSelectedTag(selectedTag)">{{$t('tagsView.refresh')}}</li>
+			<li @click="closeSelectedTag(selectedTag)">{{$t('tagsView.close')}}</li>
+			<li @click="closeOthersTags">{{$t('tagsView.closeOthers')}}</li>
+			<li @click="closeAllTags">{{$t('tagsView.closeAll')}}</li>
 		</ul>
 	</div>
 </template>
