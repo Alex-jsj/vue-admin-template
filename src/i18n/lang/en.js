@@ -98,6 +98,25 @@ export default {
         closeOthers: 'closeOthers',
         closeAll: 'closeAll'
     },
+    fixedTool: {
+        theme: 'Theme',
+        themeConfig: {
+            content1: 'Light',
+            content2: 'Dark'
+        },
+        navigation: 'Navigation mode',
+        navigationConfig: {
+            content1: 'Side layout',
+            content2: 'Top layout',
+            retract: 'Retract navigation',
+            fixed: 'Fixed navigation',
+            config1: 'Configurable side menu layout',
+            config2: 'Configurable top menu layout'
+        },
+        contentWidth: {
+            text: 'Area width'
+        }
+    },
     home: {
         dataOverview: 'Data Overview', // 数据概览
         trend: 'Trend', // 趋势

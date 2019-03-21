@@ -56,12 +56,17 @@
 			<template v-for="(item,item_index) in nav">
 				<el-submenu :index="item_index+''" v-if="item.children[0]">
 					<template slot="title">
-						<span>{{item.title}}</span>
+						<span>{{$t('route.'+item.title)}}</span>
 					</template>
-					<el-menu-item v-for="(list,child_index) in item.children" :key="child_index" :index="list.url" @click.native="refreshRoute(list)">{{list.title}}</el-menu-item>
+					<el-menu-item
+						v-for="(list,child_index) in item.children"
+						:key="child_index"
+						:index="list.url"
+						@click.native="refreshRoute(list)"
+					>{{$t('route.'+list.title)}}</el-menu-item>
 				</el-submenu>
 				<el-menu-item v-else :index="item.url" @click.native="refreshRoute(item)">
-					<span slot="title">{{item.title}}</span>
+					<span slot="title">{{$t('route.'+item.title)}}</span>
 				</el-menu-item>
 			</template>
 		</el-menu>

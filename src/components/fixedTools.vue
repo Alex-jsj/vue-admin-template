@@ -19,14 +19,14 @@
 			</div>
 			<ul class="tools-list">
 				<li class="item">
-					<p class="title">整体风格设置</p>
-					<el-tooltip effect="dark" content="亮色菜单风格" placement="top">
+					<p class="title">{{$t('fixedTool.theme')}}</p>
+					<el-tooltip effect="dark" :content="$t('fixedTool.themeConfig.content1')" placement="top">
 						<div class="theme-img" @click="themeChange('light')">
 							<img src="../../static/img/light.jpg">
 							<i class="iconfont icon-yep" v-if="theme === 'light'"></i>
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" content="暗色菜单风格" placement="top">
+					<el-tooltip effect="dark" :content="$t('fixedTool.themeConfig.content2')" placement="top">
 						<div class="theme-img" @click="themeChange('dark')">
 							<img src="../../static/img/dark.jpg">
 							<i class="iconfont icon-yep" v-if="theme === 'dark'"></i>
@@ -34,34 +34,34 @@
 					</el-tooltip>
 				</li>
 				<li class="item">
-					<p class="title">导航模式</p>
-					<el-tooltip effect="dark" content="侧边菜单布局" placement="top">
+					<p class="title">{{$t('fixedTool.navigation')}}</p>
+					<el-tooltip effect="dark" :content="$t('fixedTool.navigationConfig.content1')" placement="top">
 						<div class="theme-img" @click="menuChange(1)">
 							<img src="../../static/img/menu1.jpg">
 							<i class="iconfont icon-yep" v-if="menuType === 1"></i>
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" content="顶部菜单布局" placement="top">
+					<el-tooltip effect="dark" :content="$t('fixedTool.navigationConfig.content2')" placement="top">
 						<div class="theme-img" @click="menuChange(2)">
 							<img src="../../static/img/menu2.jpg">
 							<i class="iconfont icon-yep" v-if="menuType === 2"></i>
 						</div>
 					</el-tooltip>
 					<br>
-					<el-tooltip effect="dark" :disabled="menuType==1" content="侧边菜单布局时可配置" placement="left">
+					<el-tooltip effect="dark" :disabled="menuType==1" :content="$t('fixedTool.navigationConfig.config1')" placement="left">
 						<div class="inline-item item-collapse">
-							<span class="title-2 float-left" :class="{'title-grey':menuType == 2}">导航收起</span>
+							<span class="title-2 float-left" :class="{'title-grey':menuType == 2}">{{$t('fixedTool.navigationConfig.retract')}}</span>
 							<el-switch v-model="isCollapse" :disabled="menuType == 2" class="float-right" :width="30" @change="setMenuCollapse()"></el-switch>
 						</div>
 					</el-tooltip>
-					<el-tooltip effect="dark" :disabled="menuType==2" content="顶部菜单布局时可配置" placement="left">
+					<el-tooltip effect="dark" :disabled="menuType==2" :content="$t('fixedTool.navigationConfig.config2')" placement="left">
 						<div class="inline-item">
-							<span class="title-2 float-left" :class="{'title-grey':menuType == 1}">固定导航</span>
+							<span class="title-2 float-left" :class="{'title-grey':menuType == 1}">{{$t('fixedTool.navigationConfig.fixed')}}</span>
 							<el-switch v-model="menuFixed" :disabled="menuType == 1" class="float-right" :width="30" @change="setMenuFixed()"></el-switch>
 						</div>
 					</el-tooltip>
 					<div class="inline-item inline-item-select">
-						<span class="title-2 float-left">内容区域宽度</span>
+						<span class="title-2 float-left">{{$t('fixedTool.contentWidth.text')}}</span>
 						<el-select v-model="contentWidthType" size="mini" class="select float-right" @change="contentWidthChange">
 							<el-option v-for="item in contentWidthTypeList" :key="item" :label="item" :value="item"></el-option>
 						</el-select>

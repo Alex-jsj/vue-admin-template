@@ -89,7 +89,7 @@ export default {
             logout: '退出登录',
             changePassword: '修改密码',
             messageNotification: '消息通知',
-            userName: '登录用户名',
+            userName: '登录用户名'
         }
     },
     tagsView: {
@@ -97,6 +97,29 @@ export default {
         close: '关闭',
         closeOthers: '关闭其他',
         closeAll: '关闭全部'
+    },
+    fixedTool: {
+        backToTop:'',
+        goToBottom:'',
+        closeSet:'',
+        openSet:'',
+        theme: '整体风格设置',
+        themeConfig: {
+            content1: '亮色菜单风格',
+            content2: '暗色菜单风格'
+        },
+        navigation: '导航模式',
+        navigationConfig: {
+            content1: '侧边菜单布局',
+            content2: '顶部菜单布局',
+            retract: '收起导航',
+            fixed: '固定导航',
+            config1: '侧边菜单布局时可配置',
+            config2: '顶部菜单布局时可配置'
+        },
+        contentWidth: {
+            text: '内容区域宽度'
+        }
     },
     home: {
         dataOverview: '数据概览',

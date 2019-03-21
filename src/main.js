@@ -17,9 +17,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
 // 国际化
-import i18n from './i18n'
+import i18n from './i18n';
 
-import introJS from "intro.js";
+// 引导组件
+import introJS from 'intro.js';
 import 'intro.js/introjs.css';
 Vue.prototype.$intro = introJS;
 
@@ -36,7 +37,6 @@ import './assets/iconfont/iconfont.css'; // 阿里巴巴图标库
 
 // 权限控制
 import './permission';
-
 
 // Vue.prototype.$echo = echo;
 

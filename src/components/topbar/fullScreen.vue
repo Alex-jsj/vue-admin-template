@@ -57,6 +57,10 @@ export default {
 		font-size: 28px;
 		display: block;
 		cursor: pointer;
+        &:hover {
+            color: @grey;
+            .transi;
+        }
 	}
 }
 </style>
