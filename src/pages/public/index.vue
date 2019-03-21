@@ -121,9 +121,8 @@ export default {
 			if (!this.isZoomOpen) {
 				this.isZoomOpen = true; // 加上标记防止多次提示
 				this.instance = this.$notify({
-					title: "提示",
-					message:
-						"你的浏览器目前处于缩放状态，页面可能会出现错位现象，建议100%大小显示",
+					title: this.$t("base.tips"),
+					message: this.$t("base.zoom"),
 					type: "info",
 					duration: 0
 				});

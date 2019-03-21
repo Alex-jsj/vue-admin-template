@@ -16,7 +16,7 @@
 		<!-- 数据概览 -->
 		<div class="data-overview" v-loading="loading">
 			<div class="title-box">
-				<span class="title float-left">{{$t('base.dataOverview')}}</span>
+				<span class="title float-left">{{$t('home.dataOverview')}}</span>
 			</div>
 			<!-- content -->
 			<ul class="list">
@@ -32,22 +32,22 @@
 		</div>
 		<div class="peoples" v-loading="loading">
 			<div class="title-box">
-				<span class="title float-left">{{$t('base.trend')}}</span>
+				<span class="title float-left">{{$t('home.trend')}}</span>
 				<router-link to="/pages/board" target="_blank" class="board">
-					<el-button type size="mini">{{$t('base.dataBoard')}}</el-button>
+					<el-button type size="mini">{{$t('home.dataBoard')}}</el-button>
 				</router-link>
-				<p class="date">查询时间：{{start_date}} 至 {{end_date}}</p>
+				<p class="date">{{$t('home.QueryTime')}}：{{start_date}} {{$t('base.to')}} {{end_date}}</p>
 			</div>
 			<!-- content -->
 			<div class="echarts">
-				<span class="no-data" v-show="!peoples_data[0]">暂无数据</span>
+				<span class="no-data" v-show="!peoples_data[0]">{{$t('base.noData')}}</span>
 				<div id="echart-bar" :class="{'canShow':peoples_data[0]}"></div>
 			</div>
 		</div>
 		<!-- 服务器信息 -->
 		<div class="server-info" v-loading="loading">
 			<div class="title-box">
-				<span class="title float-left">{{$t('base.serverInformation')}}</span>
+				<span class="title float-left">{{$t('home.serverInformation')}}</span>
 			</div>
 			<!-- content -->
 			<ul class="list">
@@ -55,7 +55,7 @@
 					<div class="box">
 						<router-link to="/">
 							<p class="num">{{system.account_num}}</p>
-							<p class="text">{{$t('base.numberOfAttachments')}}</p>
+							<p class="text">{{$t('home.numberOfAttachments')}}</p>
 						</router-link>
 					</div>
 				</li>
@@ -93,40 +93,6 @@ export default {
 			loading: true,
 			quickList: null,
 			table_data: [],
-			data_overview_list: [
-				{
-					num: 10,
-					isCbjg: false,
-					show: false,
-					title: "今日访客数",
-					info: "今日访客",
-					path: "/"
-				},
-				{
-					num: 213,
-					isCbjg: false,
-					show: false,
-					title: "当周访客数",
-					info: "当周访客",
-					path: ""
-				},
-				{
-					num: 5893,
-					isCbjg: false,
-					show: false,
-					title: "当月访客数",
-					info: "当月访客",
-					path: ""
-				},
-				{
-					num: 192032,
-					isCbjg: false,
-					show: false,
-					title: "年度访客数",
-					info: "年度访客",
-					path: ""
-				}
-			],
 			peoples_data: [
 				{
 					data1: 20,
@@ -166,34 +132,7 @@ export default {
 			],
 			// 查询时间
 			start_date: "",
-			end_date: "",
-			// 服务器数据
-			system: {
-				system_data: [
-					{
-						id: 0,
-						path: "/",
-						data: 2131,
-						total: 10240,
-						title: this.$t("base.diskOccupiedByTheSystem")
-					},
-					{
-						id: 1,
-						path: "/",
-						data: 132,
-						total: 10240,
-						title: this.$t("base.diskOccupiedBySystemLog")
-					},
-					{
-						id: 2,
-						path: "/",
-						data: 569,
-						total: 10240,
-						title: this.$t("base.diskOccupiedByDataBackup")
-					}
-				],
-				account_num: 4098
-			}
+			end_date: ""
 		};
 	},
 	components: { CountTo },
@@ -215,9 +154,85 @@ export default {
 			setTimeout(function() {
 				echarts.init(document.getElementById("echart-bar")).resize();
 			}, 500);
+		},
+		peoples_data_title(newVal) {
+			let chart = echarts.init(document.getElementById("echart-bar"));
+			chart.clear();
+			this.peoples_chart();
 		}
 	},
 	computed: {
+		data_overview_list() {
+			return [
+				{
+					num: 10,
+					isCbjg: false,
+					show: false,
+					title: this.$t("home.visitor1"),
+					info: this.$t("home.visitor1"),
+					path: "/"
+				},
+				{
+					num: 213,
+					isCbjg: false,
+					show: false,
+					title: this.$t("home.visitor2"),
+					info: this.$t("home.visitor2"),
+					path: ""
+				},
+				{
+					num: 5893,
+					isCbjg: false,
+					show: false,
+					title: this.$t("home.visitor3"),
+					info: this.$t("home.visitor3"),
+					path: ""
+				},
+				{
+					num: 192032,
+					isCbjg: false,
+					show: false,
+					title: this.$t("home.visitor4"),
+					info: this.$t("home.visitor4"),
+					path: ""
+				}
+			];
+		},
+		// 服务器数据
+		system() {
+			return {
+				system_data: [
+					{
+						id: 0,
+						path: "/",
+						data: 2131,
+						total: 10240,
+						title: this.$t("home.diskOccupiedByTheSystem")
+					},
+					{
+						id: 1,
+						path: "/",
+						data: 132,
+						total: 10240,
+						title: this.$t("home.diskOccupiedBySystemLog")
+					},
+					{
+						id: 2,
+						path: "/",
+						data: 569,
+						total: 10240,
+						title: this.$t("home.diskOccupiedByDataBackup")
+					}
+				],
+				account_num: 4098
+			};
+		},
+		peoples_data_title() {
+			return {
+				data1: this.$t("home.canvas.data1"),
+				data2: this.$t("home.canvas.data2")
+			};
+		},
 		// 角色组
 		role() {
 			return this.$store.state.role;
@@ -290,7 +305,10 @@ export default {
 					trigger: "axis"
 				},
 				legend: {
-					data: ["数据 1", "数据 2"]
+					data: [
+						this.peoples_data_title.data1,
+						this.peoples_data_title.data2
+					]
 				},
 				grid: {
 					left: "1%",
@@ -324,7 +342,7 @@ export default {
 				},
 				series: [
 					{
-						name: "数据 1",
+						name: this.peoples_data_title.data1,
 						type: "line",
 						symbolSize: 7, //拐点圆的大小
 						data: signData,
@@ -340,7 +358,7 @@ export default {
 						}
 					},
 					{
-						name: "数据 2",
+						name: this.peoples_data_title.data2,
 						type: "line",
 						symbolSize: 7, //拐点圆的大小
 						data: examData,

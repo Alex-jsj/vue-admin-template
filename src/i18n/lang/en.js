@@ -1,14 +1,11 @@
 export default {
     base: {
         websiteTitle: 'Vue Backstage Management System', // 站点名称
-        dataOverview: 'Data Overview', // 数据概览
-        trend: 'Trend', // 趋势
-        serverInformation: 'Server Information', // 服务器信息
-        numberOfAttachments: 'Number of attachments', //附件数量
-        diskOccupiedByTheSystem: 'Disk occupied by the system(MB)',
-        diskOccupiedBySystemLog: 'Disk occupied by system log(MB)',
-        diskOccupiedByDataBackup: 'Disk occupied by data backup(MB)',
-        dataBoard: 'Data Board'
+        zoom:
+            'Your browser is currently in a zoom state, the page may be misplaced, it is recommended that 100% size display.',
+        tips: 'Tips',
+        noData: 'No Data',
+        to: 'to'
     },
     route: {
         home: 'Workbench',
@@ -80,5 +77,27 @@ export default {
         continue: 'Continue login',
         cancel: 'Cancel',
         cancelLogin: 'Cancel Login'
+    },
+    sideBar: {
+        packUp: 'Pack up the menu'
+    },
+    home: {
+        dataOverview: 'Data Overview', // 数据概览
+        trend: 'Trend', // 趋势
+        serverInformation: 'Server Information', // 服务器信息
+        numberOfAttachments: 'Number of attachments', //附件数量
+        diskOccupiedByTheSystem: 'Disk occupied by the system(MB)',
+        diskOccupiedBySystemLog: 'Disk occupied by system log(MB)',
+        diskOccupiedByDataBackup: 'Disk occupied by data backup(MB)',
+        dataBoard: 'Data Board',
+        QueryTime: 'Query time',
+        visitor1: 'Visitors today',
+        visitor2: 'Visitors this week',
+        visitor3: 'Visitors this month',
+        visitor4: 'Visitors this year',
+        canvas: {
+            data1: 'Data 1',
+            data2: 'Data 2'
+        }
     }
 };

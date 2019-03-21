@@ -1,14 +1,11 @@
 export default {
     base: {
         websiteTitle: 'Vue后台管理系统',
-        dataOverview: '数据概览',
-        trend: '趋势',
-        serverInformation: '服务器信息',
-        numberOfAttachments: '附件数量',
-        diskOccupiedByTheSystem: '系统所占磁盘(MB)',
-        diskOccupiedBySystemLog: '系统日志所占磁盘(MB)',
-        diskOccupiedByDataBackup: '数据备份所占磁盘(MB)',
-        dataBoard: '数据看板'
+        zoom:
+            '你的浏览器目前处于缩放状态，页面可能会出现错位现象，建议100%大小显示',
+        tips: '提示',
+        noData: '暂无数据',
+        to: '至'
     },
     route: {
         home: '工作台',
@@ -80,5 +77,27 @@ export default {
         continue: '继续登录',
         cancel: '取消',
         cancelLogin: '取消登录'
+    },
+    sideBar: {
+        packUp: '收起菜单'
+    },
+    home: {
+        dataOverview: '数据概览',
+        trend: '趋势',
+        serverInformation: '服务器信息',
+        numberOfAttachments: '附件数量',
+        diskOccupiedByTheSystem: '系统所占磁盘(MB)',
+        diskOccupiedBySystemLog: '系统日志所占磁盘(MB)',
+        diskOccupiedByDataBackup: '数据备份所占磁盘(MB)',
+        dataBoard: '数据看板',
+        QueryTime: '查询时间',
+        visitor1: '今日访客',
+        visitor2: '本周访客',
+        visitor3: '本月访客',
+        visitor4: '年度访客',
+        canvas: {
+            data1: '数据 1',
+            data2: '数据 2'
+        }
     }
 };
