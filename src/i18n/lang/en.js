@@ -84,6 +84,14 @@ export default {
     sideBar: {
         packUp: 'Pack up the menu'
     },
+    topBar: {
+        userBoard: {
+            logout: 'Logout',
+            changePassword: 'Change password',
+            messageNotification: 'Message notification',
+            userName: 'User name'
+        }
+    },
     tagsView: {
         refresh: 'refresh',
         close: 'close',
@@ -119,6 +127,7 @@ export default {
         step2: 'User information',
         step3: 'Bread crumb navigation',
         step4: 'Tab page',
-        step5: 'System setup',
-    }
+        step5: 'System setup'
+    },
+    textEditor: 'Rich Text Editor Component Based on TinyMCE Encapsulation'
 };

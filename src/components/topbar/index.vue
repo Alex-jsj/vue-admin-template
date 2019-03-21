@@ -3,130 +3,35 @@
 	<div id="topBar" :class="{'content-width-type-1':contentWidthType==='流式','content-width-type-2':contentWidthType==='定宽','menuType-2':menuType===2}">
 		<div class="content-width-box">
 			<!-- 左侧文字信息 -->
-			<div class="float-left left-info">
-				<router-link to="/pages/index" class="link">
-					<img :src="logoSrc" alt="logo" class="logo-img">
-					<!-- text -->
-					<span class="logo-text">{{$t('base.websiteTitle')}}</span>
-				</router-link>
-			</div>
+			<logo class="float-left"></logo>
 			<!-- 右侧用户信息 -->
-			<div class="float-right right-info">
-				<!-- 头像 -->
-				<div class="head-portrait float-right" data-step="2" :data-intro="$t('introductorPage.step2')">
-					<el-badge :value="info.content.unread" :max="99" :class="{'badge-show':info.content.unread}">
-						<div class="img-container">
-							<img :src="info.content.head_img" class="head-img">
-						</div>
-					</el-badge>
-				</div>
-				<!-- 用户面板 -->
-				<div class="user-board">
-					<p class="user-icon">
-						<i class="iconfont icon-triangle-top"></i>
-					</p>
-					<div class="user-board-container">
-						<div class="user-board-info">
-							<!-- 头像 -->
-							<div class="board-touxiang">
-								<img :src="info.content.head_img" class="head-img">
-							</div>
-							<!-- 信息 -->
-							<div class="board-text float-right">
-								<span class="nick-name float-left">{{info.content.nickName}}</span>
-								<span class="float-left">{{info.content.role}}</span>
-								<p class="account float-left">{{info.content.account}} (登录用户名)</p>
-							</div>
-						</div>
-						<!-- 操作 -->
-						<ul class="user-board-list">
-							<li class="item">
-								<router-link to="/pages/index/systemManage/systemManage_message" class="link">
-									消息通知
-									<span v-if="info.content.unread">({{info.content.unread}})</span>
-								</router-link>
-							</li>
-							<li class="item">
-								<router-link to="/pages/index/account_information?modify=1" class="link">修改密码</router-link>
-							</li>
-							<li class="item">
-								<router-link to class="link" @click.native="log_out()">退出登录</router-link>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+			<userBoard class="float-right"></userBoard>
 			<!-- 语言切换 -->
-			<div class="lan-switch float-right" data-step="1" :data-intro="$t('introductorPage.step1')">
-				<el-dropdown trigger="click" class="international" @command="checkLang">
-					<div>
-						<i class="iconfont icon-yuyan"></i>
-					</div>
-					<el-dropdown-menu slot="dropdown">
-						<el-dropdown-item :disabled="language==='zh'" command="zh">中文</el-dropdown-item>
-						<el-dropdown-item :disabled="language==='en'" command="en">English</el-dropdown-item>
-					</el-dropdown-menu>
-				</el-dropdown>
-			</div>
+			<switchLang class="float-right"></switchLang>
 			<!-- 全屏 -->
-			<div class="full-screen float-right">
-				<i class="iconfont icon-quanping"></i>
-			</div>
+			<fullScreen class="float-right"></fullScreen>
 		</div>
 	</div>
 </template>
 <script>
-// api
-import { logout } from "api/login";
+import switchLang from "./switchLang";
+import fullScreen from "./fullScreen";
+import userBoard from "./userBoard";
+import logo from "./logo";
 export default {
 	name: "topBar",
-	data() {
-		return {
-			logoSrc: "./static/img/vue.png"
-		};
+	components: {
+		switchLang,
+		fullScreen,
+		userBoard,
+        logo
 	},
 	computed: {
-		info: function() {
-			return {
-				content: {
-					account: this.$store.state.account,
-					nickName: this.$store.state.nickName,
-					role: this.$store.state.role,
-					agent_title: this.$store.state.agent_title,
-					unread: this.$store.state.unread,
-					head_img: "./static/img/head.png"
-				}
-			};
-		},
 		contentWidthType() {
 			return this.$store.state.contentWidthType;
 		},
 		menuType() {
 			return this.$store.state.menuType;
-		},
-		language() {
-			return this.$store.state.language;
-		}
-	},
-	methods: {
-		// 退出登录
-		log_out: function() {
-			logout().then(res => {
-				if (res.code === 200) {
-					localStorage.removeItem("admin_token"); // 移除登录标记
-					localStorage.removeItem("mskj_agent_id"); // 如果是承办机构用户登录则一并移除承办机构id
-					location.reload(); // 刷新页面
-				}
-			});
-		},
-		// 切换语言
-		checkLang: function(lang) {
-			this.$i18n.locale = lang;
-			this.$store.commit("SET_LANGUAGE", lang); // 存入vuex
-			this.$message({
-				message: lang == "zh" ? "切换为中文" : "Switch To English",
-				type: "success"
-			});
 		}
 	}
 };
@@ -147,197 +52,6 @@ export default {
 		width: 100%;
 		height: 100%;
 		padding: 0 20px;
-	}
-	.left-info {
-		height: 100%;
-		.link {
-			width: 100%;
-			height: 60px;
-			display: table-cell;
-			vertical-align: middle;
-		}
-		.logo-img {
-			vertical-align: middle;
-			width: 50px;
-			line-height: 60px;
-		}
-		.logo-text {
-			font-size: 22px;
-			color: #fff;
-			letter-spacing: 3px;
-			vertical-align: middle;
-		}
-	}
-	.lan-switch,
-	.full-screen {
-		margin-right: 20px;
-		margin-top: 6px;
-		.iconfont {
-			color: #fff;
-			font-size: 24px;
-			display: block;
-			// line-height: 60px;
-			cursor: pointer;
-			&.icon-quanping {
-				font-size: 28px;
-			}
-		}
-		&.full-screen {
-			margin-top: 15px;
-		}
-	}
-	.right-info {
-		height: 100%;
-		position: relative;
-		&:hover {
-			.user-board {
-				height: 300px;
-			}
-		}
-		.head-portrait {
-			width: 40px;
-			height: 40px;
-			border: 1px solid rgba(255, 255, 255, 1);
-			margin-top: 10px;
-			border-radius: 50%;
-			position: relative;
-			cursor: pointer;
-			.el-badge {
-				display: block;
-				.el-badge__content {
-					display: none;
-					border: none;
-					height: 16px;
-					line-height: 16px;
-				}
-				&.badge-show {
-					.el-badge__content {
-						display: block;
-					}
-				}
-			}
-			.img-container {
-				width: 40px;
-				height: 40px;
-				position: relative;
-				top: -1px;
-				left: -1px;
-				overflow: hidden;
-				border-radius: 50%;
-				cursor: pointer;
-				.head-img {
-					display: block;
-					width: 100%;
-					min-height: 100%;
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-				}
-			}
-		}
-		.user-board {
-			width: 320px;
-			height: 0;
-			position: absolute;
-			top: 50px;
-			right: -30px;
-			overflow: hidden;
-			.transi;
-			.user-icon {
-				width: 280px;
-				margin: 0 auto;
-				height: 16px;
-				position: relative;
-				overflow: hidden;
-				.icon-triangle-top {
-					position: absolute;
-					right: 15px;
-					top: -5px;
-					color: @blue;
-					font-size: 28px;
-				}
-			}
-			.user-board-container {
-				width: 280px;
-				margin: 0 auto;
-				border-radius: 6px;
-				box-shadow: 0 0 15px 0 rgba(119, 119, 119, 0.21);
-				overflow: hidden;
-				.user-board-info {
-					width: 100%;
-					height: 100px;
-					background: @blue;
-					border-top-left-radius: 6px;
-					border-top-right-radius: 6px;
-					background-size: 100% 100%;
-					position: relative;
-					.board-touxiang {
-						width: 66px;
-						height: 66px;
-						border-radius: 50%;
-						border: 1px solid #fff;
-						position: relative;
-						left: 17px;
-						top: 17px;
-						overflow: hidden;
-						.head-img {
-							display: block;
-							width: 105%;
-							min-height: 105%;
-							position: absolute;
-							top: 50%;
-							left: 50%;
-							transform: translate(-50%, -50%);
-						}
-					}
-					.board-text {
-						width: 160px;
-						position: absolute;
-						top: 50%;
-						right: 20px;
-						transform: translateY(-50%);
-						span {
-							font-size: 14px;
-							color: #fff;
-							margin-top: 2px;
-						}
-						.nick-name {
-							font-size: 18px;
-							margin-right: 15px;
-							margin-top: 0;
-						}
-					}
-					.account {
-						font-size: 14px;
-						color: #fff;
-						margin-top: 12px;
-						width: 100%;
-						white-space: nowrap;
-					}
-				}
-				.user-board-list {
-					width: 100%;
-					padding: 12px 15px;
-					background: #fff;
-					.item {
-						width: 100%;
-						.link {
-							font-size: 14px;
-							color: @black;
-							display: block;
-							line-height: 34px;
-							transition: all 0.3s;
-							border-bottom: 1px solid transparent;
-							&:hover {
-								color: @blue;
-								border-bottom: 1px solid #e8e8e8;
-							}
-						}
-					}
-				}
-			}
-		}
 	}
 	&.content-width-type-1.menuType-2 {
 		.content-width-box {

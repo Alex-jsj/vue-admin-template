@@ -1,6 +1,6 @@
 <template>
 	<div id="editor">
-		<topTooltip :info="'基于tinymce封装的富文本编辑器组件'"></topTooltip>
+		<topTooltip :info="$t('textEditor')"></topTooltip>
 		<tinymceEditor></tinymceEditor>
 	</div>
 </template>

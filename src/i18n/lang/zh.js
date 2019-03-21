@@ -84,6 +84,14 @@ export default {
     sideBar: {
         packUp: '收起菜单'
     },
+    topBar: {
+        userBoard: {
+            logout: '退出登录',
+            changePassword: '修改密码',
+            messageNotification: '消息通知',
+            userName: '登录用户名',
+        }
+    },
     tagsView: {
         refresh: '刷新',
         close: '关闭',
@@ -120,5 +128,6 @@ export default {
         step3: '面包屑导航',
         step4: '标签页',
         step5: '系统设置'
-    }
+    },
+    textEditor: '基于tinymce封装的富文本编辑器组件'
 };

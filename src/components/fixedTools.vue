@@ -154,7 +154,7 @@ export default {
 	created() {
 		// account
 		let config = JSON.parse(
-			localStorage.getItem(`${this.account}_mskj_user_config`)
+			localStorage.getItem(`${this.account}_user_config`)
 		);
 		// 如果本地存储有用户配置 则使用本地的配置
 		if (config) {
@@ -352,7 +352,7 @@ export default {
 				language: this.language
 			};
 			localStorage.setItem(
-				`${this.account}_mskj_user_config`,
+				`${this.account}_user_config`,
 				JSON.stringify(config)
 			);
 		},
