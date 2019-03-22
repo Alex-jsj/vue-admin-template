@@ -22,7 +22,7 @@ export default new Vuex.Store({
         menuFixed: false, //固定导航
         isMenuDark: false, //深色系菜单
         menuType: 1, //导航模式
-        contentWidthType: '流式', //内容宽度
+        contentWidthType: 'Flow', //内容宽度
         language: 'en', //语言
         nickName: '', // 昵称
         account: '', // 账号

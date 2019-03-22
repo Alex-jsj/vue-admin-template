@@ -266,7 +266,7 @@ export default {
 			district_text: "",
 			// 布局状态
 			menuType: 1,
-			contentWidthType: "流式",
+			contentWidthType: "Flow",
 			isCollapse: false, // 导航是否折叠
 			open: false,
 			btn_text: "展开",

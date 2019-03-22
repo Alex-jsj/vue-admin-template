@@ -63,7 +63,7 @@
 					<div class="inline-item inline-item-select">
 						<span class="title-2 float-left">{{$t('fixedTool.contentWidth.text')}}</span>
 						<el-select v-model="contentWidthType" size="mini" class="select float-right" @change="contentWidthChange">
-							<el-option v-for="item in contentWidthTypeList" :key="item" :label="item" :value="item"></el-option>
+							<el-option v-for="item in contentWidthTypeList" :key="item.key" :label="item.value" :value="item.key"></el-option>
 						</el-select>
 					</div>
 				</li>
@@ -118,8 +118,13 @@ export default {
 			isFullScreen: false, // 网页全屏
 			isCollapse: false, // 导航是否折叠
 			menuFixed: false, // 导航是否固定
-			contentWidthType: "流式", // 内容区域宽度
-			contentWidthTypeList: ["流式"],
+			contentWidthType: "Flow", // 内容区域宽度
+			contentWidthTypeList: [
+				{
+					key: "Flow",
+					value: "流式"
+				}
+			],
 			colorWeekOpen: false, //色弱模式
 			colorGrayscaleOpen: false, //灰度模式
 			colorBrightnessOpen: false, //夜间模式
@@ -278,11 +283,25 @@ export default {
 				this.$store.commit("SET_MENU_FIXED", true);
 				this.$store.commit("SET_MENUTYPE", 2);
 				this.$store.commit("SET_MENU_COLLAPSE", false);
-				this.contentWidthTypeList = ["流式", "定宽"];
+				this.contentWidthTypeList = [
+					{
+						key: "Flow",
+						value: "流式"
+					},
+					{
+						key: "Fixed",
+						value: "定宽"
+					}
+				];
 			} else {
 				this.$store.commit("SET_MENUTYPE", 1);
-				this.contentWidthTypeList = ["流式"];
-				this.contentWidthType = "流式";
+				this.contentWidthTypeList = [
+					{
+						key: "Flow",
+						value: "流式"
+					}
+				];
+				this.contentWidthType = "Flow";
 				this.$store.commit("SET_CONTENTWIDTH", this.contentWidthType);
 				this.menuFixed = false;
 				this.$store.commit("SET_MENU_FIXED", false);

@@ -1,5 +1,5 @@
 <template>
-	<div class="wrap" :class="{'collapse-wrap':isCollapse,'isFixed':menuFixed,'menuType-2':menuType === 2,'content-width-type-2':contentWidthType==='定宽'}">
+	<div class="wrap" :class="{'collapse-wrap':isCollapse,'isFixed':menuFixed,'menuType-2':menuType === 2,'content-width-type-2':contentWidthType==='Fixed'}">
 		<!-- 顶部信息条 -->
 		<topBar></topBar>
 		<!-- 侧边菜单 -->

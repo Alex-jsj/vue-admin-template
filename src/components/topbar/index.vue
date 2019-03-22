@@ -1,6 +1,6 @@
 <template>
-	<!-- contentWidthType==='流式'?'content-width-type-1':'content-width-type-2' -->
-	<div id="topBar" :class="{'content-width-type-1':contentWidthType==='流式','content-width-type-2':contentWidthType==='定宽','menuType-2':menuType===2}">
+	<!-- contentWidthType==='Flow'?'content-width-type-1':'content-width-type-2' -->
+	<div id="topBar" :class="{'content-width-type-1':contentWidthType==='Flow','content-width-type-2':contentWidthType==='Fixed','menuType-2':menuType===2}">
 		<div class="content-width-box">
 			<!-- 左侧文字信息 -->
 			<logo class="float-left"></logo>

@@ -43,7 +43,7 @@
 		</vue-scroll>
 		<el-menu
 			class="el-menu-vertical"
-			:class="contentWidthType==='流式'?'content-width-type-1':'content-width-type-2'"
+			:class="contentWidthType==='Flow'?'content-width-type-1':'content-width-type-2'"
 			v-if="menuType === 2"
 			:default-active="need_path"
 			:backgroundColor="isDark?darkConfig.backgroundColor:''"
