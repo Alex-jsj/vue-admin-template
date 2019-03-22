@@ -40,7 +40,7 @@ export const superAdmin = [
             },
             {
                 title: 'components.miniComponent',
-                url: '/pages/index/component/userManage_role',
+                url: '/pages/index/component/miniComponent',
                 children: []
             },
             {

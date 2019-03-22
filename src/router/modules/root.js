@@ -79,6 +79,15 @@ const rootConfig = [
                             title: 'components.countTo',
                             permissionName: 'CountTo'
                         }
+                    },
+                    {
+                        path: 'miniComponent',
+                        name: 'miniComponent',
+                        component: () => import('@/pages/component/miniComponent'),
+                        meta: {
+                            title: 'components.miniComponent',
+                            permissionName: 'miniComponent'
+                        }
                     }
                 ]
             }

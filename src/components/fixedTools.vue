@@ -129,20 +129,6 @@ export default {
 			colorGrayscaleOpen: false, //灰度模式
 			colorBrightnessOpen: false, //夜间模式
 			brightnessIntensity: this.$t("fixedTool.select.weak"),
-			brightnessIntensityList: [
-				{
-					key: "weak",
-					value: this.$t("fixedTool.select.weak")
-				},
-				{
-					key: "medium",
-					value: this.$t("fixedTool.select.medium")
-				},
-				{
-					key: "strength",
-					value: this.$t("fixedTool.select.strength")
-				}
-			],
 			autoBrightnessOpen: true, //自动夜间模式
 			menuType: 1, // 导航模式 侧边布局 顶部布局
 			language: "zh" // 导航模式 侧边布局 顶部布局
@@ -167,6 +153,48 @@ export default {
 		},
 		account() {
 			return this.$store.state.account;
+		},
+		// 内容宽度
+		listenMenuType: {
+			get: function() {},
+			set: function(newValue) {
+				if (newValue === 2) {
+					this.contentWidthTypeList = [
+						{
+							key: "Flow",
+							value: this.$t("fixedTool.select.flow")
+						},
+						{
+							key: "Fixed",
+							value: this.$t("fixedTool.select.fixed")
+						}
+					];
+				} else {
+					this.contentWidthTypeList = [
+						{
+							key: "Flow",
+							value: this.$t("fixedTool.select.flow")
+						}
+					];
+				}
+			}
+		},
+		// 护眼强度
+		brightnessIntensityList() {
+			return [
+				{
+					key: "weak",
+					value: this.$t("fixedTool.select.weak")
+				},
+				{
+					key: "medium",
+					value: this.$t("fixedTool.select.medium")
+				},
+				{
+					key: "strength",
+					value: this.$t("fixedTool.select.strength")
+				}
+			];
 		}
 	},
 	created() {
@@ -291,29 +319,15 @@ export default {
 		// 改变导航模式
 		menuChange: function(val) {
 			this.menuType = val;
+			// 计算属性
+			this.listenMenuType = val;
 			if (val === 2) {
 				this.menuFixed = true;
 				this.$store.commit("SET_MENU_FIXED", true);
 				this.$store.commit("SET_MENUTYPE", 2);
 				this.$store.commit("SET_MENU_COLLAPSE", false);
-				this.contentWidthTypeList = [
-					{
-						key: "Flow",
-						value: this.$t("fixedTool.select.flow")
-					},
-					{
-						key: "Fixed",
-						value: this.$t("fixedTool.select.fixed")
-					}
-				];
 			} else {
 				this.$store.commit("SET_MENUTYPE", 1);
-				this.contentWidthTypeList = [
-					{
-						key: "Flow",
-						value: this.$t("fixedTool.select.flow")
-					}
-				];
 				this.contentWidthType = "Flow";
 				this.$store.commit("SET_CONTENTWIDTH", this.contentWidthType);
 				this.menuFixed = false;

@@ -138,7 +138,7 @@ export default {
             fullScreen: 'FullScreen'
         },
         otherSettings: {
-            text: 'other Settings',
+            text: 'Other Settings',
             colorWeakMode: 'Color weak mode',
             grayscaleMode: 'Grayscale mode',
             eyeProtectionMode: 'Eye protection mode',

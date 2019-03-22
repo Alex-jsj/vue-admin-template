@@ -4,6 +4,8 @@
 		<canvas id="bgCanvas"></canvas>
 		<!-- 登录框 -->
 		<div class="login-container">
+			<!-- 语言切换 -->
+			<switchLang class="switch-language"></switchLang>
 			<!-- text s -->
 			<p class="login-title-1">{{$t('login.title1')}}</p>
 			<p class="login-title-2">{{$t('login.title2')}}</p>
@@ -65,7 +67,7 @@
 <script>
 // api
 import * as theApi from "api/login";
-import { format_permissions_arr } from "utils/public"; // 格式化权限列表
+import switchLang from "components/topbar/switchLang";
 
 export default {
 	name: "login",
@@ -94,6 +96,9 @@ export default {
 			// 定时器
 			timer: null
 		};
+	},
+	components: {
+		switchLang
 	},
 	mounted: function() {
 		// 背景特效
@@ -326,13 +331,6 @@ export default {
 							new Date().getTime()
 						);
 					}
-					respon.permissions &&
-						localStorage.setItem(
-							"admin_permissions",
-							JSON.stringify(
-								format_permissions_arr(respon.permissions)
-							)
-						); // 权限
 					// 跳转到首页
 					this.$router.push({
 						path: "./pages/index"
@@ -414,7 +412,6 @@ export default {
 			color: @grey_2;
 			text-align: center;
 			margin-top: 1.29vh;
-			text-align: justify;
 			font-weight: 600;
 			&::after {
 				content: " ";
@@ -567,6 +564,17 @@ export default {
 						opacity: 1;
 					}
 				}
+			}
+		}
+		/deep/ .switch-language {
+			height: auto;
+			margin-right: 0;
+			position: absolute;
+			top: 1vh;
+			right: 0.3rem;
+			.iconfont {
+				color: #999;
+				font-size: 0.5rem;
 			}
 		}
 	}
