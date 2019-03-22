@@ -1,8 +1,8 @@
 <template>
-	<div id="switchLang" data-step="1" :data-intro="$t('introductorPage.step1')">
+	<div id="switchLang">
 		<el-dropdown trigger="click" class="international" @command="checkLang">
 			<div>
-				<i class="iconfont icon-yuyan"></i>
+				<i class="iconfont icon-yuyan" data-step="1" :data-intro="$t('introductorPage.step1')"></i>
 			</div>
 			<el-dropdown-menu slot="dropdown">
 				<el-dropdown-item :disabled="language==='zh'" command="zh">中文</el-dropdown-item>
@@ -40,8 +40,13 @@ export default {
 <style lang="less" scoped>
 @import "~assets/css/mixin.less";
 #switchLang {
+	display: table;
+	height: 60px;
 	margin-right: 20px;
-	margin-top: 6px;
+	.international {
+		display: table-cell;
+		vertical-align: middle;
+	}
 	.iconfont {
 		color: #fff;
 		font-size: 24px;

@@ -50,12 +50,14 @@ export default {
 <style lang="less" scoped>
 @import "~assets/css/mixin.less";
 #fullScreen {
+	display: table;
+	height: 60px;
 	margin-right: 20px;
-	margin-top: 15px;
 	.iconfont {
+		display: table-cell;
+		vertical-align: middle;
 		color: #fff;
 		font-size: 28px;
-		display: block;
 		cursor: pointer;
         &:hover {
             color: @grey;

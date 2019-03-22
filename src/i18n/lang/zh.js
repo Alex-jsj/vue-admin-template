@@ -8,6 +8,10 @@ export default {
         noData: '暂无数据',
         to: '至'
     },
+    '404': {
+        backToHome: '返回首页',
+        backToPrev: '返回上一页'
+    },
     route: {
         home: '工作台',
         introductoryPage: '引导页',
@@ -99,10 +103,10 @@ export default {
         closeAll: '关闭全部'
     },
     fixedTool: {
-        backToTop:'',
-        goToBottom:'',
-        closeSet:'',
-        openSet:'',
+        backToTop: '',
+        goToBottom: '',
+        closeSet: '',
+        openSet: '',
         theme: '整体风格设置',
         themeConfig: {
             content1: '亮色菜单风格',
@@ -119,6 +123,32 @@ export default {
         },
         contentWidth: {
             text: '内容区域宽度'
+        },
+        btns: {
+            open: '打 开设 置',
+            close: '关 闭设 置',
+            top: '回 到顶 部',
+            bottom: '去 到底 部'
+        },
+        select: {
+            flow: '流式',
+            fixed: '定宽',
+            weak: '弱',
+            medium: '中',
+            strength: '强'
+        },
+        pageSetup: {
+            text: '页面设置',
+            fullScreen: '网页全屏'
+        },
+        otherSettings: {
+            text: '其他设置',
+            colorWeakMode: '色弱模式',
+            grayscaleMode: '灰度模式',
+            eyeProtectionMode: '护眼模式',
+            strengthSelection: '强度选择',
+            automatic: '夜间21点-凌晨6点自动开启护眼模式',
+            tip: '色弱模式开启时会关闭自动护眼模式功能'
         }
     },
     home: {

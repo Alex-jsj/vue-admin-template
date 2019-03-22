@@ -1,8 +1,8 @@
 <template>
 	<div id="userBoard">
 		<!-- 头像 -->
-		<div class="head-portrait float-right" data-step="2" :data-intro="$t('introductorPage.step2')">
-			<el-badge :value="info.content.unread" :max="99" :class="{'badge-show':info.content.unread}">
+		<div class="head-portrait">
+			<el-badge :value="info.content.unread" :max="99" data-step="2" :data-intro="$t('introductorPage.step2')" :class="{'badge-show':info.content.unread}">
 				<div class="img-container">
 					<img :src="info.content.head_img" class="head-img">
 				</div>
@@ -87,17 +87,17 @@ export default {
 #userBoard {
 	height: 100%;
 	position: relative;
+	display: table;
 	&:hover {
 		.user-board {
 			height: 300px;
 		}
 	}
 	.head-portrait {
+		display: table-cell;
+		vertical-align: middle;
 		width: 40px;
 		height: 40px;
-		border: 1px solid rgba(255, 255, 255, 1);
-		margin-top: 10px;
-		border-radius: 50%;
 		position: relative;
 		cursor: pointer;
 		/deep/ .el-badge {
@@ -117,9 +117,8 @@ export default {
 		.img-container {
 			width: 40px;
 			height: 40px;
+			border: 1px solid rgba(255, 255, 255, 1);
 			position: relative;
-			top: -1px;
-			left: -1px;
 			overflow: hidden;
 			border-radius: 50%;
 			cursor: pointer;

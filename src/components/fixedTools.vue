@@ -6,15 +6,15 @@
 			<div class="btn-container" data-step="5" :data-intro="$t('introductorPage.step5')">
 				<div class="switch-btn the-btn" @click="openTools">
 					<i class="iconfont" :class="isOpen?'icon-close-bg':'icon-setting'"></i>
-					<span>{{isOpen?'关 闭设 置':'打 开设 置'}}</span>
+					<span>{{isOpen?$t('fixedTool.btns.close'):$t('fixedTool.btns.open')}}</span>
 				</div>
 				<div class="backTop-btn the-btn" @click="backToTop">
 					<i class="iconfont icon-top"></i>
-					<span>回 到顶 部</span>
+					<span>{{$t('fixedTool.btns.top')}}</span>
 				</div>
 				<div class="goBottom-btn the-btn" @click="goToBottom">
 					<i class="iconfont icon-bottom"></i>
-					<span>去 到底 部</span>
+					<span>{{$t('fixedTool.btns.bottom')}}</span>
 				</div>
 			</div>
 			<ul class="tools-list">
@@ -68,36 +68,36 @@
 					</div>
 				</li>
 				<li class="item">
-					<p class="title">页面设置</p>
+					<p class="title">{{$t('fixedTool.pageSetup.text')}}</p>
 					<div class="inline-item">
-						<span class="title-2 float-left">网页全屏</span>
+						<span class="title-2 float-left">{{$t('fixedTool.pageSetup.fullScreen')}}</span>
 						<el-switch v-model="isFullScreen" class="float-right" :width="30" @change="setFullScreen()"></el-switch>
 					</div>
 				</li>
 				<li class="item">
-					<p class="title">其他设置</p>
+					<p class="title">{{$t('fixedTool.otherSettings.text')}}</p>
 					<div class="inline-item">
-						<span class="title-2 float-left">色弱模式</span>
+						<span class="title-2 float-left">{{$t('fixedTool.otherSettings.colorWeakMode')}}</span>
 						<el-switch v-model="colorWeekOpen" class="float-right" :width="30" @change="setMode('week')"></el-switch>
 					</div>
 					<div class="inline-item">
-						<span class="title-2 float-left">灰度模式</span>
+						<span class="title-2 float-left">{{$t('fixedTool.otherSettings.grayscaleMode')}}</span>
 						<el-switch v-model="colorGrayscaleOpen" class="float-right" :width="30" @change="setMode('grayscale')"></el-switch>
 					</div>
 					<p class="brightness-line"></p>
 					<div class="inline-item">
-						<span class="title-2 float-left">护眼模式</span>
+						<span class="title-2 float-left">{{$t('fixedTool.otherSettings.eyeProtectionMode')}}</span>
 						<el-switch v-model="colorBrightnessOpen" class="float-right" :width="30" @change="setMode('brightness')"></el-switch>
 					</div>
 					<div class="inline-item inline-item-select">
-						<span class="title-2 float-left">强度选择</span>
+						<span class="title-2 float-left">{{$t('fixedTool.otherSettings.strengthSelection')}}</span>
 						<el-select v-model="brightnessIntensity" :disabled="!colorBrightnessOpen" size="mini" class="select float-right" @change="brightnessIntensityChange">
-							<el-option v-for="item in brightnessIntensityList" :key="item" :label="item" :value="item"></el-option>
+							<el-option v-for="item in brightnessIntensityList" :key="item.key" :label="item.value" :value="item.key"></el-option>
 						</el-select>
 					</div>
-					<el-tooltip effect="dark" content="色弱模式开启时会关闭自动护眼模式功能" placement="left">
+					<el-tooltip effect="dark" :content="$t('fixedTool.otherSettings.tip')" placement="left">
 						<div class="inline-item">
-							<span class="title-2 float-left">夜间21点-凌晨6点自动开启护眼模式</span>
+							<span class="title-2 float-left">{{$t('fixedTool.otherSettings.automatic')}}</span>
 							<el-switch v-model="autoBrightnessOpen" class="float-right" :width="30" @change="saveUserConfig()"></el-switch>
 						</div>
 					</el-tooltip>
@@ -122,14 +122,27 @@ export default {
 			contentWidthTypeList: [
 				{
 					key: "Flow",
-					value: "流式"
+					value: this.$t("fixedTool.select.flow")
 				}
 			],
 			colorWeekOpen: false, //色弱模式
 			colorGrayscaleOpen: false, //灰度模式
 			colorBrightnessOpen: false, //夜间模式
-			brightnessIntensity: "弱",
-			brightnessIntensityList: ["弱", "中", "强"],
+			brightnessIntensity: this.$t("fixedTool.select.weak"),
+			brightnessIntensityList: [
+				{
+					key: "weak",
+					value: this.$t("fixedTool.select.weak")
+				},
+				{
+					key: "medium",
+					value: this.$t("fixedTool.select.medium")
+				},
+				{
+					key: "strength",
+					value: this.$t("fixedTool.select.strength")
+				}
+			],
 			autoBrightnessOpen: true, //自动夜间模式
 			menuType: 1, // 导航模式 侧边布局 顶部布局
 			language: "zh" // 导航模式 侧边布局 顶部布局
@@ -227,11 +240,11 @@ export default {
 		},
 		// 护眼模式强度change
 		brightnessIntensityChange: function(val) {
-			if (val === "弱") {
+			if (val === "weak") {
 				document.body.className = "color-brightness-1";
-			} else if (val === "中") {
+			} else if (val === "medium") {
 				document.body.className = "color-brightness-2";
-			} else if (val === "强") {
+			} else if (val === "strength") {
 				document.body.className = "color-brightness-3";
 			}
 			this.saveUserConfig();
@@ -286,11 +299,11 @@ export default {
 				this.contentWidthTypeList = [
 					{
 						key: "Flow",
-						value: "流式"
+						value: this.$t("fixedTool.select.flow")
 					},
 					{
 						key: "Fixed",
-						value: "定宽"
+						value: this.$t("fixedTool.select.fixed")
 					}
 				];
 			} else {
@@ -298,7 +311,7 @@ export default {
 				this.contentWidthTypeList = [
 					{
 						key: "Flow",
-						value: "流式"
+						value: this.$t("fixedTool.select.flow")
 					}
 				];
 				this.contentWidthType = "Flow";
@@ -407,9 +420,9 @@ export default {
 		transition: background-color 0.3s;
 	}
 	.tools-container {
-		width: 300px;
+		width: 320px;
 		position: absolute;
-		right: -300px;
+		right: -320px;
 		top: 60px;
 		height: calc(~"100vh - 60px");
 		background: #fff;
@@ -418,7 +431,7 @@ export default {
 		.btn-container {
 			width: 38px;
 			position: absolute;
-			right: 300px;
+			right: 320px;
 			bottom: 20%;
 			.the-btn {
 				position: relative;
@@ -548,7 +561,7 @@ export default {
 							line-height: 28px;
 						}
 						.select {
-							width: 80px;
+							width: 100px;
 						}
 					}
 					&.item-collapse {

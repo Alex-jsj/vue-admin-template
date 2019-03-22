@@ -17,7 +17,7 @@
 				<!-- </keep-alive> -->
 			</transition>
 			<!-- 底部 -->
-			<p class="footer">Copyright © {{year}} {{$t('base.name')}} All Rights Reserved.&nbsp;&nbsp;&nbsp;Email: +86 15395830398</p>
+			<p class="footer">Copyright © {{year}} {{$t('base.name')}} All Rights Reserved.&nbsp;&nbsp;&nbsp;Email: 329255122@qq.com</p>
 		</div>
 		<!-- 固定右侧工具 -->
 		<fixedTools></fixedTools>

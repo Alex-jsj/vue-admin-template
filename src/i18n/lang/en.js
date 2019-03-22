@@ -8,6 +8,10 @@ export default {
         noData: 'No Data',
         to: 'to'
     },
+    '404': {
+        backToHome: 'Back to home page',
+        backToPrev: 'Return to the previous page'
+    },
     route: {
         home: 'Workbench',
         introductoryPage: 'Introductory Page',
@@ -115,6 +119,33 @@ export default {
         },
         contentWidth: {
             text: 'Area width'
+        },
+        btns: {
+            open: 'open',
+            close: 'close',
+            top: 'top',
+            bottom: 'bottom'
+        },
+        select: {
+            flow: 'Flow',
+            fixed: 'Fixed',
+            weak: 'Weak',
+            medium: 'Medium',
+            strength: 'Strength'
+        },
+        pageSetup: {
+            text: 'Page Setting',
+            fullScreen: 'FullScreen'
+        },
+        otherSettings: {
+            text: 'other Settings',
+            colorWeakMode: 'Color weak mode',
+            grayscaleMode: 'Grayscale mode',
+            eyeProtectionMode: 'Eye protection mode',
+            strengthSelection: 'Strength selection',
+            automatic: 'Open Eye Protection from 21 p.m. to 6 a.m.',
+            tip:
+                'Automatic eye protection mode will be turned off when weak mode is turned on'
         }
     },
     home: {
