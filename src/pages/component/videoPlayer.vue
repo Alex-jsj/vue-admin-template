@@ -56,7 +56,9 @@ export default {
 				timeList: [],
 				time: null //总时长
 			},
-			timeNow: 0 // 开始时间
+			timeNow: 0, // 开始时间
+			playTime: 0, //已播放时间
+			viewNodes: [] // 已看过的视频片段节点
 		};
 	},
 	components: {
@@ -66,7 +68,7 @@ export default {
 	methods: {
 		// 播放
 		onPlayerPlay(player) {
-			console.log("开始播放", this.timeNow);
+			// 设置开始时间
 			this.playerSet.timeList.push({
 				startTime: this.timeNow,
 				endTime: null
@@ -74,11 +76,20 @@ export default {
 		},
 		// 暂停
 		onPlayerPause(player) {
-			console.log("暂停播放", this.timeNow);
+			// 设置结束时间
 			this.playerSet.timeList[
 				this.playerSet.timeList.length - 1
 			].endTime = this.timeNow;
+			// 计算已观看百分比
 			this.computeViewTime(this.playerSet.timeList);
+			this.$message.info(
+				`已看过的视频时长百分比：${(
+					(this.playTime / this.playerSet.time) *
+					100
+				).toFixed(0)}%`
+			);
+			// 添加看过的片段节点
+			this.addViewNode(this.viewNodes);
 		},
 		//
 		onPlayerEnded(player) {
@@ -95,8 +106,9 @@ export default {
 		},
 		//
 		onPlayerLoadeddata(player) {
-			// console.log("加载播放资源", player);
+			console.log("加载播放资源", player);
 			// console.log("当前资源总时长", player.duration());
+			this.playerSet.time = player.duration();
 		},
 		//
 		onPlayerTimeupdate(player) {
@@ -110,10 +122,8 @@ export default {
 				this.timeNow = obj.timeupdate;
 			}
 		},
-		//
-		playerReadied: function(obj) {
-			// console.log("播放器初始化", obj);
-		},
+		// 初始化
+		playerReadied: function(obj) {},
 		// 计算观看时长
 		computeViewTime: function(arr = []) {
 			const viewTime = JSON.parse(JSON.stringify(arr));
@@ -127,19 +137,78 @@ export default {
 			});
 			this.mergeTime(arr);
 		},
-		// 合并数组重合的部分
+		// 合并数组重合的部分并生成只包含片段长度的数组
 		mergeTime: function(arr = []) {
-			arr.map((item, index) => {
-				if (arr[index + 1] && arr[index + 1].startTime < item.endTime) {
-					arr[index].endTime = arr[index + 1].endTime;
-					arr.splice(index + 1, 1);
+			// 递归合并
+			function mergeArr(arr) {
+				let len = arr.length;
+				if (len === 0) {
+					return [];
+				} else if (len === 1) {
+					return arr[0];
+				} else {
+					arr.map((item, index) => {
+						let arr1 = arr[index];
+						let arr2 = arr[index + 1];
+						// [9,18] [10,17] 完全重合的情况
+						if (
+							arr2 &&
+							arr2.startTime < arr1.endTime &&
+							arr2.endTime < arr1.endTime
+						) {
+							arr.splice(index + 1, 1);
+							mergeArr(arr);
+						} else if (arr2 && arr2.startTime < arr1.endTime) {
+							// [9,11] [10,22] 相交的情况
+							arr1.endTime = arr2.endTime;
+							arr.splice(index + 1, 1);
+							mergeArr(arr);
+						}
+					});
 				}
+			}
+			mergeArr(arr);
+			this.viewNodes = arr;
+			// 生成时间长度数组
+			let list = [];
+			arr.map(item => {
+				list.push(item.endTime - item.startTime);
 			});
-			this.computeTime(arr);
+			this.computeTime(list);
 		},
-		// 计算时长
-		computeTime: function(arr = []) {
-			console.log(arr);
+		// 计算时长(求和)
+		computeTime: function(list = []) {
+			let _arr = list;
+			function _sum(arr) {
+				let len = arr.length;
+				if (len === 0) {
+					return 0;
+				} else if (len === 1) {
+					return arr[0];
+				} else {
+					return arr[0] + _sum(arr.splice(1));
+				}
+			}
+			this.playTime = parseFloat(_sum(_arr).toFixed(2));
+		},
+		addViewNode: function(arr) {
+			const list = JSON.parse(JSON.stringify(arr));
+			let playerProgressHtml = document.getElementsByClassName(
+				"vjs-progress-holder"
+			)[0];
+			list.map((item, index) => {
+				let div = document.createElement("div");
+				div.className = "viewNodesStyle";
+				div.style.height = "0.3em";
+				div.style.background = "red";
+				div.style.position = "relative";
+				div.style.zIndex = "999";
+				div.style.width =
+					((item.endTime - item.startTime) / this.playerSet.time) *
+						100 +
+					"%";
+				playerProgressHtml.appendChild(div);
+			});
 		}
 	},
 	computed: {
