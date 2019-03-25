@@ -22,6 +22,7 @@ export default {
             imgUpload: 'Img Upload',
             countTo: 'CountTo',
             miniComponent: 'Mini Component',
+            videoPlayer: 'Video Player',
             backTop: 'Back Top',
             dragList: 'Drag List'
         },

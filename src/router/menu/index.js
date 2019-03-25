@@ -44,6 +44,11 @@ export const superAdmin = [
                 children: []
             },
             {
+                title: 'components.videoPlayer',
+                url: '/pages/index/component/videoPlayer',
+                children: []
+            },
+            {
                 title: 'components.backTop',
                 url: '/pages/index/component/userManage_role',
                 children: []

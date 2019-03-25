@@ -11,13 +11,15 @@ Vue.prototype.$http = axios; // 添加到vue的原型链，来更方便的使用
 import VueJsonp from 'vue-jsonp';
 Vue.use(VueJsonp);
 
+// 国际化
+import i18n from './i18n';
+
 //Element UI
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI);
-
-// 国际化
-import i18n from './i18n';
+Vue.use(ElementUI, {
+    i18n: (key, value) => i18n.t(key, value)
+});
 
 // 引导组件
 import introJS from 'intro.js';
@@ -28,6 +30,15 @@ Vue.prototype.$intro = introJS;
 import vuescroll from 'vuescroll/dist/vuescroll-native';
 import 'vuescroll/dist/vuescroll.css';
 Vue.use(vuescroll);
+
+// 第一个是videoJs的样式，后一个是vue-video-player的样式，因为考虑到我其他业务组件可能也会用到视频播放，所以就放在了main.js
+require('video.js/dist/video-js.css')
+require('vue-video-player/src/custom-theme.css')
+//把VueVideoPlayer导入并挂在到vue上
+import VideoPlayer from 'vue-video-player';
+// import 'videojs-flash'; // 引入才能播放rtmp视频
+// import 'videojs-contrib-hls'; // 引入才能播放m3u8文件
+Vue.use(VideoPlayer);
 
 //引入外部资源
 import './assets/css/reset.css'; // css reset

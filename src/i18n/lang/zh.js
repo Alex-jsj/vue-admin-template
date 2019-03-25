@@ -22,6 +22,7 @@ export default {
             imgUpload: '图片上传',
             countTo: 'CountTo',
             miniComponent: '小组件',
+            videoPlayer: '视频播放',
             backTop: '返回顶部',
             dragList: '拖拽列表'
         },

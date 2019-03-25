@@ -88,6 +88,15 @@ const rootConfig = [
                             title: 'components.miniComponent',
                             permissionName: 'miniComponent'
                         }
+                    },
+                    {
+                        path: 'videoPlayer',
+                        name: 'videoPlayer',
+                        component: () => import('@/pages/component/videoPlayer'),
+                        meta: {
+                            title: 'components.videoPlayer',
+                            permissionName: 'videoPlayer'
+                        }
                     }
                 ]
             }
