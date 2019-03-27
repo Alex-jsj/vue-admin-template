@@ -1,9 +1,11 @@
 <template>
 	<div id="miniComponent">
-		<p>分页</p>
+		<p class="title">分页</p>
 		<!-- 分页 -->
 		<pagination :currentPaging="currentPaging" v-on="{sizeChange:handleSizeChange,currentChange:handleCurrentChange}"></pagination>
-		<p>时间线</p>
+		<br>
+		<br>
+		<p class="title">时间线</p>
 		<el-timeline>
 			<el-timeline-item
 				v-for="(activity, index) in activities2"
@@ -25,7 +27,7 @@ export default {
 	data() {
 		return {
 			// 分页
-			currentPaging: { currentPage: 1, pageSize: 50, totals: 100 },
+			currentPaging: { currentPage: 1, pageSize: 50, totals: 1000 },
 			activities2: [
 				{
 					content: "支持使用图标",
@@ -69,7 +71,13 @@ export default {
 
 <style scoped lang="less">
 @import "~assets/css/mixin.less";
-#imgUpload {
+#miniComponent {
 	width: 100%;
+	.title {
+		font-size: 16px;
+		padding-bottom: 5px;
+		margin-bottom: 20px;
+		border-bottom: 1px dotted @grey;
+	}
 }
 </style>
