@@ -1,6 +1,6 @@
 <template>
 	<div id="video-player">
-		<topTooltip :info="'Video Player Control Based on vue-video-player'"></topTooltip>
+		<topTooltip>{{$t('vueVideoPlayer')}}</topTooltip>
 		<div class="player">
 			<video-player
 				class="video-player vjs-custom-skin"

@@ -1,6 +1,9 @@
 <template>
 	<div id="intro">
-		<topTooltip :info="'A better way for new feature introduction and step-by-step users guide for your website and project. http://introjs.com'"></topTooltip>
+		<topTooltip>
+			<span>{{$t('intro')}}</span>
+			<a href="http://introjs.com" target="_blank" style="color:#66b1ff;">http://introjs.com</a>
+		</topTooltip>
 		<el-button type="primary" size="small" class="btn my-button" icon="el-icon-question" @click="open_intro">{{$t('introductorPage.text')}}</el-button>
 	</div>
 </template>
@@ -62,10 +65,10 @@ export default {
 		 } */
 			this.$intro()
 				.setOptions({
-					prevLabel: this.$t('introductorPage.prevLabel'),
-					nextLabel: this.$t('introductorPage.nextLabel'),
-					skipLabel: this.$t('introductorPage.skipLabel'),
-					doneLabel: this.$t('introductorPage.doneLabel'),
+					prevLabel: this.$t("introductorPage.prevLabel"),
+					nextLabel: this.$t("introductorPage.nextLabel"),
+					skipLabel: this.$t("introductorPage.skipLabel"),
+					doneLabel: this.$t("introductorPage.doneLabel"),
 					exitOnOverlayClick: false
 				})
 				.start();

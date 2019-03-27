@@ -1,6 +1,6 @@
 <template>
 	<div id="editor">
-		<topTooltip :info="$t('textEditor')"></topTooltip>
+		<topTooltip>{{$t('textEditor')}}</topTooltip>
 		<tinymceEditor></tinymceEditor>
 	</div>
 </template>

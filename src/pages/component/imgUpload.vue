@@ -1,6 +1,6 @@
 <template>
 	<div id="imgUpload">
-		<topTooltip :info="'图片上传'"></topTooltip>
+		<topTooltip>{{$t('imgUpload')}}</topTooltip>
 		<photoUpload :ajax_address="uploadUrl" v-on="{upload_success:uploadSuccess}"></photoUpload>
 	</div>
 </template>

@@ -1,6 +1,6 @@
 <template>
 	<div id="vueCountTo">
-		<topTooltip :info="'vue-count-to'"></topTooltip>
+		<topTooltip>{{$t('countTo')}}</topTooltip>
 		<div class="container">
 			<div class="example-item">
 				<h3>simple example</h3>
@@ -186,7 +186,6 @@ export default {
 	dl {
 		margin: 0 0 20px;
 	}
-
 
 	h3 {
 		font-size: 30px;

@@ -1,14 +1,13 @@
 <template>
 	<div id="topTooltip">
-		<div v-html="info"></div>
+		<div>
+			<slot></slot>
+		</div>
 	</div>
 </template>
 <script>
 export default {
-	name: "topTooltip",
-	props: {
-		info: String
-	}
+	name: "topTooltip"
 };
 </script>
 
@@ -16,10 +15,10 @@ export default {
 @import "~assets/css/mixin.less";
 #topTooltip {
 	width: 100%;
-    background: #eaedf4;
-    padding: 15px 10px;
-    font-size: 14px;
-    color: #333;
+	background: #eaedf4;
+	padding: 15px 10px;
+	font-size: 14px;
+	color: #333;
 	margin-bottom: 20px;
 }
 </style>

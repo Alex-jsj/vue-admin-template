@@ -180,5 +180,12 @@ export default {
         step4: 'Tab page',
         step5: 'System setup'
     },
-    textEditor: 'Rich Text Editor Component Based on TinyMCE Encapsulation'
+    textEditor: 'Rich Text Editor Component Based on TinyMCE Encapsulation',
+    intro:
+        'A better way for new feature introduction and step-by-step users guide for your website and project.',
+    icon: 'Add and Use',
+    imgUpload: 'Picture upload based on element upload component',
+    countTo: 'Based on vue-count-to',
+    vueVideoPlayer:
+        'The video control based on vue-video-player realizes the function of monitoring and displaying the viewing time.'
 };

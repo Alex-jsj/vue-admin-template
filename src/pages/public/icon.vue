@@ -1,6 +1,6 @@
 <template>
 	<div id="icon">
-		<topTooltip :info="'Add and Use'"></topTooltip>
+		<topTooltip>{{$t('icon')}}</topTooltip>
 		<ul class="list">
 			<li class="item" v-for="(item,index) in iconlIST" :key="index">
 				<el-tooltip effect="dark" :content="`<i class='iconfont icon-${item.icon}'></i>`" placement="top">
