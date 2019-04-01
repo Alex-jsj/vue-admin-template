@@ -18,6 +18,7 @@
                     window.innerWidth ||
                     document.documentElement.clientWidth ||
                     document.body.clientWidth;
+                screenWidth > 1920 && (screenWidth = 1920);
                 document.getElementsByTagName('html')[0].style.fontSize =
                     20 * (screenWidth / 960) + 'px';
             }
