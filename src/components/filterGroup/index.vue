@@ -93,7 +93,7 @@
 
 <script>
 // css
-import "components/filterGroupComponent/style.css";
+import "components/filterGroup/style.css";
 
 export default {
 	// 筛选项

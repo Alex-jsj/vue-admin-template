@@ -83,7 +83,8 @@ const rootConfig = [
                     {
                         path: 'miniComponent',
                         name: 'miniComponent',
-                        component: () => import('@/pages/component/miniComponent'),
+                        component: () =>
+                            import('@/pages/component/miniComponent'),
                         meta: {
                             title: 'components.miniComponent',
                             permissionName: 'miniComponent'
@@ -92,10 +93,59 @@ const rootConfig = [
                     {
                         path: 'videoPlayer',
                         name: 'videoPlayer',
-                        component: () => import('@/pages/component/videoPlayer'),
+                        component: () =>
+                            import('@/pages/component/videoPlayer'),
                         meta: {
                             title: 'components.videoPlayer',
                             permissionName: 'videoPlayer'
+                        }
+                    }
+                ]
+            },
+            {
+                path: 'film',
+                component: () => import('@/pages/film/index'),
+                meta: {
+                    title: '入围影片'
+                },
+                children: [
+                    {
+                        path: '/',
+                        redirect: 'list',
+                        component: () => import('@/pages/film/list')
+                    },
+                    {
+                        path: 'list',
+                        name: 'film_list',
+                        component: () => import('@/pages/film/list'),
+                        meta: {
+                            title: '入围影片列表'
+                        }
+                    },
+                    {
+                        path: 'add',
+                        name: 'film_add',
+                        component: () => import('@/pages/film/add'),
+                        meta: {
+                            title: '添加影片',
+                            need_path: '/pages/index/film/list'
+                        }
+                    },
+                    {
+                        path: 'edit',
+                        name: 'film_edit',
+                        component: () => import('@/pages/film/edit'),
+                        meta: {
+                            title: '编辑影片',
+                            need_path: '/pages/index/film/list'
+                        }
+                    },
+                    {
+                        path: 'classify',
+                        name: 'classify_list',
+                        component: () => import('@/pages/film/classify'),
+                        meta: {
+                            title: '分类列表'
                         }
                     }
                 ]
