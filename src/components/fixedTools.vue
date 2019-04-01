@@ -62,7 +62,7 @@
 					</el-tooltip>
 					<div class="inline-item inline-item-select">
 						<span class="title-2 float-left">{{$t('fixedTool.contentWidth.text')}}</span>
-						<el-select v-model="contentWidthType" size="mini" class="select float-right" @change="contentWidthChange">
+						<el-select v-model="contentWidthType"  class="select float-right" @change="contentWidthChange">
 							<el-option v-for="item in contentWidthTypeList" :key="item.key" :label="item.value" :value="item.key"></el-option>
 						</el-select>
 					</div>
@@ -91,7 +91,7 @@
 					</div>
 					<div class="inline-item inline-item-select">
 						<span class="title-2 float-left">{{$t('fixedTool.otherSettings.strengthSelection')}}</span>
-						<el-select v-model="brightnessIntensity" :disabled="!colorBrightnessOpen" size="mini" class="select float-right" @change="brightnessIntensityChange">
+						<el-select v-model="brightnessIntensity" :disabled="!colorBrightnessOpen"  class="select float-right" @change="brightnessIntensityChange">
 							<el-option v-for="item in brightnessIntensityList" :key="item.key" :label="item.value" :value="item.key"></el-option>
 						</el-select>
 					</div>

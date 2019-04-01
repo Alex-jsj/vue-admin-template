@@ -18,6 +18,7 @@ import i18n from './i18n';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI, {
+    size: 'mini',
     i18n: (key, value) => i18n.t(key, value)
 });
 
@@ -32,8 +33,8 @@ import 'vuescroll/dist/vuescroll.css';
 Vue.use(vuescroll);
 
 // 第一个是videoJs的样式，后一个是vue-video-player的样式，因为考虑到我其他业务组件可能也会用到视频播放，所以就放在了main.js
-require('video.js/dist/video-js.css')
-require('vue-video-player/src/custom-theme.css')
+require('video.js/dist/video-js.css');
+require('vue-video-player/src/custom-theme.css');
 //把VueVideoPlayer导入并挂在到vue上
 import VideoPlayer from 'vue-video-player';
 // import 'videojs-flash'; // 引入才能播放rtmp视频

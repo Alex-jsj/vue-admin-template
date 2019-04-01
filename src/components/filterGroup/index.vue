@@ -4,7 +4,7 @@
 			<!-- 筛选项 -->
 			<el-form :inline="true" id="formBox" ref="filterForm">
 				<el-form-item label="关键字:" v-if="filterOptions.search">
-					<el-input v-popover:popover v-model="filterData.keyword" @keyup.enter.native="getFilterData()" size="mini" placeholder="请输入关键字" clearable></el-input>
+					<el-input v-popover:popover v-model="filterData.keyword" @keyup.enter.native="getFilterData()"  placeholder="请输入关键字" clearable></el-input>
 					<el-popover ref="popover" placement="bottom" width="200" trigger="focus" popper-class="search-popover">
 						<div v-if="search_list[0]">
 							<p class="popover-title">支持的搜索条件</p>
@@ -16,32 +16,32 @@
 					</el-popover>
 				</el-form-item>
 				<el-form-item label="国籍:" v-if="filterOptions.guoji">
-					<el-select v-model="filterData.country_id" placeholder="请选择国籍" size="mini" clearable filterable>
+					<el-select v-model="filterData.country_id" placeholder="请选择国籍"  clearable filterable>
 						<el-option v-for="(item,index) in guoji" :key="item.id" :label="item.title" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="民族:" v-if="filterOptions.minzu">
-					<el-select v-model="filterData.nation_id" placeholder="请选择民族" size="mini" clearable filterable>
+					<el-select v-model="filterData.nation_id" placeholder="请选择民族"  clearable filterable>
 						<el-option v-for="(item,index) in minzu" :key="item.id" :label="item.title" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="用户组:" v-if="filterOptions.select_2">
-					<el-select v-model="filterData.role" placeholder="请选择用户组" size="mini" clearable>
+					<el-select v-model="filterData.role" placeholder="请选择用户组"  clearable>
 						<el-option v-for="(item,index) in select_2" :key="item.id" :label="item.title" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="支付状态:" v-if="filterOptions.pay">
-					<el-select v-model="filterData.payment_state" placeholder="请选择支付状态" size="mini" clearable>
+					<el-select v-model="filterData.payment_state" placeholder="请选择支付状态"  clearable>
 						<el-option v-for="(item,index) in zfzt" :key="item.id" :label="item.title" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="支付方式:" v-if="filterOptions.zhifufangshi">
-					<el-select v-model="filterData.pay_plat" placeholder="请选择支付方式" size="mini" clearable>
+					<el-select v-model="filterData.pay_plat" placeholder="请选择支付方式"  clearable>
 						<el-option v-for="(item,index) in zhifufangshi" :key="item.id" :label="item.title" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="事件:" v-if="filterOptions.shijian">
-					<el-select v-model="filterData.shijian" placeholder="请选择事件" size="mini" clearable>
+					<el-select v-model="filterData.shijian" placeholder="请选择事件"  clearable>
 						<el-option v-for="(item,index) in shijian" :key="item.id" :label="item.title" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>
@@ -50,7 +50,7 @@
 						v-model="filterData.date_scope"
 						type="daterange"
 						align="right"
-						size="mini"
+						
 						unlink-panels
 						range-separator="至"
 						start-placeholder="开始日期"
@@ -60,18 +60,18 @@
 					></el-date-picker>
 				</el-form-item>
 				<el-form-item :class="open_btn_show?'btn':''" v-if="!sure">
-					<el-button type="primary" size="mini" @click="getFilterData()">查 询</el-button>
+					<el-button type="primary"  @click="getFilterData()">查 询</el-button>
 					<el-button
 						v-if="open_btn_show"
 						type="primary"
 						plain
-						size="mini"
+						
 						@click="open = !open;btn_text = !open?'展开':'收起'"
 						:icon="!open?'el-icon-arrow-down':'el-icon-arrow-up'"
 					>{{btn_text}}</el-button>
 				</el-form-item>
 				<el-form-item v-else>
-					<el-button type="primary" size="mini" @click="getFilterData()">确 定</el-button>
+					<el-button type="primary"  @click="getFilterData()">确 定</el-button>
 				</el-form-item>
 			</el-form>
 		</div>

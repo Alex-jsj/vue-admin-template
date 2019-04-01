@@ -1,7 +1,7 @@
 <template>
 	<div class="tinymce">
 		<editor id="tinymce" v-model="tinymceHtml" :init="init"></editor>
-		<el-button class="upload" size="mini" type="primary" icon="el-icon-upload2">上传附件</el-button>
+		<el-button class="upload"  type="primary" icon="el-icon-upload2">上传附件</el-button>
 		<div class="html-content" v-html="tinymceHtml"></div>
 	</div>
 </template>

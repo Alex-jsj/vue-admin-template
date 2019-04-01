@@ -3,22 +3,22 @@
 		<el-dialog :title="config.title" top="25vh" :visible.sync="formDialog" @close="closeDialog()">
 			<el-form :model="form" label-width="100px" :rules="rules" ref="form">
 				<el-form-item v-if="config.showList.indexOf('cbjg') > -1 && role != '承办单位'" label="承办机构：" prop="cbjg" :error="formError[config.cbjg.field]">
-					<el-select v-model="form.cbjg" style="width:100%;" placeholder="请选择承办机构" size="mini" @change="changeCbjg()" filterable>
+					<el-select v-model="form.cbjg" style="width:100%;" placeholder="请选择承办机构"  @change="changeCbjg()" filterable>
 						<el-option v-for="(item,index) in cbjgList" :key="index.id" :label="item.code+'-'+item.title" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item v-if="config.showList.indexOf('kaoci') > -1" label="考次：" prop="kaoci" :error="formError[config.kaoci.field]">
-					<el-select v-model="form.kaoci" style="width:100%;" placeholder="请选择考次" size="mini" @change="matchPiciChangci()" filterable>
+					<el-select v-model="form.kaoci" style="width:100%;" placeholder="请选择考次"  @change="matchPiciChangci()" filterable>
 						<el-option v-for="(item,index) in kaociList" :key="index.id" :label="item.code+'-'+item.title" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item v-if="config.showList.indexOf('pici') > -1" label="批次：" prop="pici" :error="formError[config.pici.field]">
-					<el-select v-model="form.pici" style="width:100%;" placeholder="请选择批次" size="mini" clearable filterable>
+					<el-select v-model="form.pici" style="width:100%;" placeholder="请选择批次"  clearable filterable>
 						<el-option v-for="(item,index) in piciList" :key="index.id" :label="item.title" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item v-if="config.showList.indexOf('changci') > -1" label="场次：" prop="changci" :error="formError[config.changci.field]">
-					<el-select v-model="form.changci" style="width:100%;" placeholder="请选择场次" size="mini" clearable filterable>
+					<el-select v-model="form.changci" style="width:100%;" placeholder="请选择场次"  clearable filterable>
 						<el-option v-for="(item,index) in changciList" :key="index.id" :label="item.title" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>

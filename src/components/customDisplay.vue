@@ -1,6 +1,6 @@
 <template>
   <div id="customDisplay" class="float-left">
-    <el-button type="" size="mini" class="float-left" icon="el-icon-setting" @click="customDisplayShow = !customDisplayShow">自定义显示</el-button>
+    <el-button type=""  class="float-left" icon="el-icon-setting" @click="customDisplayShow = !customDisplayShow">自定义显示</el-button>
     <div class="custom-display-dialog float-left" v-if="customDisplayShow">
       <ul class="custom-display-dialog-list">
         <li class="item title">当前展示的信息</li>

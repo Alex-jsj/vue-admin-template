@@ -34,7 +34,7 @@
 			<div class="title-box">
 				<span class="title float-left">{{$t('home.trend')}}</span>
 				<router-link to="/pages/board" target="_blank" class="board">
-					<el-button type size="mini">{{$t('home.dataBoard')}}</el-button>
+					<el-button type >{{$t('home.dataBoard')}}</el-button>
 				</router-link>
 				<p class="date">{{$t('home.QueryTime')}}：{{start_date}} {{$t('base.to')}} {{end_date}}</p>
 			</div>
