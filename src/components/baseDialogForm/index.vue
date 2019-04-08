@@ -5,9 +5,12 @@
 				<el-col :span="item.span?item.span:8" v-for="(item,index) in config" :key="index">
 					<el-form-item :prop="item.prop" :rules="item.rules" :label="item.label">
 						<!--输入框表单类型-->
-						<el-input v-if="item.type ==='text'" v-model="formData[item.prop]" :placeholder="item.placeholder?item.placeholder:'请输入'"></el-input>
-						<!--文本域表单类型-->
-						<el-input v-if="item.type === 'textarea'" type="textarea" v-model="formData[item.prop]" :placeholder="item.placeholder?item.placeholder:'请输入'"></el-input>
+						<el-input
+							v-if="item.type === 'text' || item.type === 'password' || item.type === 'textarea'"
+							:type="item.type"
+							v-model="formData[item.prop]"
+							:placeholder="item.placeholder?item.placeholder:'请输入'"
+						></el-input>
 						<!-- 计数器 -->
 						<el-input-number v-if="item.type === 'el-input-number'" v-model="formData[item.prop]" :min="1" :step="1" label="描述文字"></el-input-number>
 						<!--checkbox表单类型-->
@@ -27,10 +30,9 @@
 				</el-col>
 			</el-row>
 		</el-form>
-
 		<span slot="footer" class="dialog-footer">
 			<el-button @click="dialogVisible = false">取 消</el-button>
-			<el-button type="primary" @click="submitForm">确 定</el-button>
+			<el-button type="primary" @click="submitForm(formModel)">确 定</el-button>
 		</span>
 	</el-dialog>
 </template>
@@ -38,7 +40,15 @@
 <script>
 export default {
 	name: "base-dialog-form",
-	props: ["title", "width", "visible", "config", "formData", "errForm"],
+	props: [
+		"title",
+		"width",
+		"visible",
+		"config",
+		"formData",
+		"errForm",
+		"isEdit"
+	],
 	data() {
 		return {
 			formModel: {},
@@ -54,7 +64,8 @@ export default {
 	},
 	methods: {
 		// 提交表单数据
-		submitForm() {
+		submitForm(obj) {
+			console.log(obj);
 			this.$refs.configForm.validate(valid => {
 				if (valid) {
 					// 让父组件接收到响应数据
@@ -62,7 +73,6 @@ export default {
 					// 关闭模态框
 					this.dialogVisible = false;
 				} else {
-					console.log("error submit!!");
 					return false;
 				}
 			});

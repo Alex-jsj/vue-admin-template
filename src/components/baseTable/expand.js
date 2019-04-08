@@ -2,9 +2,9 @@ export default {
     name: 'TableExpand',
     functional: true,
     props: {
-        row: Object,
+        row: Object, // scope row
         render: Function,
-        index: Number,
+        index: Number, // index
         column: {
             type: Object,
             default: null

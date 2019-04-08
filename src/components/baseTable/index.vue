@@ -2,10 +2,12 @@
 	<div id="myTable">
 		<filterGroup :filterList="filterConfig.filter_list" :search_list="filterConfig.search_list" v-on="{getFilterData:filterData}"></filterGroup>
 		<div class="piliang">
-			<router-link v-for="item in topBtnConfig" :key="item.title" :to="item.jumpPage?item.jumpAddress:''">
-				<el-button type="primary" class="float-left" :icon="item.icon" v-if="item.jumpPage">{{item.title}}</el-button>
-				<el-button type="primary" class="float-left" :icon="item.icon" @click="createOrUpdate()" v-else>{{item.title}}</el-button>
+			<router-link class="btn-link" v-for="item in topBtnConfig" :key="item.title" :to="item.jumpPage?item.jumpAddress:''">
+				<el-button type="primary" :icon="item.icon" v-if="item.jumpPage">{{item.title}}</el-button>
+				<el-button type="primary" :icon="item.icon" @click="createOrUpdate()" v-else>{{item.title}}</el-button>
 			</router-link>
+			<!-- 自定义显示 -->
+			<customDisplay :customDisplayList="customDisplayList" v-on="{update_custom_display:updateCustomDisplay}"></customDisplay>
 			<el-button class="float-right" @click="getData(true)" icon="el-icon-refresh" :loading="loading">更新数据</el-button>
 		</div>
 		<!--主体内容区，展示表格内容-->
@@ -27,23 +29,36 @@
 				:label="item.label"
 				:width="item.width?item.width:''"
 				:min-width="item.minWidth?item.minWidth:''"
+				:sortable="item.sortable?true:false"
+				v-if="customDisplayList[index].show"
 			>
 				<template slot-scope="scope">
 					<Cell v-if="item.render" :row="scope.row" :column="item" :index="scope.$index" :render="item.render"></Cell>
 					<span v-else>{{scope.row[item.prop]}}</span>
 				</template>
 			</el-table-column>
-			<el-table-column label="操作" :width="tableBtnConfig.width" fixed="right">
+			<el-table-column label="操作" v-if="tableBtnConfig.width" :width="tableBtnConfig.width" fixed="right" class-name="btns">
 				<template slot-scope="scope">
-					<router-link :to="{path:tableBtnConfig.updateAddress,query:{id:scope.row.id}}">
-						<el-button type="warning" v-if="tableBtnConfig.update && tableBtnConfig.isUpdateInNewPage" style="margin-right:10px;">编辑</el-button>
-					</router-link>
-					<el-button type="warning" v-if="tableBtnConfig.update && !tableBtnConfig.isUpdateInNewPage" @click="createOrUpdate(scope.row)">编辑</el-button>
+					<!--扩展按钮-->
+					<el-button
+						@click="handleEmit(item.emitName, scope.row)"
+						v-if="tableBtnConfig.expands && tableBtnConfig.expands.length>0"
+						v-for="(item,index) in tableBtnConfig.expands"
+						:key="index"
+						:type="item.type?item.type:'primary'"
+					>{{item.name}}</el-button>
+					<el-button type="warning" v-if="tableBtnConfig.update&&!tableBtnConfig.isUpdateInNewPage" @click="createOrUpdate(scope.row)">编辑</el-button>
+					<el-button type="warning" v-else-if="tableBtnConfig.update&&tableBtnConfig.isUpdateInNewPage" @click="goTo(scope.row.id,tableBtnConfig.updateAddress)">编辑</el-button>
 					<el-button type="danger" v-if="tableBtnConfig.delete" @click.native="deleteItem(scope.row.id)">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
-		<pagination class="float-right" :currentPaging="currentPaging" v-on="{sizeChange:handleSizeChange,currentChange:handleCurrentChange}"></pagination>
+		<!-- 表格操作按钮 -->
+		<div class="table-control-box">
+			<el-button v-if="otherConfig.needSelect" type="info" @click="toggleSelection(tableData)">全选</el-button>
+			<el-button v-if="otherConfig.needSelect" type="info" @click="batchDelete()">批量删除</el-button>
+			<pagination class="float-right" :currentPaging="currentPaging" v-on="{sizeChange:handleSizeChange,currentChange:handleCurrentChange}"></pagination>
+		</div>
 		<!--按钮触发的表单弹窗-->
 		<BaseDialogForm
 			:title="dialogTitle"
@@ -52,6 +67,7 @@
 			:config="formConfig"
 			:form-data="formModel"
 			:err-form="formError"
+			:is-edit="isEdit"
 			@submit="dialogSubmit"
 		></BaseDialogForm>
 	</div>
@@ -60,6 +76,7 @@
 <script>
 import Cell from "./expand";
 import BaseDialogForm from "components/baseDialogForm";
+import customDisplay from "./customDisplay";
 // 分页
 import pagination from "components/pagination";
 import filterGroup from "components/filterGroup";
@@ -70,7 +87,8 @@ export default {
 		Cell,
 		BaseDialogForm,
 		pagination,
-		filterGroup
+		filterGroup,
+		customDisplay
 	},
 	props: [
 		// 表格配置
@@ -113,15 +131,29 @@ export default {
 			// 表单数据
 			formModel: {},
 			// 后台输出错误信息
-			formError: {}
+			formError: {},
+			// 是否是编辑
+			isEdit: false,
+			// 自定义显示数据
+			customDisplayList: []
 		};
 	},
 	created() {
 		this.getData();
+		this.customInit(this.tableConfig);
 	},
 	methods: {
+		// 根据表格配置生成自定义显示数组
+		customInit: function(arr = []) {
+			this.customDisplayList = arr.map(item => {
+				return {
+					show: true,
+					label: item.label
+				};
+			});
+		},
 		// 获取列表数据
-		getData: async function(update) {
+		getData: async function(update = false) {
 			this.loading = true;
 			// 默认数据
 			let default_data = {
@@ -139,6 +171,7 @@ export default {
 				respon.total && (this.currentPaging.totals = respon.total);
 			}
 		},
+		// 新增 编辑按钮
 		createOrUpdate(item) {
 			this.$refs.dialogForm.resetForm();
 			item
@@ -146,7 +179,8 @@ export default {
 						this.$refs.dialogForm.showDialog();
 				  })
 				: this.$refs.dialogForm.showDialog();
-			this.dialogTitle = (item ? "编辑" : "新增") + this.formTitle;
+			item ? (this.isEdit = true) : (this.isEdit = false);
+			this.dialogTitle = (item ? "编辑" : "添加") + this.formTitle;
 		},
 		// 从后台获取编辑框需要的数据，表格只用作展示作用，所以不从表格内获取数据
 		getEditData: async function(id, callback) {
@@ -179,6 +213,13 @@ export default {
 		// 处理相应父组件的事件方法
 		handleEmit(emitName, row) {
 			this.$emit(emitName, row);
+		},
+		// 编辑跳转页面
+		goTo: function(id, url) {
+			this.$router.push({
+				path: url,
+				query: { id: id }
+			});
 		},
 		// 删除
 		deleteItem: function(id) {
@@ -229,10 +270,10 @@ export default {
 		toggleSelection: function(rows) {
 			if (rows && !this.allSelect) {
 				rows.forEach(row => {
-					this.$refs.multipleTable.toggleRowSelection(row, true);
+					this.$refs.table.toggleRowSelection(row, true);
 				});
 			} else {
-				this.$refs.multipleTable.clearSelection();
+				this.$refs.table.clearSelection();
 			}
 		},
 		// 分页sizeChange
@@ -247,6 +288,10 @@ export default {
 			this.currentPaging.currentPage = val;
 			// 更新数据
 			this.getData();
+		},
+		// 更新自定义显示组件数据
+		updateCustomDisplay: function(arr) {
+			this.customDisplayList = arr;
 		},
 		// 筛选
 		filterData: function(obj) {
@@ -266,24 +311,37 @@ export default {
 	width: 100%;
 	margin: 0.55rem 0;
 	/* 强制不换行 */
-	.no-wrap {
+	.btns {
 		.cell {
 			white-space: nowrap;
 		}
 	}
-	/deep/thead {
+	/deep/ thead {
 		th {
 			background: lighten(#ebeef5, 3%);
 			color: #333;
 			font-size: 14px;
 		}
 	}
+	.icon-text {
+		.iconfont {
+			font-size: 14px;
+			margin-right: 5px;
+		}
+	}
+}
+.table-control-box {
+	overflow: hidden;
 }
 .piliang {
 	margin: 0.55rem 0;
 	position: relative;
 	&::after {
 		.clear;
+	}
+	.btn-link {
+		margin-right: 10px;
+		float: left;
 	}
 	.el-button {
 		margin-left: 0;

@@ -4,7 +4,7 @@
 			<!-- 筛选项 -->
 			<el-form :inline="true" id="formBox" ref="filterForm">
 				<el-form-item label="关键字:" v-if="filterOptions.search">
-					<el-input v-popover:popover v-model="filterData.keyword" @keyup.enter.native="getFilterData()"  placeholder="请输入关键字" clearable></el-input>
+					<el-input v-popover:popover v-model="filterData.keyword" @keyup.enter.native="getFilterData()" placeholder="请输入关键字" clearable></el-input>
 					<el-popover ref="popover" placement="bottom" width="200" trigger="focus" popper-class="search-popover">
 						<div v-if="search_list[0]">
 							<p class="popover-title">支持的搜索条件</p>
@@ -15,34 +15,57 @@
 						<span v-else>暂无可搜索项</span>
 					</el-popover>
 				</el-form-item>
-				<el-form-item label="国籍:" v-if="filterOptions.guoji">
-					<el-select v-model="filterData.country_id" placeholder="请选择国籍"  clearable filterable>
-						<el-option v-for="(item,index) in guoji" :key="item.id" :label="item.title" :value="item.id"></el-option>
+				<el-form-item label="分类:" v-if="filterOptions.classify">
+					<el-select v-model="filterData.classify" clearable>
+						<el-option v-for="(item,index) in classifyList" :key="item.value" :label="item.label" :value="item.value"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="民族:" v-if="filterOptions.minzu">
-					<el-select v-model="filterData.nation_id" placeholder="请选择民族"  clearable filterable>
-						<el-option v-for="(item,index) in minzu" :key="item.id" :label="item.title" :value="item.id"></el-option>
+				<el-form-item label="年份:" v-if="filterOptions.year">
+					<el-select v-model="filterData.year" clearable>
+						<el-option v-for="(item,index) in years" :key="index" :label="item" :value="item"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="用户组:" v-if="filterOptions.select_2">
-					<el-select v-model="filterData.role" placeholder="请选择用户组"  clearable>
-						<el-option v-for="(item,index) in select_2" :key="item.id" :label="item.title" :value="item.id"></el-option>
+				<el-form-item label="注册年份:" v-if="filterOptions.registerYear">
+					<el-select v-model="filterData.registerYear" clearable>
+						<el-option v-for="(item,index) in registerYears" :key="index" :label="item" :value="item"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="支付状态:" v-if="filterOptions.pay">
-					<el-select v-model="filterData.payment_state" placeholder="请选择支付状态"  clearable>
-						<el-option v-for="(item,index) in zfzt" :key="item.id" :label="item.title" :value="item.id"></el-option>
+				<el-form-item label="激活状态:" v-if="filterOptions.activation">
+					<el-select v-model="filterData.activation" clearable>
+						<el-option v-for="(item,index) in activationList" :key="index.value" :label="item.label" :value="item.value"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="支付方式:" v-if="filterOptions.zhifufangshi">
-					<el-select v-model="filterData.pay_plat" placeholder="请选择支付方式"  clearable>
-						<el-option v-for="(item,index) in zhifufangshi" :key="item.id" :label="item.title" :value="item.id"></el-option>
+				<el-form-item label="审核状态:" v-if="filterOptions.examine">
+					<el-select v-model="filterData.examine" clearable>
+						<el-option v-for="(item,index) in examineList" :key="index.value" :label="item.label" :value="item.value"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="事件:" v-if="filterOptions.shijian">
-					<el-select v-model="filterData.shijian" placeholder="请选择事件"  clearable>
-						<el-option v-for="(item,index) in shijian" :key="item.id" :label="item.title" :value="item.id"></el-option>
+				<el-form-item label="轮播图状态:" v-if="filterOptions.imgType">
+					<el-select v-model="filterData.imgType" clearable>
+						<el-option v-for="(item,index) in imgTypeList" :key="index.value" :label="item.label" :value="item.value"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item label="操作人:" v-if="filterOptions.operator">
+					<el-select v-model="filterData.operator" clearable>
+						<el-option v-for="(item,index) in operatorList" :key="index.value" :label="item.label" :value="item.value"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item label="事件:" v-if="filterOptions.event">
+					<el-select v-model="filterData.event" clearable>
+						<el-option v-for="(item,index) in eventList" :key="index.value" :label="item.label" :value="item.value"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item label="影片推荐:" v-if="filterOptions.recommend">
+					<el-cascader ref="recommend_dom" class="recommend_text" :options="recommendList" v-model="filterData.recommend" filterable clearable></el-cascader>
+				</el-form-item>
+				<el-form-item label="报名类型:" v-if="filterOptions.signType">
+					<el-select v-model="filterData.signType" clearable>
+						<el-option v-for="(item,index) in signTypeList" :key="index.value" :label="item.label" :value="item.value"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item label="片种:" v-if="filterOptions.filmType">
+					<el-select v-model="filterData.filmType" clearable>
+						<el-option v-for="(item,index) in filmTypeList" :key="index.value" :label="item.label" :value="item.value"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="日期:" v-if="filterOptions.date_scope" class="date-filter">
@@ -50,7 +73,6 @@
 						v-model="filterData.date_scope"
 						type="daterange"
 						align="right"
-						
 						unlink-panels
 						range-separator="至"
 						start-placeholder="开始日期"
@@ -60,18 +82,17 @@
 					></el-date-picker>
 				</el-form-item>
 				<el-form-item :class="open_btn_show?'btn':''" v-if="!sure">
-					<el-button type="primary"  @click="getFilterData()">查 询</el-button>
+					<el-button type="primary" @click="getFilterData()">查 询</el-button>
 					<el-button
 						v-if="open_btn_show"
 						type="primary"
 						plain
-						
 						@click="open = !open;btn_text = !open?'展开':'收起'"
 						:icon="!open?'el-icon-arrow-down':'el-icon-arrow-up'"
 					>{{btn_text}}</el-button>
 				</el-form-item>
 				<el-form-item v-else>
-					<el-button type="primary"  @click="getFilterData()">确 定</el-button>
+					<el-button type="primary" @click="getFilterData()">确 定</el-button>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -100,47 +121,107 @@ export default {
 	name: "filterGroup",
 	data() {
 		return {
-			district_text: "",
 			// 布局状态
 			menuType: 1,
-			contentWidthType: "Flow",
+			contentWidthType: "流式",
 			isCollapse: false, // 导航是否折叠
 			open: false,
 			btn_text: "展开",
 			open_btn_show: false,
-			// 是否是承办机构登录
-			isCbjg: false,
 			// 映射表
 			filterOptions: {
 				search: false, // 关键字搜索
-				date_scope: false, // 日期选择范围
-				select_2: false, // 用户组
-				cities: false, //省市区
-				pay: false, // 支付状态
-				zhifufangshi: false, // 支付方式
-				guoji: false, // 国籍
-				minzu: false // 民族
+				classify: false, // 分类
+				year: false, // 年份
+				registerYear: false, // 注册年份
+				activation: false, // 激活状态
+				examine: false, // 审核状态
+				recommend: false, // 影片推荐
+				operator: false, // 操作人
+				event: false, // 事件
+				signType: false, // 报名类型
+				filmType: false, // 片种
+				imgType: false, // 轮播图状态
+				date_scope: false // 日期选择范围
 			},
 			// 点击查询之后传到父级的筛选项数据
 			filterData: {},
 			// 筛选项数组
 			filter_arr: [],
-			// 用户组
-			select_2: [],
-			// 支付方式
-			zhifufangshi: [
-				{ title: "支付宝", id: 1 },
-				{ title: "微信", id: 10 },
-				{ title: "银联(个人网银)", id: 20 },
-				{ title: "银联(企业网银)", id: 21 }
+			// 分类
+			classifyList: [],
+			// 年份
+			years: [],
+			// 注册年份
+			registerYears: [],
+			// 激活状态
+			activationList: [
+				{
+					value: 1,
+					label: "已激活"
+				},
+				{
+					value: -1,
+					label: "未激活"
+				}
 			],
-			// 支付状态
-			zfzt: [{ title: "已支付", id: 1 }, { title: "未支付", id: 0 }],
+			// 轮播图状态
+			imgTypeList: [
+				{
+					value: 1,
+					label: "启用"
+				},
+				{
+					value: -1,
+					label: "隐藏"
+				}
+			],
+			// 审核状态
+			examineList: [
+				{
+					value: 1,
+					label: "已通过"
+				},
+				{
+					value: 0,
+					label: "未审核"
+				},
+				{
+					value: -1,
+					label: "驳回"
+				}
+			],
+			// 影片推荐
+			recommendList: [],
+			// 报名类型
+			signTypeList: [
+				{
+					value: 0,
+					label: "D20提名"
+				},
+				{
+					value: 1,
+					label: "IDF创投"
+				}
+			],
+			// 片种
+			filmTypeList: [],
+			// 操作人
+			operatorList: [],
 			// 事件
-			shijian: [
-				{ title: "修改", id: 0 },
-				{ title: "删除", id: 1 },
-				{ title: "新增", id: 2 }
+			eventList: [
+				{
+					value: 1,
+					label: "新增"
+				},
+				{
+					value: 0,
+					label: "编辑"
+				},
+				{
+					value: -1,
+					label: "删除"
+				}
 			]
 		};
 	},
@@ -167,31 +248,15 @@ export default {
 		}
 	},
 	computed: {
-		// 页面宽度
 		listenContentWidthType() {
 			return this.$store.state.contentWidthType;
 		},
-		// 导航模式
 		listenMenuType() {
 			return this.$store.state.menuType;
 		},
-		// 菜单是否展开
 		listenMenuCollapse() {
 			return this.$store.state.menuCollapse;
 		},
-		// 市
-		cities() {
-			return this.$store.state.filterInfo.cities;
-		},
-		// 国籍
-		guoji() {
-			return this.$store.state.filterInfo.country;
-		},
-		// 民族
-		minzu() {
-			return this.$store.state.filterInfo.nation;
-		},
-		// 角色组
 		role() {
 			return this.$store.state.role;
 		}
@@ -205,25 +270,29 @@ export default {
 				}
 			}
 		}
-		this.filterOptions.select_2 && this.getSelect_2(); // 用户组
 	},
 	mounted: function() {
-		const that = this;
 		// 首页带参数筛选
-		let default_filter = function() {
+		let default_filter = () => {
+			let homePageFilterObj = {};
 			// 首页带参数的跳转
-			if (that.$route.query.show_filter === "1") {
-				if (that.open_btn_show) {
-					that.open = true;
-					that.btn_text = "收起";
+			if (this.$route.query.show_filter === "1") {
+				if (this.open_btn_show) {
+					this.open = true;
+					this.btn_text = "收起";
 				}
-				let homePageFilterObj = {};
-				that.filterData = homePageFilterObj;
-				that.$emit("getFilterData", that.filterData);
-				that.initFilter(that.filterData);
+				if (this.$route.query.d20 === "true") {
+					Object.assign(homePageFilterObj, { signType: 0 });
+				}
+				if (this.$route.query.idf === "true") {
+					Object.assign(homePageFilterObj, { signType: 1 });
+				}
+				this.filterData = homePageFilterObj;
+				this.$emit("getFilterData", this.filterData);
+				this.initFilter(this.filterData);
 			}
 		};
-		that.showBtn(default_filter);
+		this.showBtn(default_filter);
 	},
 	methods: {
 		// 判断是否需要显示展开收起按钮
@@ -237,24 +306,14 @@ export default {
 				callback && callback();
 			}, 310);
 		},
-		// 区域值change
-		districtChange: function(val) {
-			let newVal = JSON.parse(JSON.stringify(val));
-			this.filterData.district_id = newVal.pop();
-		},
-		// 显示选中的区域值-中文
-		show_district_text: function() {
-			let dom = document.querySelector(".district_text .el-input__inner");
-			this.district_text = dom.getAttribute("value");
-		},
-		// 用户组
-		getSelect_2: function() {
-			let data = {};
-			get_select_2(data).then(res => {
-				if (res.code === 200) {
-					this.select_2 = res.data || [];
-				}
-			});
+		// 显示选中的值-影片推荐
+		show_recommend_text: function() {
+			let dom =
+				document.querySelector(".recommend_text .el-cascader__label") ||
+				"noDom";
+			if (dom !== "noDom") {
+				return dom.textContent.trim();
+			}
 		},
 		// 传递筛选数据
 		getFilterData() {
@@ -275,10 +334,6 @@ export default {
 				}
 			}
 			this.$emit("getFilterData", obj);
-			// 获取区域文字
-			if (this.filterOptions.cities) {
-				this.show_district_text();
-			}
 			this.initFilter(obj);
 		},
 		// 生成筛选项列表数据
@@ -310,40 +365,74 @@ export default {
 					item.title = "关键字";
 					item.value = val;
 					break;
-				case "district_id":
-					item.title = "区域";
-					item.value = this.district_text;
-					break;
-				case "country_id":
-					item.title = "国籍";
-					item.value = this.arrayMapFilter(this.guoji, val).title;
-					break;
-				case "nation_id":
-					item.title = "民族";
-					item.value = this.arrayMapFilter(this.minzu, val).title;
-					break;
-				case "role":
-					item.title = "用户组";
-					item.value = this.arrayMapFilter(this.select_2, val).title;
-					break;
-				case "payment_state":
-					item.title = "支付状态";
-					item.value = this.arrayMapFilter(this.zfzt, val).title;
-					break;
-				case "pay_plat":
-					item.title = "支付方式";
-					item.value = this.arrayMapFilter(
-						this.zhifufangshi,
-						val
-					).title;
-					break;
-				case "shijian":
-					item.title = "事件";
-					item.value = this.arrayMapFilter(this.shijian, val).title;
-					break;
 				case "date_scope":
 					item.title = "日期";
 					item.value = `${val[0]} - ${val[1]}`;
+					break;
+				case "activation":
+					item.title = "激活状态";
+					item.value = this.arrayMapFilter(
+						this.activationList,
+						val
+					).label;
+					break;
+				case "examine":
+					item.title = "审核状态";
+					item.value = this.arrayMapFilter(
+						this.examineList,
+						val
+					).label;
+					break;
+				case "signType":
+					item.title = "报名类型";
+					item.value = this.arrayMapFilter(
+						this.signTypeList,
+						val
+					).label;
+					break;
+				case "filmType":
+					item.title = "片种";
+					item.value = this.arrayMapFilter(
+						this.filmTypeList,
+						val
+					).label;
+					break;
+				case "imgType":
+					item.title = "轮播图状态";
+					item.value = this.arrayMapFilter(
+						this.imgTypeList,
+						val
+					).label;
+					break;
+				case "event":
+					item.title = "事件";
+					item.value = this.arrayMapFilter(this.eventList, val).label;
+					break;
+				case "operator":
+					item.title = "操作人";
+					item.value = this.arrayMapFilter(
+						this.operatorList,
+						val
+					).label;
+					break;
+				case "classify":
+					item.title = "分类";
+					item.value = this.arrayMapFilter(
+						this.classifyList,
+						val
+					).label;
+					break;
+				case "year":
+					item.title = "年份";
+					item.value = val;
+					break;
+				case "registerYear":
+					item.title = "注册年份";
+					item.value = val;
+					break;
+				case "recommend":
+					item.title = "影片推荐";
+					item.value = this.show_recommend_text();
 					break;
 				default:
 					item = {};
@@ -351,11 +440,11 @@ export default {
 			return item;
 		},
 		// 筛选项字典内filter
-		arrayMapFilter: function(list = [], value) {
+		arrayMapFilter: function(list = [], value = "") {
 			const arr = JSON.parse(JSON.stringify(list));
 			let val = value;
 			arr.filter(el => {
-				if (el.id == val) {
+				if (el.value == val) {
 					val = el;
 				}
 			});
@@ -365,11 +454,11 @@ export default {
 		closeTag: function(item) {
 			let key = item.key;
 			// 关联字段清除
-			if (item.key == "district_id") {
+			if (item.key == "recommend") {
 				// 主动清空城市选择器  此处clearValue需要传入一个事件对象 这里是自己模拟一个事件对象来避免报错
 				let obj = {};
 				obj.stopPropagation = () => {};
-				this.$refs.district_dom.clearValue(obj);
+				this.$refs.recommend_dom.clearValue(obj);
 				delete this.filterData[key];
 			} else {
 				delete this.filterData[key];
@@ -379,12 +468,6 @@ export default {
 		// 清空筛选
 		closeAllTag: function() {
 			this.filterData = {};
-			// 主动清空城市选择器  此处clearValue需要传入一个事件对象 这里是自己模拟一个事件对象来避免报错
-			if (this.$refs.district_dom) {
-				let obj = {};
-				obj.stopPropagation = () => {};
-				this.$refs.district_dom.clearValue(obj);
-			}
 			this.getFilterData();
 		}
 	}

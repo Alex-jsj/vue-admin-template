@@ -78,3 +78,31 @@
   color: #888;
   font-size: 12px;
 }
+/* 搜索框提示popover */
+.search-popover .popover-title {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.search-popover .popover-list .popover-item {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 24px;
+  height: 24px;
+  position: relative;
+  padding-left: 10px;
+}
+.search-popover .popover-list .popover-item::before {
+  content: '';
+  display: inline-block;
+  font-size: inherit;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #aaa;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
