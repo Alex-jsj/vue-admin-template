@@ -1,6 +1,6 @@
 <template>
 	<div id="switchLang">
-		<el-dropdown trigger="click" class="international" @command="checkLang">
+		<el-dropdown trigger="click" class="international" @command="checkLang" size="medium">
 			<div>
 				<i class="iconfont icon-yuyan" data-step="1" :data-intro="$t('introductorPage.step1')"></i>
 			</div>

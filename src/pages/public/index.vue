@@ -12,9 +12,9 @@
 			<tags-view/>
 			<!-- 页面容器 -->
 			<transition name="fade-transform" mode="out-in">
-				<!-- <keep-alive :include="cachedViews"> -->
-				<router-view class="views" :key="key"/>
-				<!-- </keep-alive> -->
+				<keep-alive :include="cachedViews">
+					<router-view class="views" :key="key"/>
+				</keep-alive>
 			</transition>
 			<!-- 底部 -->
 			<p class="footer">Copyright © {{year}} {{$t('base.name')}} All Rights Reserved.&nbsp;&nbsp;&nbsp;Email: 329255122@qq.com</p>

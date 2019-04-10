@@ -77,10 +77,10 @@ export default {
 		}
 	},
 	mounted() {
-		this.initTinymce();
+		this.$nextTick(() => this.initTinymce());
 	},
 	activated() {
-		this.initTinymce();
+		this.$nextTick(() => this.initTinymce());
 	},
 	deactivated() {
 		this.destroyTinymce();
