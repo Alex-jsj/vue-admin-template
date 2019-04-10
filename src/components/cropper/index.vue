@@ -243,12 +243,14 @@ export default {
             }
         }
         .uploads {
+            display: flex;
             border: 1px solid #dcdfe6;
             padding: 0 15px;
             border-radius: 4px;
             cursor: pointer;
             color: #606266;
             transition: 0.1s;
+            align-items: center;
             &:hover {
                 color: #409eff;
                 border-color: #c6e2ff;
