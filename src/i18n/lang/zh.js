@@ -192,7 +192,10 @@ export default {
         step4: '标签页',
         step5: '系统设置'
     },
-    textEditor: '基于tinymce封装的富文本编辑器组件',
+    editor: {
+        toolTip: '基于tinymce封装的富文本编辑器组件',
+        btn1: '首行缩进'
+    },
     intro: '为网站和项目提供新功能介绍、用户指南的更好方法。',
     icon: '添加并使用',
     imgUpload: '基于element upload组件实现的图片上传',

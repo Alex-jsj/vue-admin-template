@@ -189,7 +189,10 @@ export default {
         step4: 'Tab page',
         step5: 'System setup'
     },
-    textEditor: 'Rich Text Editor Component Based on TinyMCE Encapsulation',
+    editor: {
+        toolTip: 'Rich Text Editor Component Based on TinyMCE Encapsulation',
+        btn1: 'text-indent'
+    },
     intro:
         'A better way for new feature introduction and step-by-step users guide for your website and project.',
     icon: 'Add and Use',
