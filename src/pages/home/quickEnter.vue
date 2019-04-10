@@ -148,15 +148,15 @@ export default {
 					}
 				}
 				&:nth-of-type(4) {
-					border: 1px solid #37bea3;
+					border: 1px solid #e6a23c;
 					.icon-container {
-						background: #37bea3;
+						background: #e6a23c;
 						.iconfont {
 							color: #fff;
 						}
 					}
 					.quick-text {
-						color: #37bea3;
+						color: #e6a23c;
 					}
 				}
 				&:nth-of-type(5) {
