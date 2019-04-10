@@ -131,6 +131,36 @@ const rootConfig = [
                         }
                     }
                 ]
+            },
+            {
+                path: "charts",
+                component: () => import("@/pages/charts/index"),
+                meta: {
+                    title: "chart"
+                },
+                children: [
+                    {
+                        path: "/",
+                        redirect: "chartLine",
+                        component: () => import("@/pages/charts/line")
+                    },
+                    {
+                        path: "line",
+                        name: "chartLine",
+                        component: () => import("@/pages/charts/line"),
+                        meta: {
+                            title: "charts.line"
+                        }
+                    },
+                    {
+                        path: "bar",
+                        name: "bar",
+                        component: () => import("@/pages/charts/bar"),
+                        meta: {
+                            title: "charts.histogram"
+                        }
+                    }
+                ]
             }
         ]
     },

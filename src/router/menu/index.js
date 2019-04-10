@@ -21,7 +21,7 @@ export const superAdmin = [
     },
     {
         title: "component",
-        url: "/pages/index/userManage",
+        url: "/pages/index/component",
         icon: "component",
         children: [
             {
@@ -57,37 +57,37 @@ export const superAdmin = [
     },
     {
         title: "chart",
-        url: "/pages/index/userManage",
+        url: "/pages/index/charts",
         icon: "chart",
         children: [
             {
                 title: "charts.histogram",
-                url: "/pages/index/userManage/userManage_system",
+                url: "/pages/index/charts/bar",
                 children: []
             },
             {
                 title: "charts.line",
-                url: "/pages/index/userManage/userManage_cbjg",
+                url: "/pages/index/charts/line",
                 children: []
             },
             {
                 title: "charts.map",
-                url: "/pages/index/userManage/userManage_role",
+                url: "/pages/index/charts/map",
                 children: []
             },
             {
                 title: "charts.progress",
-                url: "/pages/index/userManage/userManage_role",
+                url: "/pages/index/charts/progress",
                 children: []
             },
             {
                 title: "charts.disk",
-                url: "/pages/index/userManage/userManage_role",
+                url: "/pages/index/charts/disk",
                 children: []
             },
             {
                 title: "charts.mixedChart",
-                url: "/pages/index/userManage/userManage_role",
+                url: "/pages/index/charts/mixedChart",
                 children: []
             }
         ]
