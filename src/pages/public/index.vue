@@ -74,8 +74,15 @@ export default {
 	mounted() {
 		const that = this;
 		this.isZoom();
+		var timer = null;
 		window.addEventListener("resize", function() {
-			that.isZoom();
+			// 防抖处理
+			if (timer) {
+				clearTimeout(timer);
+			}
+			timer = setTimeout(function() {
+				that.isZoom();
+			}, 200);
 		});
 	},
 	methods: {

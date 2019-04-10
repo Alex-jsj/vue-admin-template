@@ -24,8 +24,15 @@
                     20 * (screenWidth / 960) + 'px';
             }
             resize();
+            var timer = null;
             window.addEventListener('resize', function() {
-                resize();
+                // 防抖处理
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(function() {
+                    resize();
+                }, 200);
             });
         </script>
     </head>

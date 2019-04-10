@@ -34,7 +34,7 @@
 			<div class="title-box">
 				<span class="title float-left">{{$t('home.trend')}}</span>
 				<router-link to="/pages/board" target="_blank" class="board">
-					<el-button type >{{$t('home.dataBoard')}}</el-button>
+					<el-button type>{{$t('home.dataBoard')}}</el-button>
 				</router-link>
 				<p class="date">{{$t('home.QueryTime')}}：{{start_date}} {{$t('base.to')}} {{end_date}}</p>
 			</div>
@@ -235,27 +235,27 @@ export default {
 		quickList() {
 			return [
 				{
-					title: this.$t('route.introductoryPage'),
+					title: this.$t("route.introductoryPage"),
 					link: "/pages/index/intro",
 					icon: "intro"
 				},
 				{
-					title: this.$t('route.icon'),
+					title: this.$t("route.icon"),
 					link: "/pages/index/icon",
 					icon: "icon"
 				},
 				{
-					title: this.$t('route.components.textEditor'),
+					title: this.$t("route.components.textEditor"),
 					link: "/pages/index/component/editor",
 					icon: "component"
 				},
 				{
-					title: this.$t('route.chart'),
+					title: this.$t("route.chart"),
 					link: "/pages/index/intro",
 					icon: "chart"
 				},
 				{
-					title: this.$t('route.international'),
+					title: this.$t("route.international"),
 					link: "/pages/index/userManage",
 					icon: "in"
 				}
@@ -401,8 +401,15 @@ export default {
 					}
 				]
 			});
-			window.addEventListener("resize", () => {
-				myChart.resize();
+			var timer = null;
+			window.addEventListener("resize", function() {
+				// 防抖处理
+				if (timer) {
+					clearTimeout(timer);
+				}
+				timer = setTimeout(function() {
+					myChart.resize();
+				}, 200);
 			});
 		},
 		//服务器信息canvas
