@@ -163,7 +163,7 @@ export const superAdmin = [
     },
     {
         title: "international",
-        url: "/pages/index/userManage",
+        url: "/pages/index/i18n",
         icon: "in",
         children: []
     }

@@ -203,5 +203,8 @@ export default {
     },
     countTo: "Based on vue-count-to",
     vueVideoPlayer:
-        "The video control based on vue-video-player realizes the function of monitoring and displaying the viewing time."
+        "The video control based on vue-video-player realizes the function of monitoring and displaying the viewing time.",
+    international: {
+        tooltip: "International Language Switching Based on i18n-vue"
+    }
 };

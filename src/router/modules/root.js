@@ -42,6 +42,14 @@ const rootConfig = [
                 }
             },
             {
+                path: "i18n",
+                name: "i18n",
+                component: () => import("@/pages/international/index"),
+                meta: {
+                    title: "international"
+                }
+            },
+            {
                 path: "component",
                 component: () => import("@/pages/component/index"),
                 meta: {

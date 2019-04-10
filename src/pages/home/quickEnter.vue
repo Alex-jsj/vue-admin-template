@@ -36,12 +36,12 @@ export default {
 				},
 				{
 					title: this.$t("route.chart"),
-					link: "/pages/index/intro",
+					link: "/pages/index/charts/bar",
 					icon: "chart"
 				},
 				{
 					title: this.$t("route.international"),
-					link: "/pages/index/userManage",
+					link: "/pages/index/i18n",
 					icon: "in"
 				}
 			];

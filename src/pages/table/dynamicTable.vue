@@ -61,25 +61,7 @@ export default {
                         }
                     },
                     {
-                        label: "D20报名状态",
-                        prop: "d20_type",
-                        render: (h, params) => {
-                            const { color, text, icon } = checkEntry(
-                                params.row.d20_type
-                            );
-                            return (
-                                <div class="icon-text">
-                                    <i
-                                        class={`iconfont icon-${icon}`}
-                                        style={`color:${color}`}
-                                    />
-                                    <span style={`color:${color}`}>{text}</span>
-                                </div>
-                            );
-                        }
-                    },
-                    {
-                        label: "IDF创投报名状态",
+                        label: "报名状态",
                         prop: "idf_type",
                         render: (h, params) => {
                             const { color, text, icon } = checkEntry(
@@ -226,10 +208,7 @@ export default {
     components: { baseTable },
     methods: {
         checkRegistration: function(row = {}) {
-            this.$router.push({
-                path: "/pages/index/enroll/entry/list",
-                query: { id: row.id }
-            });
+            this.$message("点击了自定义按钮");
         }
     }
 };

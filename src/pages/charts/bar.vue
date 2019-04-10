@@ -68,7 +68,6 @@ export default {
             })();
             // 图表配置
             myChart.setOption({
-                backgroundColor: "#344b58",
                 title: {
                     text: "本年商场顾客男女人数统计",
                     subtext: "BY Wang Dingding",

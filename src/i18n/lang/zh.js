@@ -205,5 +205,8 @@ export default {
     },
     countTo: "基于 vue-count-to",
     vueVideoPlayer:
-        "基于vue-video-player的视频控件，并实现了监控、显示观看时长的功能"
+        "基于vue-video-player的视频控件，并实现了监控、显示观看时长的功能",
+    international: {
+        tooltip: "基于i18n-vue实现的国际化语言切换"
+    }
 };
