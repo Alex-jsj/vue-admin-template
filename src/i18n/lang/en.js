@@ -165,7 +165,16 @@ export default {
         visitor4: 'Visitors this year',
         canvas: {
             data1: 'Data 1',
-            data2: 'Data 2'
+            data2: 'Data 2',
+            data3: 'Data 3'
+        },
+        system: {
+            title1: 'Operating system',
+            title2: 'User name',
+            title3: 'Latest login time',
+            title4: 'Server environment',
+            title5: 'PHP Version',
+            title6: 'Running environment'
         }
     },
     introductorPage: {

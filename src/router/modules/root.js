@@ -7,7 +7,7 @@ const rootConfig = [
             {
                 path: '/',
                 redirect: 'home',
-                component: () => import('@/pages/public/home')
+                component: () => import('@/pages/home/index')
             },
             {
                 path: 'account_information',
@@ -20,7 +20,7 @@ const rootConfig = [
             {
                 path: 'home',
                 name: 'home',
-                component: () => import('@/pages/public/home'),
+                component: () => import('@/pages/home/index'),
                 meta: {
                     title: 'home'
                 }

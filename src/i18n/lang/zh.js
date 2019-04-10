@@ -168,7 +168,16 @@ export default {
         visitor4: '年度访客',
         canvas: {
             data1: '数据 1',
-            data2: '数据 2'
+            data2: '数据 2',
+            data3: '数据 3'
+        },
+        system: {
+            title1: '操作系统',
+            title2: '用户名',
+            title3: '最近登录时间',
+            title4: '服务器环境',
+            title5: 'PHP版本',
+            title6: '运行环境'
         }
     },
     introductorPage: {
@@ -188,5 +197,6 @@ export default {
     icon: '添加并使用',
     imgUpload: '基于element upload组件实现的图片上传',
     countTo: '基于 vue-count-to',
-    vueVideoPlayer: '基于vue-video-player的视频控件，并实现了监控、显示观看时长的功能',
+    vueVideoPlayer:
+        '基于vue-video-player的视频控件，并实现了监控、显示观看时长的功能'
 };
