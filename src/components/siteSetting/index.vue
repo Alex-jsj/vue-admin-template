@@ -22,13 +22,13 @@
 					<p class="title">{{$t('fixedTool.theme')}}</p>
 					<el-tooltip effect="dark" :content="$t('fixedTool.themeConfig.content1')" placement="top">
 						<div class="theme-img" @click="themeChange('light')">
-							<img src="../../static/img/light.jpg">
+							<img src="../../../static/img/light.jpg">
 							<i class="iconfont icon-yep" v-if="theme === 'light'"></i>
 						</div>
 					</el-tooltip>
 					<el-tooltip effect="dark" :content="$t('fixedTool.themeConfig.content2')" placement="top">
 						<div class="theme-img" @click="themeChange('dark')">
-							<img src="../../static/img/dark.jpg">
+							<img src="../../../static/img/dark.jpg">
 							<i class="iconfont icon-yep" v-if="theme === 'dark'"></i>
 						</div>
 					</el-tooltip>
@@ -37,13 +37,13 @@
 					<p class="title">{{$t('fixedTool.navigation')}}</p>
 					<el-tooltip effect="dark" :content="$t('fixedTool.navigationConfig.content1')" placement="top">
 						<div class="theme-img" @click="menuChange(1)">
-							<img src="../../static/img/menu1.jpg">
+							<img src="../../../static/img/menu1.jpg">
 							<i class="iconfont icon-yep" v-if="menuType === 1"></i>
 						</div>
 					</el-tooltip>
 					<el-tooltip effect="dark" :content="$t('fixedTool.navigationConfig.content2')" placement="top">
 						<div class="theme-img" @click="menuChange(2)">
-							<img src="../../static/img/menu2.jpg">
+							<img src="../../../static/img/menu2.jpg">
 							<i class="iconfont icon-yep" v-if="menuType === 2"></i>
 						</div>
 					</el-tooltip>
@@ -62,7 +62,7 @@
 					</el-tooltip>
 					<div class="inline-item inline-item-select">
 						<span class="title-2 float-left">{{$t('fixedTool.contentWidth.text')}}</span>
-						<el-select v-model="contentWidthType"  class="select float-right" @change="contentWidthChange">
+						<el-select v-model="contentWidthType" class="select float-right" @change="contentWidthChange">
 							<el-option v-for="item in contentWidthTypeList" :key="item.key" :label="item.value" :value="item.key"></el-option>
 						</el-select>
 					</div>
@@ -91,7 +91,7 @@
 					</div>
 					<div class="inline-item inline-item-select">
 						<span class="title-2 float-left">{{$t('fixedTool.otherSettings.strengthSelection')}}</span>
-						<el-select v-model="brightnessIntensity" :disabled="!colorBrightnessOpen"  class="select float-right" @change="brightnessIntensityChange">
+						<el-select v-model="brightnessIntensity" :disabled="!colorBrightnessOpen" class="select float-right" @change="brightnessIntensityChange">
 							<el-option v-for="item in brightnessIntensityList" :key="item.key" :label="item.value" :value="item.key"></el-option>
 						</el-select>
 					</div>

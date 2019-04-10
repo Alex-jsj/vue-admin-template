@@ -26,6 +26,7 @@
   overflow: hidden;
   padding-top: 60px;
   background: #fff;
+  font-size: initial;
 }
 .wrap::after {
   content: '';
@@ -38,6 +39,7 @@
   padding: 0 0.55rem 0 0.55rem;
   position: relative;
   transition: width 0.3s;
+  float: right;
 }
 .wrap .right-wrap .views {
   width: 100%;

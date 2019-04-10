@@ -24,7 +24,7 @@ export default {
 		switchLang,
 		fullScreen,
 		userBoard,
-        logo
+		logo
 	},
 	computed: {
 		contentWidthType() {
@@ -40,7 +40,7 @@ export default {
 <style lang="less">
 @import "~assets/css/mixin.less";
 #topBar {
-	width: 100vw; // 防抖处理
+	width: 100%;
 	height: 60px;
 	background: #292c31;
 	z-index: 100;

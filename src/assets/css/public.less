@@ -5,9 +5,11 @@
 .introjs-helperLayer {
     background-color: rgba(255, 255, 255, .3);
 }
+
 .introjs-tooltip {
     font-size: 14px;
 }
+
 .introjs-helperNumberLayer {
     display: none;
 }
@@ -19,38 +21,49 @@
     overflow: hidden;
     padding-top: 60px;
     background: #fff;
+    font-size: initial;
+
     &::after {
         .clear;
     }
+
     .right-wrap {
         width: 86%;
         padding: 0 0.55rem 0 0.55rem;
         position: relative;
         transition: width 0.3s;
+        float: right;
+
         .views {
             width: 100%;
-            min-height: calc( ~'100vh - 60px - 60px - 58px - 36px'); // less计算与calc编译有冲突，故写法修正为这样
+            min-height: calc(~'100vh - 60px - 60px - 58px - 36px'); // less计算与calc编译有冲突，故写法修正为这样
             padding: 0.55rem 0;
             position: relative;
+
             .piliang {
                 margin: 0.55rem 0;
                 position: relative;
+
                 &::after {
                     .clear;
                 }
+
                 .el-button {
                     margin-left: 0;
                     margin-right: 10px;
                 }
             }
+
             /* 公用表格 */
             .public-table {
                 margin: 0.55rem 0;
+
                 .print-class {
                     .cell {
                         overflow: inherit;
                     }
                 }
+
                 /* 证书等级 */
                 .zhengshu {
                     display: inline-block;
@@ -62,10 +75,12 @@
                     color: #fff;
                     background: #333;
                     border-radius: 50%;
+
                     &.zhengshu2 {
                         background: #58b92c;
                     }
                 }
+
                 /* 状态文字前样式 */
                 .icon-before {
                     width: 8px;
@@ -75,6 +90,7 @@
                     vertical-align: middle;
                     margin-right: 1px;
                 }
+
                 /* 支付方式 */
                 .payment {
                     font-size: 20px;
@@ -82,23 +98,28 @@
                     position: relative;
                     top: 3px;
                     line-height: 23px;
+
                     &.icon-wechat {
                         color: #51c332;
                     }
+
                     &.icon-alipay {
                         color: #009fe9;
                         font-size: 22px;
                     }
+
                     &.icon-union {
                         color: #bbdcff;
                     }
                 }
+
                 /* 强制不换行 */
                 .no-wrap {
                     .cell {
                         white-space: nowrap;
                     }
                 }
+
                 thead {
                     th {
                         background: lighten(#ebeef5, 3%);
@@ -106,67 +127,85 @@
                         font-size: 14px;
                     }
                 }
+
                 /* 金钱图标 */
                 .icon-money {
                     font-size: 18px;
+
                     &.green {
                         color: #67c23a;
                     }
+
                     &.blue {
                         color: #409eff;
                     }
+
                     &.yellow {
                         color: #e6a23c;
                     }
                 }
+
                 /* 时间图标 */
                 .icon-time {
                     font-size: 12px;
+
                     &.blue {
                         color: #409eff;
                     }
+
                     &.yellow {
                         color: #e6a23c;
                     }
                 }
+
                 .icon-open {
                     font-size: 12px;
                 }
+
                 /* 科目 */
                 .icon-subject {
                     color: #666;
                 }
+
                 /* 性别 */
                 .icon-male {
                     color: rgb(40, 216, 250);
                 }
+
                 .icon-female {
                     color: rgb(255, 118, 141);
                 }
             }
+
             /* 表格下方操作区域 */
             .public-control-box {
                 width: 100%;
                 margin-bottom: 0.55rem;
+
                 &::after {
                     .clear;
                 }
             }
+
             /* 右上角按钮 */
             .top-right-btn {
                 position: absolute;
                 top: 0.73rem;
                 right: 0;
             }
+
             /* 内页用样式 */
             .info-form-box {
                 width: 100%;
+
                 &::after {
                     .clear;
                 }
+
                 .info-form {
                     width: 800px;
                     margin: 0 auto;
+
                     .info-text {
                         min-height: 28px;
                         font-size: 12px;
@@ -177,39 +216,47 @@
                         padding: 0 35px 0 15px;
                         margin-top: 6px;
                         position: relative;
+
                         .iconfont {
                             position: absolute;
                             top: 0;
                             right: 10px;
                         }
+
                         .icon-time {
                             line-height: 28px; // color: #e6a23c;
                         }
+
                         .icon-money {
                             font-size: 18px;
                             line-height: 28px; // color: #67c23a;
                         }
+
                         .icon-alipay {
                             line-height: 28px;
                             font-size: 22px;
                             right: 8px;
                             color: #009fe9;
                         }
+
                         .icon-wechat {
                             line-height: 28px;
                             font-size: 22px;
                             color: #51c332;
                         }
+
                         .icon-union {
                             line-height: 28px;
                             font-size: 22px;
                             color: #bbdcff;
                         }
+
                         .icon-male {
                             line-height: 28px;
                             font-size: 20px;
                             color: rgb(40, 216, 250);
                         }
+
                         .icon-female {
                             line-height: 28px;
                             font-size: 20px;
@@ -218,6 +265,7 @@
                     }
                 }
             }
+
             .info-title {
                 display: block;
                 color: #333;
@@ -227,6 +275,7 @@
                 margin-bottom: 0.55rem;
             }
         }
+
         .footer {
             width: 100%;
             height: 60px;
@@ -235,37 +284,49 @@
             line-height: 60px;
             color: @grey;
         }
-    } // 菜单收起
+    }
+
+    // 菜单收起
     &.collapse-wrap {
         .right-wrap {
             width: calc(~'100% - 56px');
         }
-    } // 导航模式
+    }
+
+    // 导航模式
     &.menuType-2 {
         .right-wrap {
             width: 100%;
             float: inherit;
+
             .views {
                 min-height: calc(~'100vh - 60px - 60px - 58px - 36px - 61px');
             }
         }
-    } // 菜单固定
+    }
+
+    // 菜单固定
     &.isFixed {
         .right-wrap {
             margin-top: 61px;
         }
-    } // 内容布局
+    }
+
+    // 内容布局
     &.content-width-type-2 {
         background: #f0f2f5;
+
         .right-wrap {
             width: 1230px;
             margin: 0.55rem auto;
             float: inherit;
             background: #fff;
+
             .views {
-                min-height: calc( ~'100vh - 60px - 60px - 58px - 36px - 61px - 0.55rem - 0.55rem');
+                min-height: calc(~'100vh - 60px - 60px - 58px - 36px - 61px - 0.55rem - 0.55rem');
             }
         }
+
         &.isFixed {
             .right-wrap {
                 margin-top: calc(~'61px + 0.55rem');
@@ -281,6 +342,7 @@
         .inp {
             width: calc(~'100% - 100px');
         }
+
         .btn {
             width: 90px;
             margin-left: 5px;
@@ -297,6 +359,7 @@
         margin-bottom: 10px;
         font-size: 14px;
     }
+
     .popover-list {
         .popover-item {
             color: #aaa;
@@ -305,6 +368,7 @@
             height: 24px;
             position: relative;
             padding-left: 10px;
+
             &::before {
                 content: '';
                 display: inline-block;
@@ -327,9 +391,11 @@
 .accessory-download {
     margin-left: 10px;
     color: #009fe9;
+
     .iconfont {
         font-size: 14px;
     }
+
     &.accessory-download-2 {
         margin-left: 0;
     }

@@ -1,13 +1,13 @@
 <template>
 	<div class="wrap" :class="{'collapse-wrap':isCollapse,'isFixed':menuFixed,'menuType-2':menuType === 2,'content-width-type-2':contentWidthType==='Fixed'}">
 		<!-- 顶部信息条 -->
-		<topBar></topBar>
+		<topBar/>
 		<!-- 侧边菜单 -->
-		<sideBar class="side"></sideBar>
+		<sideBar/>
 		<!-- 右-部分 -->
-		<div class="right-wrap float-right">
+		<div class="right-wrap">
 			<!-- 面包屑 -->
-			<crumb></crumb>
+			<crumb/>
 			<!-- 多标签 -->
 			<tags-view/>
 			<!-- 页面容器 -->
@@ -20,7 +20,7 @@
 			<p class="footer">Copyright © {{year}} {{$t('base.name')}} All Rights Reserved.&nbsp;&nbsp;&nbsp;Email: 329255122@qq.com</p>
 		</div>
 		<!-- 固定右侧工具 -->
-		<fixedTools></fixedTools>
+		<fixedTools/>
 	</div>
 </template>
 <script>
@@ -28,7 +28,7 @@ import sideBar from "components/sideBar"; //侧边导航
 import topBar from "components/topbar"; //顶部信息
 import crumb from "components/crumb"; //面包屑
 import TagsView from "components/TagsView"; //标签页
-import fixedTools from "components/fixedTools"; //页面设置
+import fixedTools from "components/siteSetting"; //页面设置
 
 export default {
 	name: "index",

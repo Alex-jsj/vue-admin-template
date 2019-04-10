@@ -6,7 +6,7 @@
 </template>
 <script>
 import topTooltip from "components/topTooltip";
-import tinymceEditor from "components/tinymce/tinymceEditor"; // 富文本编辑器
+import tinymceEditor from "components/tinymce"; // 富文本编辑器
 export default {
 	// 富文本编辑器
 	name: "editor",
