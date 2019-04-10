@@ -1,151 +1,133 @@
 //系统管理员端
 const rootConfig = [
     {
-        path: '/pages/index',
-        component: () => import('@/pages/public/index'),
+        path: "/pages/index",
+        component: () => import("@/pages/public/index"),
         children: [
             {
-                path: '/',
-                redirect: 'home',
-                component: () => import('@/pages/home/index')
+                path: "/",
+                redirect: "home",
+                component: () => import("@/pages/home/index")
             },
             {
-                path: 'account_information',
-                name: 'account_information',
-                component: () => import('@/pages/public/account_information'),
+                path: "account_information",
+                name: "account_information",
+                component: () => import("@/pages/public/account_information"),
                 meta: {
-                    title: 'personInfo'
+                    title: "personInfo"
                 }
             },
             {
-                path: 'home',
-                name: 'home',
-                component: () => import('@/pages/home/index'),
+                path: "home",
+                name: "home",
+                component: () => import("@/pages/home/index"),
                 meta: {
-                    title: 'home'
+                    title: "home"
                 }
             },
             {
-                path: 'intro',
-                name: 'intro',
-                component: () => import('@/pages/intro/index'),
+                path: "intro",
+                name: "intro",
+                component: () => import("@/pages/intro/index"),
                 meta: {
-                    title: 'introductoryPage'
+                    title: "introductoryPage"
                 }
             },
             {
-                path: 'icon',
-                name: 'icon',
-                component: () => import('@/pages/public/icon'),
+                path: "icon",
+                name: "icon",
+                component: () => import("@/pages/public/icon"),
                 meta: {
-                    title: 'icon'
+                    title: "icon"
                 }
             },
             {
-                path: 'component',
-                component: () => import('@/pages/component/index'),
+                path: "component",
+                component: () => import("@/pages/component/index"),
                 meta: {
-                    title: 'component'
+                    title: "component"
                 },
                 children: [
                     {
-                        path: '/',
-                        redirect: 'editor',
-                        component: () => import('@/pages/component/editor')
+                        path: "/",
+                        redirect: "editor",
+                        component: () => import("@/pages/component/editor")
                     },
                     {
-                        path: 'editor',
-                        name: 'editor',
-                        component: () => import('@/pages/component/editor'),
+                        path: "editor",
+                        name: "editor",
+                        component: () => import("@/pages/component/editor"),
                         meta: {
-                            title: 'components.textEditor',
-                            permissionName: 'editor'
+                            title: "components.textEditor",
+                            permissionName: "editor"
                         }
                     },
                     {
-                        path: 'imgUpload',
-                        name: 'imgUpload',
-                        component: () => import('@/pages/component/imgUpload'),
+                        path: "imgUpload",
+                        name: "imgUpload",
+                        component: () => import("@/pages/component/imgUpload"),
                         meta: {
-                            title: 'components.imgUpload',
-                            permissionName: 'imgUpload'
+                            title: "components.imgUpload",
+                            permissionName: "imgUpload"
                         }
                     },
                     {
-                        path: 'CountTo',
-                        name: 'CountTo',
-                        component: () => import('@/pages/component/CountTo'),
+                        path: "CountTo",
+                        name: "CountTo",
+                        component: () => import("@/pages/component/CountTo"),
                         meta: {
-                            title: 'components.countTo',
-                            permissionName: 'CountTo'
+                            title: "components.countTo",
+                            permissionName: "CountTo"
                         }
                     },
                     {
-                        path: 'miniComponent',
-                        name: 'miniComponent',
+                        path: "miniComponent",
+                        name: "miniComponent",
                         component: () =>
-                            import('@/pages/component/miniComponent'),
+                            import("@/pages/component/miniComponent"),
                         meta: {
-                            title: 'components.miniComponent',
-                            permissionName: 'miniComponent'
+                            title: "components.miniComponent",
+                            permissionName: "miniComponent"
                         }
                     },
                     {
-                        path: 'videoPlayer',
-                        name: 'videoPlayer',
+                        path: "videoPlayer",
+                        name: "videoPlayer",
                         component: () =>
-                            import('@/pages/component/videoPlayer'),
+                            import("@/pages/component/videoPlayer"),
                         meta: {
-                            title: 'components.videoPlayer',
-                            permissionName: 'videoPlayer'
+                            title: "components.videoPlayer",
+                            permissionName: "videoPlayer"
                         }
                     }
                 ]
             },
             {
-                path: 'film',
-                component: () => import('@/pages/film/index'),
+                path: "tables",
+                component: () => import("@/pages/table/index"),
                 meta: {
-                    title: '入围影片'
+                    title: "table"
                 },
                 children: [
                     {
-                        path: '/',
-                        redirect: 'list',
-                        component: () => import('@/pages/film/list')
+                        path: "/",
+                        redirect: "dynamicTable",
+                        component: () => import("@/pages/table/dynamicTable")
                     },
                     {
-                        path: 'list',
-                        name: 'film_list',
-                        component: () => import('@/pages/film/list'),
+                        path: "dynamicTable",
+                        name: "dynamicTable",
+                        component: () => import("@/pages/table/dynamicTable"),
                         meta: {
-                            title: '入围影片列表'
+                            title: "tables.comprehensiveForm"
                         }
                     },
                     {
-                        path: 'add',
-                        name: 'film_add',
-                        component: () => import('@/pages/film/add'),
+                        path: "treeGrid",
+                        name: "treeGrid",
+                        component: () => import("@/pages/table/treeGrid"),
                         meta: {
-                            title: '添加影片',
-                            need_path: '/pages/index/film/list'
-                        }
-                    },
-                    {
-                        path: 'edit',
-                        name: 'film_edit',
-                        component: () => import('@/pages/film/edit'),
-                        meta: {
-                            title: '编辑影片',
-                            need_path: '/pages/index/film/list'
-                        }
-                    },
-                    {
-                        path: 'classify',
-                        name: 'classify_list',
-                        component: () => import('@/pages/film/classify'),
-                        meta: {
-                            title: '分类列表'
+                            title: "tables.treeGrid"
                         }
                     }
                 ]
@@ -153,8 +135,8 @@ const rootConfig = [
         ]
     },
     {
-        path: '*',
-        redirect: '/404'
+        path: "*",
+        redirect: "/404"
     }
 ];
 

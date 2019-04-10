@@ -1,7 +1,12 @@
-import axios from 'utils/http_local';
+import axios from "utils/http_local";
 
 // get
 export function getData(data) {
+    return axios.get(`./static/mock/list.json`, { params: data }).then(res => {
+        return Promise.resolve(res);
+    });
+}
+export function getEdit(data) {
     return axios.get(`./static/mock/list.json`, { params: data }).then(res => {
         return Promise.resolve(res);
     });
@@ -25,13 +30,10 @@ export function addItem(data) {
     });
 }
 // edit
-export function getEdit(id) {
-    return axios.get(`./static/mock/list.json`).then(res => {
-        return Promise.resolve(res);
-    });
-}
 export function editItem(data) {
-    return axios.patch(`./static/mock/list.json/${data.id}`, data).then(res => {
-        return Promise.resolve(res);
-    });
+    return axios
+        .patch(`./static/mock/login.json/${data.id}`, data)
+        .then(res => {
+            return Promise.resolve(res);
+        });
 }
