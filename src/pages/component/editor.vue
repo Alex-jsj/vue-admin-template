@@ -1,19 +1,27 @@
 <template>
-	<div id="editor">
-		<topTooltip>{{$t('editor.toolTip')}}</topTooltip>
-		<tinymceEditor></tinymceEditor>
-	</div>
+    <div id="editor">
+        <topTooltip>{{$t('editor.toolTip')}}</topTooltip>
+        <tinymceEditor v-model="tinymceHtml"></tinymceEditor>
+        <div v-html="tinymceHtml"></div>
+    </div>
 </template>
 <script>
 import topTooltip from "components/topTooltip";
 import tinymceEditor from "components/tinymce"; // 富文本编辑器
 export default {
-	// 富文本编辑器
-	name: "editor",
-	data() {
-		return {};
-	},
-	components: { tinymceEditor, topTooltip }
+    // 富文本编辑器
+    name: "editor",
+    data() {
+        return {
+            tinymceHtml: ""
+        };
+    },
+    components: { tinymceEditor, topTooltip },
+    methods: {
+        submit: function() {
+            console.log(window.tinymce);
+        }
+    }
 };
 </script>
 
@@ -21,6 +29,6 @@ export default {
 @import "~assets/css/mixin.less";
 
 #editor {
-	width: 100%;
+    width: 100%;
 }
 </style>

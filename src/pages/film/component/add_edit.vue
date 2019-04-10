@@ -55,7 +55,7 @@
 <script>
 // api
 import * as theApi from "api/film/list";
-import tinymceEditor from "components/tinymce/tinymceEditor"; // 富文本编辑器
+import tinymceEditor from "components/tinymce"; // 富文本编辑器
 import cropper from "components/cropper"; // 图片裁剪
 export default {
 	name: "film_add_edit",
