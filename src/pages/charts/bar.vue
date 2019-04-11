@@ -70,7 +70,6 @@ export default {
             myChart.setOption({
                 title: {
                     text: "本年商场顾客男女人数统计",
-                    subtext: "BY Wang Dingding",
                     x: "4%",
 
                     textStyle: {
