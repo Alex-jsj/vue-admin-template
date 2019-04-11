@@ -96,6 +96,7 @@ export default {
 			};
 			let mapFeatures = echarts.getMap("china").geoJson.features;
 			myChart.setOption({
+                backgroundColor: "#0a1235",
 				tooltip: {
 					trigger: "item",
 					formatter: function(params) {

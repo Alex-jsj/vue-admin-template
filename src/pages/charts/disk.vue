@@ -60,45 +60,12 @@ export default {
 			let myChart = echarts.init(document.getElementById("echart-bar"));
 			// 图表配置
 			myChart.setOption({
-				backgroundColor: "rgb(43, 51, 59)",
-				toolbox: {
-					show: true,
-					feature: {
-						mark: {
-							show: true
-						},
-						dataView: {
-							show: true,
-							readOnly: false
-						},
-						magicType: {
-							show: true,
-							type: ["pie", "funnel"]
-						},
-						restore: {
-							show: true
-						},
-						saveAsImage: {
-							show: true
-						}
-					}
-				},
-				calculable: true,
+				backgroundColor: "#0a1235",
 				tooltip: {
 					trigger: "item",
-					formatter: "{a}<br/>{b}:{c}千万元"
+					formatter: "{a} <br/>{b} : {c}千万元"
 				},
-				title: {
-					text: "南丁格尔玫瑰图--PieHalfRose",
-					left: "center",
-					top: 20,
-					textStyle: {
-						color: "#ccc"
-					}
-				},
-				calculable: true,
 				legend: {
-					icon: "circle",
 					x: "center",
 					y: "15%",
 					data: [
@@ -110,22 +77,30 @@ export default {
 						"义乌市6",
 						"义乌市7",
 						"义乌市8",
-						"义乌市9"
+						"义乌市"
 					],
+					icon: "circle",
 					textStyle: {
 						color: "#fff"
 					}
 				},
+				calculable: true,
 				series: [
 					{
-						name: "XX线索",
+						name: "title",
 						type: "pie",
-						radius: [37, 155],
-						avoidLabelOverlap: false,
+						//起始角度，支持范围[0, 360]
 						startAngle: 0,
-						center: ["50.1%", "34%"],
+						//饼图的半径，数组的第一项是内半径，第二项是外半径
+						radius: [41, 153.75],
+						//支持设置成百分比，设置成百分比时第一项是相对于容器宽度，第二项是相对于容器高度
+						center: ["50%", "35%"],
+						//是否展示成南丁格尔图，通过半径区分数据大小。可选择两种模式：
+						// 'radius' 面积展现数据的百分比，半径展现数据的大小。
+						//  'area' 所有扇区面积相同，仅通过半径展现数据大小
 						roseType: "area",
-						selectedMode: "single",
+						//是否启用防止标签重叠策略，默认开启，圆环图这个例子中需要强制所有标签放在中心位置，可以将该值设为 false。
+						avoidLabelOverlap: false,
 						label: {
 							normal: {
 								show: true,
@@ -138,9 +113,7 @@ export default {
 						labelLine: {
 							normal: {
 								show: true,
-								smooth: false,
-								length: 20,
-								length2: 10
+								length2: 1
 							},
 							emphasis: {
 								show: true
@@ -221,7 +194,7 @@ export default {
 							},
 							{
 								value: 1800,
-								name: "义乌市9",
+								name: "义乌市",
 								itemStyle: {
 									normal: {
 										color: "#ff4343"
@@ -233,13 +206,14 @@ export default {
 								name: "",
 								itemStyle: {
 									normal: {
-										label: {
-											show: false
-										},
-										labelLine: {
-											show: false
-										}
+										color: "transparent"
 									}
+								},
+								label: {
+									show: false
+								},
+								labelLine: {
+									show: false
 								}
 							},
 							{
@@ -247,13 +221,14 @@ export default {
 								name: "",
 								itemStyle: {
 									normal: {
-										label: {
-											show: false
-										},
-										labelLine: {
-											show: false
-										}
+										color: "transparent"
 									}
+								},
+								label: {
+									show: false
+								},
+								labelLine: {
+									show: false
 								}
 							},
 							{
@@ -261,13 +236,14 @@ export default {
 								name: "",
 								itemStyle: {
 									normal: {
-										label: {
-											show: false
-										},
-										labelLine: {
-											show: false
-										}
+										color: "transparent"
 									}
+								},
+								label: {
+									show: false
+								},
+								labelLine: {
+									show: false
 								}
 							},
 							{
@@ -275,13 +251,14 @@ export default {
 								name: "",
 								itemStyle: {
 									normal: {
-										label: {
-											show: false
-										},
-										labelLine: {
-											show: false
-										}
+										color: "transparent"
 									}
+								},
+								label: {
+									show: false
+								},
+								labelLine: {
+									show: false
 								}
 							},
 							{
@@ -289,13 +266,14 @@ export default {
 								name: "",
 								itemStyle: {
 									normal: {
-										label: {
-											show: false
-										},
-										labelLine: {
-											show: false
-										}
+										color: "transparent"
 									}
+								},
+								label: {
+									show: false
+								},
+								labelLine: {
+									show: false
 								}
 							},
 							{
@@ -303,13 +281,14 @@ export default {
 								name: "",
 								itemStyle: {
 									normal: {
-										label: {
-											show: false
-										},
-										labelLine: {
-											show: false
-										}
+										color: "transparent"
 									}
+								},
+								label: {
+									show: false
+								},
+								labelLine: {
+									show: false
 								}
 							},
 							{
@@ -317,13 +296,14 @@ export default {
 								name: "",
 								itemStyle: {
 									normal: {
-										label: {
-											show: false
-										},
-										labelLine: {
-											show: false
-										}
+										color: "transparent"
 									}
+								},
+								label: {
+									show: false
+								},
+								labelLine: {
+									show: false
 								}
 							},
 							{
@@ -331,13 +311,14 @@ export default {
 								name: "",
 								itemStyle: {
 									normal: {
-										label: {
-											show: false
-										},
-										labelLine: {
-											show: false
-										}
+										color: "transparent"
 									}
+								},
+								label: {
+									show: false
+								},
+								labelLine: {
+									show: false
 								}
 							},
 							{
@@ -345,13 +326,14 @@ export default {
 								name: "",
 								itemStyle: {
 									normal: {
-										label: {
-											show: false
-										},
-										labelLine: {
-											show: false
-										}
+										color: "transparent"
 									}
+								},
+								label: {
+									show: false
+								},
+								labelLine: {
+									show: false
 								}
 							}
 						]

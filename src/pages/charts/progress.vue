@@ -60,7 +60,7 @@ export default {
 			data.push(value);
 			data.push(value);
 			myChart.setOption({
-				// backgroundColor: "#1b2735",
+				backgroundColor: "#1b2735",
 				title: {
 					text: "CPU使用率",
 					textStyle: {

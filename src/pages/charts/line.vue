@@ -133,6 +133,7 @@ export default {
             });
             // 图表配置
             myChart.setOption({
+                backgroundColor: "#eee",
                 tooltip: {
                     trigger: "axis"
                 },

@@ -68,6 +68,7 @@ export default {
             })();
             // 图表配置
             myChart.setOption({
+                backgroundColor: "#0a1235",
                 title: {
                     text: "本年商场顾客男女人数统计",
                     x: "4%",
