@@ -9,7 +9,7 @@
 var echarts = require("echarts/lib/echarts");
 import "echarts-liquidfill/src/liquidFill.js";
 export default {
-	name: "chartBar",
+	name: "chartProgress",
 	watch: {
 		listenMenuCollapse() {
 			// 动态变化canvas宽度

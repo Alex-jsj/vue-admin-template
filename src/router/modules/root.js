@@ -191,6 +191,14 @@ const rootConfig = [
                         meta: {
                             title: 'charts.disk'
                         }
+                    },
+                    {
+                        path: 'mixed',
+                        name: 'mixed',
+                        component: () => import('@/pages/charts/mixed'),
+                        meta: {
+                            title: 'charts.mixedChart'
+                        }
                     }
                 ]
             }

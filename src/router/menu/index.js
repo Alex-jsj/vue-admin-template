@@ -87,7 +87,7 @@ export const superAdmin = [
             },
             {
                 title: "charts.mixedChart",
-                url: "/pages/index/charts/mixedChart",
+                url: "/pages/index/charts/mixed",
                 children: []
             }
         ]

@@ -17,7 +17,7 @@ require("echarts/lib/component/tooltip");
 require("echarts/lib/component/title");
 require("echarts/lib/component/legend");
 export default {
-	name: "chartBar",
+	name: "chartMap",
 	watch: {
 		listenMenuCollapse() {
 			// 动态变化canvas宽度
