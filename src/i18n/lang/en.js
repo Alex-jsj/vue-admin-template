@@ -1,6 +1,6 @@
 export default {
     base: {
-        name: "Alex",
+        name: "",
         websiteTitle: "Vue Backstage Management System", // 站点名称
         zoom:
             "Your browser is currently in a zoom state, the page may be misplaced, it is recommended that 100% size display.",

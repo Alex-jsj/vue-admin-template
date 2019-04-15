@@ -1,6 +1,6 @@
 export default {
     base: {
-        name: "陈小银",
+        name: "",
         websiteTitle: "Vue后台管理系统",
         zoom:
             "你的浏览器目前处于缩放状态，页面可能会出现错位现象，建议100%大小显示",

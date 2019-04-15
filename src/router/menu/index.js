@@ -103,11 +103,6 @@ export const superAdmin = [
                 children: []
             },
             {
-                title: "tables.editInTable",
-                url: "/pages/index/tables/",
-                children: []
-            },
-            {
                 title: "tables.treeGrid",
                 url: "/pages/index/tables/treeGrid",
                 children: []

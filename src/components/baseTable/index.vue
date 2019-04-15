@@ -41,7 +41,7 @@
 				<template slot-scope="scope">
 					<!--扩展按钮-->
 					<el-button
-						@click="handleEmit(item.emitName, scope.row)"
+						@click="handleEmit(item.emitName, scope.row, scope.$index)"
 						v-if="tableBtnConfig.expands && tableBtnConfig.expands.length>0"
 						v-for="(item,index) in tableBtnConfig.expands"
 						:key="index"
@@ -211,8 +211,8 @@ export default {
 			}
 		},
 		// 处理相应父组件的事件方法
-		handleEmit(emitName, row) {
-			this.$emit(emitName, row);
+		handleEmit(emitName, row, idx) {
+			this.$emit(emitName, row, idx);
 		},
 		// 编辑跳转页面
 		goTo: function(id, url) {
