@@ -4,7 +4,7 @@
 		<div class="head-portrait">
 			<el-badge :value="info.content.unread" :max="99" data-step="2" :data-intro="$t('introductorPage.step2')" :class="{'badge-show':info.content.unread}">
 				<div class="img-container">
-					<img :src="info.content.head_img" class="head-img">
+					<img :src="info.content.head_img | avatar" class="head-img">
 				</div>
 			</el-badge>
 		</div>
@@ -49,6 +49,7 @@
 <script>
 // api
 import { logout } from "api/login";
+import "utils/filters";
 export default {
 	name: "userBoard",
 	data() {
@@ -63,7 +64,7 @@ export default {
 					role: this.$store.state.role,
 					agent_title: this.$store.state.agent_title,
 					unread: this.$store.state.unread,
-					head_img: "./static/img/head.png"
+					head_img: "./static/img/timg.jpeg"
 				}
 			};
 		}
