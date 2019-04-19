@@ -333,7 +333,7 @@ export default {
 					}
 					// 跳转到首页
 					this.$router.push({
-						path: "./pages/index"
+						path: "./views/index"
 					});
 				} else if (res.msg === "AlreadyOnline") {
 					this.$confirm(

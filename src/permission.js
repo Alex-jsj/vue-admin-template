@@ -38,7 +38,7 @@ router.beforeEach((to, from, next) => {
                         next({ ...to, replace: true }); // hack方法 确保addRoutes已完成
                     });
                 } else {
-                    next("/pages/index");
+                    next("/views/index");
                 }
             } else {
                 // 前端存储的登录时间已过期

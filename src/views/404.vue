@@ -3,7 +3,7 @@
 		<p class="num" :class="{'numShow':num_show}">404!</p>
 		<p class="text" :class="{'textShow':num_show}">Page Not Found</p>
 		<div class="btn" :class="{'btnShow':num_show}">
-			<router-link to="/pages/index" class="link">{{$t('404.backToHome')}}</router-link>
+			<router-link to="/views/index" class="link">{{$t('404.backToHome')}}</router-link>
 			<router-link to @click.native="$router.back(-1)" class="link">{{$t('404.backToPrev')}}</router-link>
 		</div>
 	</div>

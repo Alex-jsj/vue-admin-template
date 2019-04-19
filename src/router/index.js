@@ -6,12 +6,12 @@ Vue.use(Router);
 export const publicRouter = [
     {
         path: "/redirect",
-        component: () => import("@/pages/public/index"),
+        component: () => import("@/views/public/index"),
         // hidden: true,
         children: [
             {
                 path: "/redirect/:path*",
-                component: () => import("@/pages/redirect/index")
+                component: () => import("@/views/redirect/index")
             }
         ]
     },
@@ -21,11 +21,11 @@ export const publicRouter = [
     },
     {
         path: "/login",
-        component: () => import("@/pages/login")
+        component: () => import("@/views/login")
     },
     {
         path: "/404",
-        component: () => import("@/pages/404")
+        component: () => import("@/views/404")
     }
 ];
 

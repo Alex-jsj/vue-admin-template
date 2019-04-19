@@ -29,13 +29,13 @@
 				<!-- 操作 -->
 				<ul class="user-board-list">
 					<li class="item">
-						<router-link to="/pages/index/systemManage/systemManage_message" class="link">
+						<router-link to="/views/index/systemManage/systemManage_message" class="link">
 							{{$t('topBar.userBoard.messageNotification')}}
 							<span v-if="info.content.unread">({{info.content.unread}})</span>
 						</router-link>
 					</li>
 					<li class="item">
-						<router-link to="/pages/index/account_information?modify=1" class="link">{{$t('topBar.userBoard.changePassword')}}</router-link>
+						<router-link to="/views/index/account_information?modify=1" class="link">{{$t('topBar.userBoard.changePassword')}}</router-link>
 					</li>
 					<li class="item">
 						<p class="link" @click="log_out()">{{$t('topBar.userBoard.logout')}}</p>

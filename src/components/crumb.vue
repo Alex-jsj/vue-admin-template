@@ -2,7 +2,7 @@
 	<div id="crumb" data-step="3" :data-intro="$t('introductorPage.step3')">
 		<el-breadcrumb class="app-breadcrumb float-left" separator="/">
 			<transition-group name="breadcrumb">
-				<el-breadcrumb-item key="home" v-if="crumbList[1].path !== '/pages/index/home'">
+				<el-breadcrumb-item key="home" v-if="crumbList[1].path !== '/views/index/home'">
 					<router-link to="/">{{$t('route.home')}}</router-link>
 				</el-breadcrumb-item>
 				<el-breadcrumb-item v-for="(item,index)  in crumbList" :key="item.path" v-if="item.meta.title">

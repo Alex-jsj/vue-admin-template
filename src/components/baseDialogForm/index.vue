@@ -1,5 +1,5 @@
 <template>
-	<el-dialog :title="title" :visible.sync="dialogVisible" :width="width?width:'80%'">
+	<el-dialog :title="title" :visible.sync="dialogVisible" v-if="dialogVisible" :width="width?width:'80%'" @close="__resetFormModel">
 		<el-form :model="formModel" ref="configForm" label-width="100px">
 			<el-row :gutter="16">
 				<el-col :span="item.span?item.span:8" v-for="(item,index) in config" :key="index">
@@ -65,7 +65,6 @@ export default {
 	methods: {
 		// 提交表单数据
 		submitForm(obj) {
-			console.log(obj);
 			this.$refs.configForm.validate(valid => {
 				if (valid) {
 					// 让父组件接收到响应数据
@@ -78,10 +77,13 @@ export default {
 			});
 		},
 		// 重置表单状态
-		resetForm() {
-			if (this.$refs.configForm) {
-				this.$refs.configForm.resetFields();
-			}
+		__resetFormModel() {
+			this.formModel = {};
+			// 同时重置父组件的表单模型
+			this.$emit("resetFormModel");
+		},
+		resetForm: function() {
+			if (this.$refs.configForm) this.$refs.configForm.resetFields();
 		},
 		// 展示模态框
 		showDialog() {

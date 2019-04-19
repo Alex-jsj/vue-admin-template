@@ -100,7 +100,7 @@ export default {
 					if (latestView) {
 						this.$router.push(latestView);
 					} else {
-						this.$router.push({ path: "/pages/index/home" });
+						this.$router.push({ path: "/views/index/home" });
 					}
 				}
 			});

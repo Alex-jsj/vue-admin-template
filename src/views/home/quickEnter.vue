@@ -21,27 +21,27 @@ export default {
 			return [
 				{
 					title: this.$t("route.introductoryPage"),
-					link: "/pages/index/intro",
+					link: "/views/index/intro",
 					icon: "intro"
 				},
 				{
 					title: this.$t("route.icon"),
-					link: "/pages/index/icon",
+					link: "/views/index/icon",
 					icon: "icon"
 				},
 				{
 					title: this.$t("route.components.textEditor"),
-					link: "/pages/index/component/editor",
+					link: "/views/index/component/editor",
 					icon: "component"
 				},
 				{
 					title: this.$t("route.chart"),
-					link: "/pages/index/charts/bar",
+					link: "/views/index/charts/bar",
 					icon: "chart"
 				},
 				{
 					title: this.$t("route.international"),
-					link: "/pages/index/i18n",
+					link: "/views/index/i18n",
 					icon: "in"
 				}
 			];

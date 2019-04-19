@@ -69,6 +69,7 @@
 			:err-form="formError"
 			:is-edit="isEdit"
 			@submit="dialogSubmit"
+			@resetFormModel="_resetFormModel"
 		></BaseDialogForm>
 	</div>
 </template>
@@ -173,22 +174,31 @@ export default {
 		},
 		// 新增 编辑按钮
 		createOrUpdate(item) {
-			this.$refs.dialogForm.resetForm();
-			item
-				? this.getEditData(item.id, () => {
-						this.$refs.dialogForm.showDialog();
-				  })
-				: this.$refs.dialogForm.showDialog();
-			item ? (this.isEdit = true) : (this.isEdit = false);
+			if (item) {
+				this.getEditData(item.id, () => {
+					this.$refs.dialogForm.showDialog();
+					this.$refs.dialogForm.resetForm();
+					this.isEdit = true;
+				});
+			} else {
+				this.$refs.dialogForm.showDialog();
+				this.$refs.dialogForm.resetForm();
+				this.isEdit = false;
+			}
 			this.dialogTitle = (item ? "编辑" : "添加") + this.formTitle;
 		},
 		// 从后台获取编辑框需要的数据，表格只用作展示作用，所以不从表格内获取数据
 		getEditData: async function(id, callback) {
 			const res = await this.theApi.getEdit(id);
 			if (res.code === 200) {
-				this.formModel = Object.assign({}, res.data[0] || {});
+				// this.formModel = Object.assign({}, res.data || {});
+				this.formModel = res.data[0] || {};
 				callback && callback();
 			}
+		},
+		// 重置表单模型
+		_resetFormModel: function() {
+			this.formModel = {};
 		},
 		// 模态框数据提交
 		dialogSubmit: async function(data) {

@@ -27,7 +27,6 @@ import introJS from 'intro.js';
 import 'intro.js/introjs.css';
 Vue.prototype.$intro = introJS;
 
-
 import VueCropper from 'vue-cropper'; // 图片裁剪
 Vue.use(VueCropper);
 

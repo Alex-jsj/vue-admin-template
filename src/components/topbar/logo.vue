@@ -1,6 +1,6 @@
 <template>
 	<div id="logo">
-		<router-link to="/pages/index" class="link">
+		<router-link to="/views/index" class="link">
 			<img :src="logoSrc" alt="logo" class="logo-img">
 			<!-- text -->
 			<span class="logo-text">{{$t('base.websiteTitle')}}</span>

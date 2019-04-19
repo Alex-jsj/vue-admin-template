@@ -1,18 +1,18 @@
 //系统管理员端
 const rootConfig = [
     {
-        path: '/pages/index',
-        component: () => import('@/pages/public/index'),
+        path: '/views/index',
+        component: () => import('@/views/public/index'),
         children: [
             {
                 path: '/',
                 redirect: 'home',
-                component: () => import('@/pages/home/index')
+                component: () => import('@/views/home/index')
             },
             {
                 path: 'account_information',
                 name: 'account_information',
-                component: () => import('@/pages/public/account_information'),
+                component: () => import('@/views/public/account_information'),
                 meta: {
                     title: 'personInfo'
                 }
@@ -20,7 +20,7 @@ const rootConfig = [
             {
                 path: 'home',
                 name: 'home',
-                component: () => import('@/pages/home/index'),
+                component: () => import('@/views/home/index'),
                 meta: {
                     title: 'home'
                 }
@@ -28,7 +28,7 @@ const rootConfig = [
             {
                 path: 'intro',
                 name: 'intro',
-                component: () => import('@/pages/intro/index'),
+                component: () => import('@/views/intro/index'),
                 meta: {
                     title: 'introductoryPage'
                 }
@@ -36,7 +36,7 @@ const rootConfig = [
             {
                 path: 'icon',
                 name: 'icon',
-                component: () => import('@/pages/public/icon'),
+                component: () => import('@/views/public/icon'),
                 meta: {
                     title: 'icon'
                 }
@@ -44,14 +44,14 @@ const rootConfig = [
             {
                 path: 'i18n',
                 name: 'i18n',
-                component: () => import('@/pages/international/index'),
+                component: () => import('@/views/international/index'),
                 meta: {
                     title: 'international'
                 }
             },
             {
                 path: 'component',
-                component: () => import('@/pages/component/index'),
+                component: () => import('@/views/component/index'),
                 meta: {
                     title: 'component'
                 },
@@ -59,12 +59,12 @@ const rootConfig = [
                     {
                         path: '/',
                         redirect: 'editor',
-                        component: () => import('@/pages/component/editor')
+                        component: () => import('@/views/component/editor')
                     },
                     {
                         path: 'editor',
                         name: 'editor',
-                        component: () => import('@/pages/component/editor'),
+                        component: () => import('@/views/component/editor'),
                         meta: {
                             title: 'components.textEditor',
                             permissionName: 'editor'
@@ -73,7 +73,7 @@ const rootConfig = [
                     {
                         path: 'imgUpload',
                         name: 'imgUpload',
-                        component: () => import('@/pages/component/imgUpload'),
+                        component: () => import('@/views/component/imgUpload'),
                         meta: {
                             title: 'components.imgUpload',
                             permissionName: 'imgUpload'
@@ -82,7 +82,7 @@ const rootConfig = [
                     {
                         path: 'CountTo',
                         name: 'CountTo',
-                        component: () => import('@/pages/component/CountTo'),
+                        component: () => import('@/views/component/CountTo'),
                         meta: {
                             title: 'components.countTo',
                             permissionName: 'CountTo'
@@ -92,7 +92,7 @@ const rootConfig = [
                         path: 'miniComponent',
                         name: 'miniComponent',
                         component: () =>
-                            import('@/pages/component/miniComponent'),
+                            import('@/views/component/miniComponent'),
                         meta: {
                             title: 'components.miniComponent',
                             permissionName: 'miniComponent'
@@ -102,7 +102,7 @@ const rootConfig = [
                         path: 'videoPlayer',
                         name: 'videoPlayer',
                         component: () =>
-                            import('@/pages/component/videoPlayer'),
+                            import('@/views/component/videoPlayer'),
                         meta: {
                             title: 'components.videoPlayer',
                             permissionName: 'videoPlayer'
@@ -112,7 +112,7 @@ const rootConfig = [
             },
             {
                 path: 'tables',
-                component: () => import('@/pages/table/index'),
+                component: () => import('@/views/table/index'),
                 meta: {
                     title: 'table'
                 },
@@ -120,12 +120,12 @@ const rootConfig = [
                     {
                         path: '/',
                         redirect: 'dynamicTable',
-                        component: () => import('@/pages/table/dynamicTable')
+                        component: () => import('@/views/table/dynamicTable')
                     },
                     {
                         path: 'dynamicTable',
                         name: 'dynamicTable',
-                        component: () => import('@/pages/table/dynamicTable'),
+                        component: () => import('@/views/table/dynamicTable'),
                         meta: {
                             title: 'tables.comprehensiveForm'
                         }
@@ -133,7 +133,7 @@ const rootConfig = [
                     {
                         path: 'treeGrid',
                         name: 'treeGrid',
-                        component: () => import('@/pages/table/treeGrid'),
+                        component: () => import('@/views/table/treeGrid'),
                         meta: {
                             title: 'tables.treeGrid'
                         }
@@ -142,7 +142,7 @@ const rootConfig = [
             },
             {
                 path: 'charts',
-                component: () => import('@/pages/charts/index'),
+                component: () => import('@/views/charts/index'),
                 meta: {
                     title: 'chart'
                 },
@@ -150,12 +150,12 @@ const rootConfig = [
                     {
                         path: '/',
                         redirect: 'chartLine',
-                        component: () => import('@/pages/charts/line')
+                        component: () => import('@/views/charts/line')
                     },
                     {
                         path: 'line',
                         name: 'chartLine',
-                        component: () => import('@/pages/charts/line'),
+                        component: () => import('@/views/charts/line'),
                         meta: {
                             title: 'charts.line'
                         }
@@ -163,7 +163,7 @@ const rootConfig = [
                     {
                         path: 'bar',
                         name: 'bar',
-                        component: () => import('@/pages/charts/bar'),
+                        component: () => import('@/views/charts/bar'),
                         meta: {
                             title: 'charts.histogram'
                         }
@@ -171,7 +171,7 @@ const rootConfig = [
                     {
                         path: 'map',
                         name: 'map',
-                        component: () => import('@/pages/charts/map'),
+                        component: () => import('@/views/charts/map'),
                         meta: {
                             title: 'charts.map'
                         }
@@ -179,7 +179,7 @@ const rootConfig = [
                     {
                         path: 'progress',
                         name: 'progress',
-                        component: () => import('@/pages/charts/progress'),
+                        component: () => import('@/views/charts/progress'),
                         meta: {
                             title: 'charts.progress'
                         }
@@ -187,7 +187,7 @@ const rootConfig = [
                     {
                         path: 'disk',
                         name: 'disk',
-                        component: () => import('@/pages/charts/disk'),
+                        component: () => import('@/views/charts/disk'),
                         meta: {
                             title: 'charts.disk'
                         }
@@ -195,7 +195,7 @@ const rootConfig = [
                     {
                         path: 'mixed',
                         name: 'mixed',
-                        component: () => import('@/pages/charts/mixed'),
+                        component: () => import('@/views/charts/mixed'),
                         meta: {
                             title: 'charts.mixedChart'
                         }
