@@ -22,13 +22,13 @@
 					<p class="title">{{$t('fixedTool.theme')}}</p>
 					<el-tooltip effect="dark" :content="$t('fixedTool.themeConfig.content1')" placement="top">
 						<div class="theme-img" @click="themeChange('light')">
-							<img src="../../../static/img/light.jpg">
+							<img src="../../../static/img/light.jpg" />
 							<i class="iconfont icon-yep" v-if="theme === 'light'"></i>
 						</div>
 					</el-tooltip>
 					<el-tooltip effect="dark" :content="$t('fixedTool.themeConfig.content2')" placement="top">
 						<div class="theme-img" @click="themeChange('dark')">
-							<img src="../../../static/img/dark.jpg">
+							<img src="../../../static/img/dark.jpg" />
 							<i class="iconfont icon-yep" v-if="theme === 'dark'"></i>
 						</div>
 					</el-tooltip>
@@ -37,17 +37,17 @@
 					<p class="title">{{$t('fixedTool.navigation')}}</p>
 					<el-tooltip effect="dark" :content="$t('fixedTool.navigationConfig.content1')" placement="top">
 						<div class="theme-img" @click="menuChange(1)">
-							<img src="../../../static/img/menu1.jpg">
+							<img src="../../../static/img/menu1.jpg" />
 							<i class="iconfont icon-yep" v-if="menuType === 1"></i>
 						</div>
 					</el-tooltip>
 					<el-tooltip effect="dark" :content="$t('fixedTool.navigationConfig.content2')" placement="top">
 						<div class="theme-img" @click="menuChange(2)">
-							<img src="../../../static/img/menu2.jpg">
+							<img src="../../../static/img/menu2.jpg" />
 							<i class="iconfont icon-yep" v-if="menuType === 2"></i>
 						</div>
 					</el-tooltip>
-					<br>
+					<br />
 					<el-tooltip effect="dark" :disabled="menuType==1" :content="$t('fixedTool.navigationConfig.config1')" placement="left">
 						<div class="inline-item item-collapse">
 							<span class="title-2 float-left" :class="{'title-grey':menuType == 2}">{{$t('fixedTool.navigationConfig.retract')}}</span>
