@@ -20,7 +20,7 @@
         "laravel-echo": "^1.4.1",
         "less": "^3.0.1",
         "less-loader": "^4.0.6",
-        "node-sass": "^4.10.0",
+        "node-sass": "^7.0.0",
         "nprogress": "^0.2.0",
         "qrcodejs2": "0.0.2",
         "sass-loader": "^7.1.0",
